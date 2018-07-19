@@ -54,5 +54,13 @@ export const IndexRouter = [
     component: resolve => {
       require(['../../views/common/message/messages.vue'], resolve)
     }
+  },
+  {
+    path: 'admin.sellers.index',
+    name: 'admin.sellers.index',
+    meta: {title: '商家列表'},
+    component: resolve => {
+      require(['../../views/sellers/index.vue'], resolve)
+    }
   }
 ]

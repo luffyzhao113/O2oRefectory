@@ -34,6 +34,8 @@ Route::group(['middleware' => 'auth'], function (){
         Route::apiResource('admin', 'AdminController');
 
         Route::get('logs', 'LogsController@index')->name('logs.index');
+
+        Route::apiResource('seller', 'SellerController');
     });
 
 });

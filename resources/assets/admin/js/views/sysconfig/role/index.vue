@@ -41,7 +41,7 @@
         }, {
           title: '操作',
           render: (h, {row}) => {
-            return (<button-group>
+            return (<div>
               <i-button size="small" on-click={()=>this.showComponent('Update', row)}>修改</i-button>
               <i-button size="small" on-click={()=>this.showComponent('Permission', row)}>分配权限</i-button>
               <poptip
@@ -52,7 +52,7 @@
               >
                 <i-button size="small">删除</i-button>
               </poptip>
-            </button-group>);
+            </div>);
           }
         }]
       }

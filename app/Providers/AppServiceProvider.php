@@ -11,6 +11,8 @@ use App\Repositories\Modules\BasePermission\Provider AS BasePermission;
 use App\Repositories\Modules\BaseRole\Provider AS BaseRole;
 use App\Repositories\Modules\BaseLogs\Provider AS BaseLogs;
 use App\Repositories\Modules\Notification\Provider as Notification;
+use App\Repositories\Modules\Seller\Provider as Seller;
+use App\Repositories\Modules\SellerVerify\Provider as SellerVerify;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -40,5 +42,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->register(BasePermission::class);
         $this->app->register(BaseRole::class);
         $this->app->register(BaseLogs::class);
+        $this->app->register(Seller::class);
+        $this->app->register(SellerVerify::class);
     }
 }

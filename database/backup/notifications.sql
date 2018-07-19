@@ -1,0 +1,1 @@
+INSERT INTO `notifications` VALUES ('42201e6f-692e-48fa-bb0b-6abb6ac1d3a3', 'App\\Notifications\\Welcome', 'App\\Model\\BaseAdmin', 1, '{\"title\":\"\\u6b22\\u8fce \\u65e0\\u540d\\u6c0f \\u767b\\u5f55\\u7cfb\\u7edf\",\"content\":\"\\u767b\\u5f55IP\\u5730\\u5740:127.0.0.1,...\"}', NULL, '2018-7-19 16:33:34', '2018-7-19 16:33:34');

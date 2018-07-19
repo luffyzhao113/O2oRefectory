@@ -23,3 +23,5 @@ INSERT INTO `base_permissions` VALUES (22, 4, 'role.permission.store', NULL, 0, 
 INSERT INTO `base_permissions` VALUES (23, 1, 'sysconfig.logs', 'logs', 1, '日志管理', NULL, '2018-7-4 10:32:35', '2018-7-4 10:34:10', 255);
 INSERT INTO `base_permissions` VALUES (24, 23, 'sysconfig.logs.index', 'lgos.index', 1, '操作日志', NULL, '2018-7-4 10:33:58', '2018-7-4 10:34:58', 255);
 INSERT INTO `base_permissions` VALUES (25, 24, 'logs.index', NULL, 0, '获取日志列表', NULL, '2018-7-4 10:35:22', '2018-7-4 10:35:22', 255);
+INSERT INTO `base_permissions` VALUES (26, 0, 'admin.sellers', 'qr-scanner', 1, '商家管理', NULL, '2018-7-19 16:36:09', '2018-7-19 16:36:09', 2);
+INSERT INTO `base_permissions` VALUES (28, 2, 'admin.sellers.index', 'sellers', 1, '商家列表', NULL, '2018-7-19 17:28:05', '2018-7-19 17:28:05', 1);
