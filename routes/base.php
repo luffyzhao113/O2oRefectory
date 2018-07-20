@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth'], function (){
 
         Route::get('logs', 'LogsController@index')->name('logs.index');
 
+        Route::get('seller/{id}/verifies/{show}', 'Seller\VerifiesController@show');
         Route::apiResource('seller', 'SellerController');
     });
 

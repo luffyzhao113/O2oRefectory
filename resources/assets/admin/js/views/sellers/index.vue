@@ -32,10 +32,12 @@
   import MyLists from "../../components/layout/my-lists";
   import lists from "../../mixins/lists";
   import TrueOrFalse from "../../components/select/true-or-false";
+  import Verifles from "./verifies"
+
   export default {
     components: {
       TrueOrFalse,
-      MyLists},
+      MyLists, Verifles},
     mixins: [lists],
     name: "index",
     data() {
@@ -51,14 +53,21 @@
         }, {
           title: '审核状态',
           render: (h, {row}) => {
-            return <span>{row.verify ? '开启' : '关闭'}</span>
+            if(row.verify == 0){
+              return <span>待审核</span>
+            }else if(row.verify == 1){
+              return <spna>审核通过</spna>
+            }else{
+              return <spna>审核不通过</spna>
+            }
           }
         }, {
           title: '操作',
           render: (h, {row}) => {
+            console.log((row.verify!==1 && row.verify !== 2))
             return (<div>
               <i-button size="small">修改</i-button>
-              <i-button disabled={row.verify} size="small">审核</i-button>
+              <i-button disabled={(row.verify==1 || row.verify == 2)} size="small" on-click={()=>this.showComponent('Verifles', row)}>审核</i-button>
             </div>);
           }
         }]
