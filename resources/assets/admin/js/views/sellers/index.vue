@@ -5,22 +5,19 @@
                 <span>搜索</span>
             </p>
             <Form ref="searchForm" :model="searchForm" :label-width="80" inline>
-                <FormItem prop="name" label="用户名" :label-width="50">
+                <FormItem prop="name" label="店铺名称">
                     <Input type="text" v-model="searchForm.name"></Input>
                 </FormItem>
-                <FormItem prop="status" label="状态" :label-width="40">
-                    <true-or-false v-model="searchForm.status" true-value="开启" false-value="关闭"></true-or-false>
-                </FormItem>
-                <FormItem prop="verify" label="审核" :label-width="60">
-                    <Select v-model="searchForm.verify" clearable style="width:150px">
+                <FormItem prop="status" label="店铺状态">
+                    <Select v-model="searchForm.status" clearable style="width:150px">
                         <Option :value="0">未审核</Option>
-                        <Option :value="1">通过</Option>
-                        <Option :value="2">不通过</Option>
+                        <Option :value="1">正常</Option>
+                        <Option :value="2">审核不通过</Option>
+                        <Option :value="3">关闭</Option>
                     </Select>
                 </FormItem>
                 <FormItem :label-width="1">
                     <Button @click="search(1)" type="primary">搜索</Button>
-                    <Button @click="showComponent('Create')" type="warning">添加</Button>
                 </FormItem>
             </Form>
         </Card>
@@ -32,14 +29,16 @@
   import MyLists from "../../components/layout/my-lists";
   import lists from "../../mixins/lists";
   import TrueOrFalse from "../../components/select/true-or-false";
-  import Verifles from "./verifies"
+  import Show from "./show"
 
   export default {
     components: {
       TrueOrFalse,
-      MyLists, Verifles},
+      MyLists,
+      Show
+    },
     mixins: [lists],
-    name: "index",
+    name: "sellers-index",
     data() {
       return {
         columns: [{
@@ -48,26 +47,27 @@
         }, {
           title: '状态',
           render: (h, {row}) => {
-            return <span>{row.status ? '开启' : '关闭'}</span>
-          }
-        }, {
-          title: '审核状态',
-          render: (h, {row}) => {
-            if(row.verify == 0){
-              return <span>待审核</span>
-            }else if(row.verify == 1){
-              return <spna>审核通过</spna>
-            }else{
-              return <spna>审核不通过</spna>
-            }
+            switch (row.status){
+                case 0:
+                    return (<span>未审核</span>)
+                    break;
+                case 1:
+                    return (<span>正常</span>)
+                    break;
+                case 2:
+                    return (<span>审核不通过</span>)
+                    break;
+                case 3:
+                    return (<span>关闭</span>)
+                    break;
+              }
           }
         }, {
           title: '操作',
           render: (h, {row}) => {
-            console.log((row.verify!==1 && row.verify !== 2))
             return (<div>
-              <i-button size="small">修改</i-button>
-              <i-button disabled={(row.verify==1 || row.verify == 2)} size="small" on-click={()=>this.showComponent('Verifles', row)}>审核</i-button>
+                <i-button v-show={row.status === 0} size="small">审核</i-button>
+                <i-button v-show={row.status !== 0} on-click={() => {this.showComponent('Show', row)}} size="small">查看</i-button>
             </div>);
           }
         }]

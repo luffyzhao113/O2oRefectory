@@ -17,10 +17,8 @@ class CreateSellersTable extends Migration
             $table->increments('id');
             // 商店名称
             $table->string('name', 50);
-            // 商家状态 0 关闭; 1 开启;
+            // 商家状态 0 未审核; 1 正常 2 审核不通过 3 关闭
             $table->tinyInteger('status');
-            // 商家审核状态 0 未审核; 1 已审核
-            $table->tinyInteger('verify');
             $table->timestamps();
         });
     }

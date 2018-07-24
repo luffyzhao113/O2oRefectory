@@ -75,6 +75,9 @@ class Run extends Command
      * @author luffyzhao@vip.126.com
      */
     protected function read($file){
+        if(!file_exists($file) || !is_readable($file)){
+            return;
+        }
         $handle = @fopen($file, "r");
         if(!$handle){
             throw new \Exception('文件读取失败');
@@ -106,11 +109,15 @@ class Run extends Command
      */
     protected function files(){
         return [
+            database_path('backup') . '/base_admins.sql',
+            database_path('backup') . '/base_logs.sql',
+            database_path('backup') . '/base_permission_role.sql',
             database_path('backup') . '/base_permissions.sql',
             database_path('backup') . '/base_roles.sql',
-            database_path('backup') . '/base_permission_role.sql',
-            database_path('backup') . '/base_logs.sql',
-            database_path('backup') . '/base_admins.sql',
+            database_path('backup') . '/notifications.sql',
+            database_path('backup') . '/seller_certificates.sql',
+            database_path('backup') . '/seller_logs.sql',
+            database_path('backup') . '/sellers.sql',
         ];
     }
 }

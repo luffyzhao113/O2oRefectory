@@ -6,9 +6,9 @@ webpackJsonp([11],{
 var disposed = false
 var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(254)
+var __vue_script__ = __webpack_require__(259)
 /* template */
-var __vue_template__ = __webpack_require__(255)
+var __vue_template__ = __webpack_require__(260)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48,7 +48,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 254:
+/***/ 259:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68,7 +68,7 @@ exports.default = {};
 
 /***/ }),
 
-/***/ 255:
+/***/ 260:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
