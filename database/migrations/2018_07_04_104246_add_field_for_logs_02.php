@@ -15,7 +15,7 @@ class AddFieldForLogs02 extends Migration
     {
         Schema::table('base_logs', function ($table) {
             $table->renameColumn('route', 'uri');
-            $table->string('display_name', 100);
+            $table->string('display_name', 100)->comment('内容');
         });
     }
 

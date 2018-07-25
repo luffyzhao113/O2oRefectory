@@ -17,13 +17,13 @@ class CreateBaseLogs extends Migration
             //
             $table->increments('id');
             //路由名称
-            $table->string('route', 50);
+            $table->string('route', 50)->comment('路由名称');
             //提交参数
-            $table->text('params');
+            $table->text('params')->comment('提交参数');
             //操作用户
-            $table->unsignedInteger('admin_id');
+            $table->unsignedInteger('admin_id')->comment('操作用户');
             //状态
-            $table->smallInteger('status_code');
+            $table->smallInteger('status_code')->comment('http状态');
             //时间
             $table->timestamps();
             // 索引

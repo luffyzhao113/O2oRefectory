@@ -14,8 +14,8 @@ class BaseAdminAddFeild extends Migration
     public function up()
     {
         Schema::table('base_admins', function (Blueprint $table) {
-            $table->string('name', 20);
-            $table->string('photo')->nullable();
+            $table->string('name', 20)->comment('管理员姓名');
+            $table->string('photo')->nullable()->comment('管理员手机号码');
         });
     }
 

@@ -109,11 +109,11 @@ class Run extends Command
      */
     protected function files(){
         return [
+            database_path('backup') . '/base_permissions.sql',
+            database_path('backup') . '/base_roles.sql',
             database_path('backup') . '/base_admins.sql',
             database_path('backup') . '/base_logs.sql',
             database_path('backup') . '/base_permission_role.sql',
-            database_path('backup') . '/base_permissions.sql',
-            database_path('backup') . '/base_roles.sql',
             database_path('backup') . '/notifications.sql',
             database_path('backup') . '/seller_certificates.sql',
             database_path('backup') . '/seller_logs.sql',

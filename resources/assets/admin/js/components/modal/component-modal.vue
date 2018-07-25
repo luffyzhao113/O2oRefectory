@@ -1,5 +1,5 @@
 <template>
-    <Modal :title="title" :value="true" @on-visible-change="change" :transfer="false" :loading="loading" :mask-closable="false">
+    <Modal :title="title" :value="true" @on-visible-change="change" :transfer="false" :loading="loading" :mask-closable="false" :width="width">
         <div class="modal-body"><slot></slot></div>
         <div slot="footer"><slot name="footer"></slot></div>
     </Modal>
@@ -12,6 +12,10 @@
       title: {
         type: String,
         default: '弹窗'
+      },
+      width: {
+        type: Number,
+        default: 520
       }
     },
     computed: {

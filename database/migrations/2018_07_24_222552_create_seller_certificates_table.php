@@ -15,9 +15,9 @@ class CreateSellerCertificatesTable extends Migration
     {
         Schema::create('seller_certificates', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('seller_id')->unique();
+            $table->unsignedInteger('seller_id')->unique()->comment('店铺Id');;
             // 证明材料
-            $table->string('name', 50);
+            $table->string('name', 50)->comment('店铺法人');
             $table->timestamps();
         });
     }

@@ -25,3 +25,4 @@ INSERT INTO `base_permissions` VALUES (24, 23, 'sysconfig.logs.index', 'lgos.ind
 INSERT INTO `base_permissions` VALUES (25, 24, 'logs.index', NULL, 0, '获取日志列表', NULL, '2018-7-4 10:35:22', '2018-7-4 10:35:22', 255);
 INSERT INTO `base_permissions` VALUES (26, 0, 'admin.sellers', 'qr-scanner', 1, '店铺管理', NULL, '2018-7-19 16:36:09', '2018-7-24 21:36:16', 2);
 INSERT INTO `base_permissions` VALUES (28, 26, 'admin.sellers.index', 'sellers', 1, '店铺列表', NULL, '2018-7-19 17:28:05', '2018-7-24 21:36:20', 1);
+INSERT INTO `base_permissions` VALUES (29, 26, 'admin.sellers.auditing', 'auditing', 1, '待审核列表', NULL, '2018-7-25 16:14:16', '2018-7-25 16:14:16', 2);

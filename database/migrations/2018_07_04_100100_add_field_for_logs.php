@@ -14,7 +14,7 @@ class AddFieldForLogs extends Migration
     public function up()
     {
         Schema::table('base_logs', function (Blueprint $table) {
-            $table->string('method', 20);
+            $table->string('method', 20)->comment('请求方式');
         });
     }
 

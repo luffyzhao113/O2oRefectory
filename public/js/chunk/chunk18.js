@@ -276,6 +276,10 @@ exports.default = {
     title: {
       type: String,
       default: '弹窗'
+    },
+    width: {
+      type: Number,
+      default: 520
     }
   },
   computed: {
@@ -307,7 +311,8 @@ var render = function() {
         value: true,
         transfer: false,
         loading: _vm.loading,
-        "mask-closable": false
+        "mask-closable": false,
+        width: _vm.width
       },
       on: { "on-visible-change": _vm.change }
     },

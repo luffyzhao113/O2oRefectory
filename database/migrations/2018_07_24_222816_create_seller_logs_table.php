@@ -15,10 +15,10 @@ class CreateSellerLogsTable extends Migration
     {
         Schema::create('seller_logs', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('seller_id');
-            $table->string('remark');
+            $table->unsignedInteger('seller_id')->comment('店铺ID');
+            $table->string('remark')->comment('操作说明');
             //操作用户
-            $table->unsignedInteger('admin_id');
+            $table->unsignedInteger('admin_id')->comment('操作用户id');
             $table->timestamps();
             $table->index('seller_id');
         });

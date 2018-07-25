@@ -1,35 +1,27 @@
 <template>
-    <component-modal title="查看店铺">
-        <Row>
-            <Col span="4" class="tr">
-                   店铺名称：
-            </Col>
-            <Col span="8">
-                {{seller.name}}
-            </Col>
-            <Col span="4" class="tr">
-                    商家姓名：
-            </Col>
-            <Col span="8">
-                {{seller.certificates.name}}
-            </Col>
-        </Row>
-        <Row>
-            <Col span="24">
-                日志
-            </Col>
-        </Row>
-        <Table :columns="columns" :data="seller.logs" size="small"></Table>
+    <component-modal title="查看店铺" :width="750">
+        <box title="店铺详情">
+                <detail title="店铺名称">{{seller.name}}</detail>
+                <detail title="商家姓名">{{seller.certificates.name}}</detail>
+        </box>
+        <box title="后台操作日志">
+                <Table :columns="columns" :data="seller.logs" size="small"></Table>
+        </box>
     </component-modal>
 </template>
 
 <script>
-    import ComponentModal from "../../components/modal/component-modal";
-    import component from "../../mixins/component";
-    import http from "../../mixins/http";
+    import ComponentModal from "../../../components/modal/component-modal";
+    import component from "../../../mixins/component";
+    import http from "../../../mixins/http";
+    import Box from "../../../components/box/index";
+    import Detail from "../../../components/detail/index";
     export default {
         name: "show",
-        components: {ComponentModal},
+        components: {
+          Detail,
+          Box,
+          ComponentModal},
         mixins: [component, http],
         data(){
             return {

@@ -17,15 +17,15 @@ class CreateBaseAdminTable extends Migration
             // 管理员ID
             $table->increments('id');
             // 是否开启
-            $table->tinyInteger('status')->default(1);
+            $table->tinyInteger('status')->default(1)->comment('角色状态 0 关闭 1 开启');
             // 管理员登录邮箱
-            $table->string('email', 50)->unique();
+            $table->string('email', 50)->unique()->comment('管理员登录邮箱');
             // 管理员登录密码
-            $table->string('password', 60)->nullable();
+            $table->string('password', 60)->nullable()->comment('管理员登录密码');
             // 用户角色
-            $table->integer('role_id')->unsigned();
+            $table->integer('role_id')->unsigned()->comment('用户角色');
             // 管理员token
-            $table->rememberToken();
+            $table->rememberToken()->comment('管理员token');
             // 数据表时间
             $table->timestamps();
 

@@ -15,13 +15,13 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('type');
+            $table->string('type')->comment('类型');
 
-            $table->string("notifiable_type", 100);
-            $table->unsignedBigInteger("notifiable_id");
+            $table->string("notifiable_type", 100)->comment('通知关联类型');
+            $table->unsignedBigInteger("notifiable_id")->comment('通知外链关联ID');
 
-            $table->text('data');
-            $table->timestamp('read_at')->nullable();
+            $table->text('data')->comment('主体');
+            $table->timestamp('read_at')->nullable()->comment('阅读时间');
             $table->timestamps();
 
             $table->index(["notifiable_type", "notifiable_id"], 'notifiable_type_id');

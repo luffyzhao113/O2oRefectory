@@ -14,7 +14,7 @@ class AddFieldForPermission extends Migration
     public function up()
     {
         Schema::table('base_permissions', function (Blueprint $table) {
-            $table->smallInteger('sort')->default(255);
+            $table->smallInteger('sort')->default(255)->comment('排序');
         });
     }
 

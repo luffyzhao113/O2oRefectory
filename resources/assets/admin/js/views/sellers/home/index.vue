@@ -9,12 +9,7 @@
                     <Input type="text" v-model="searchForm.name"></Input>
                 </FormItem>
                 <FormItem prop="status" label="店铺状态">
-                    <Select v-model="searchForm.status" clearable style="width:150px">
-                        <Option :value="0">未审核</Option>
-                        <Option :value="1">正常</Option>
-                        <Option :value="2">审核不通过</Option>
-                        <Option :value="3">关闭</Option>
-                    </Select>
+                    <true-or-false v-model="searchForm.status" true-value="开通" false-value="关闭"></true-or-false>
                 </FormItem>
                 <FormItem :label-width="1">
                     <Button @click="search(1)" type="primary">搜索</Button>
@@ -26,9 +21,9 @@
 </template>
 
 <script>
-  import MyLists from "../../components/layout/my-lists";
-  import lists from "../../mixins/lists";
-  import TrueOrFalse from "../../components/select/true-or-false";
+  import MyLists from "../../../components/layout/my-lists";
+  import lists from "../../../mixins/lists";
+  import TrueOrFalse from "../../../components/select/true-or-false";
   import Show from "./show"
 
   export default {
@@ -49,16 +44,10 @@
           render: (h, {row}) => {
             switch (row.status){
                 case 0:
-                    return (<span>未审核</span>)
+                    return (<span>关闭</span>)
                     break;
                 case 1:
-                    return (<span>正常</span>)
-                    break;
-                case 2:
-                    return (<span>审核不通过</span>)
-                    break;
-                case 3:
-                    return (<span>关闭</span>)
+                    return (<span>开通</span>)
                     break;
               }
           }

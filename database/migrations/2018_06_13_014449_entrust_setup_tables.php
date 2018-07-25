@@ -15,14 +15,10 @@ class EntrustSetupTables extends Migration
         Schema::create('base_roles', function (Blueprint $table) {
             // ID
             $table->increments('id');
-            // 角色标识（用于程序）
-            $table->string('name', 50)->unique();
-            // 是否开启
-            $table->tinyInteger('status')->default(1);
-            // 是否超级管理员
-            $table->tinyInteger('super')->default(0);
-            // 角色介绍
-            $table->string('description')->nullable();
+            $table->string('name', 50)->unique()->comment('角色标识（用于程序）');
+            $table->tinyInteger('status')->default(1)->comment('角色状态 0 关闭 1 开启');
+            $table->tinyInteger('super')->default(0)->comment('是否超级管理员 0 不是 1 是');
+            $table->string('description')->nullable()->comment('角色介绍');
             $table->timestamps();
         });
 

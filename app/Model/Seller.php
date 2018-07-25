@@ -27,4 +27,19 @@ class Seller extends Model
     public function logs(){
         return $this->hasMany(SellerLog::class, 'seller_id', 'id');
     }
+
+    /**
+     *  作用域-审核状态
+     * @method scopeAuditing
+     * @param Builder $query
+     * @param $status
+     * @return Builder
+     * @author luffyzhao@vip.126.com
+     */
+    public function scopeAuditing(Builder $query, $status){
+        if(is_array($status)){
+            return $query->whereIn('auditing_status', $status);
+        }
+        return $query->where('auditing_status', '=', $status);
+    }
 }

@@ -28,7 +28,7 @@ class SellerController extends Controller
         );
 
         return $this->respondWithSuccess(
-            $this->repo->paginate(
+            $this->repo->scope(['auditing'=> [1]])->paginate(
                 $search->toArray(),
                 20,
                 ['id', 'name', 'status']
