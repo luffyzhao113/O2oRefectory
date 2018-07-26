@@ -10,7 +10,7 @@ class Seller extends Model
     /**
      * @var array 
      */
-    protected $fillable = ['name', 'status'];
+    protected $fillable = ['name', 'status', 'auditing_status'];
 
     /**
      * 审核证明

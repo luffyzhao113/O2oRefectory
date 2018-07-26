@@ -1,4 +1,9 @@
 export default {
+  data(){
+    return {
+      loading: false
+    }
+  },
   methods: {
     formatErrors(visible) {
       if (visible && visible.response && visible.response.status === 422) {
@@ -17,6 +22,9 @@ export default {
         title: '错误',
         desc: message
       });
+    },
+    unObserver(data){
+      return JSON.parse(JSON.stringify(data));
     }
   }
 }

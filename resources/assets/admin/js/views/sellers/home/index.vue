@@ -55,7 +55,6 @@
           title: '操作',
           render: (h, {row}) => {
             return (<div>
-                <i-button v-show={row.status === 0} size="small">审核</i-button>
                 <i-button v-show={row.status !== 0} on-click={() => {this.showComponent('Show', row)}} size="small">查看</i-button>
             </div>);
           }

@@ -2,7 +2,7 @@
     <component-modal title="查看店铺" :width="750">
         <box title="店铺详情">
                 <detail title="店铺名称">{{seller.name}}</detail>
-                <detail title="商家姓名">{{seller.certificates.name}}</detail>
+                <detail title="商家姓名"><span v-if="seller.certificates">{{seller.certificates.name}}</span></detail>
         </box>
         <box title="后台操作日志">
                 <Table :columns="columns" :data="seller.logs" size="small"></Table>

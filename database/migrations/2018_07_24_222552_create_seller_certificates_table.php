@@ -18,6 +18,8 @@ class CreateSellerCertificatesTable extends Migration
             $table->unsignedInteger('seller_id')->unique()->comment('店铺Id');;
             // 证明材料
             $table->string('name', 50)->comment('店铺法人');
+            // 资料是否齐全
+            $table->tinyInteger('status', 3)->default(0)->comment('资料是否齐全 0 不齐 , 1 齐全');
             $table->timestamps();
         });
     }

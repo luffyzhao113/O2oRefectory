@@ -24,6 +24,8 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('admin/select', 'AdminController@select');
     Route::post('file', 'FileController@store')->name('file.store');
 
+    Route::get('seller/select', 'SellerController@select');
+
     Route::group(['middleware' => ['entrust:base']], function (){
         Route::apiResource('permission', 'PermissionController');
         Route::apiResource('role', 'RoleController');
@@ -35,6 +37,8 @@ Route::group(['middleware' => 'auth'], function (){
 
         Route::get('logs', 'LogsController@index')->name('logs.index');
 
+        Route::apiResource('seller/auditing', 'Seller\AuditingController')->name('get', 'seller.auditing.show')->name('put', 'seller.auditing.update');
+        Route::put('seller/auditing/{seller}/fail', 'Seller\AuditingController@fail')->name('seller.auditing.update');
         Route::apiResource('seller', 'SellerController');
     });
 

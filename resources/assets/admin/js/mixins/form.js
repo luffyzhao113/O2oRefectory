@@ -2,15 +2,7 @@ import http from "./http";
 
 export default {
   mixins: [http],
-  data(){
-    return {
-      loading: false
-    }
-  },
   methods: {
-    unObserver(data){
-      return JSON.parse(JSON.stringify(data));
-    },
     updateSubmit(name, url){
       this.$refs[name].validate((valid) => {
         if (valid) {
