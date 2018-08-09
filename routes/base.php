@@ -37,9 +37,11 @@ Route::group(['middleware' => 'auth'], function (){
 
         Route::get('logs', 'LogsController@index')->name('logs.index');
 
-        Route::apiResource('seller/auditing', 'Seller\AuditingController')->name('get', 'seller.auditing.show')->name('put', 'seller.auditing.update');
-        Route::put('seller/auditing/{seller}/fail', 'Seller\AuditingController@fail')->name('seller.auditing.update');
+        Route::apiResource('seller/materials', 'Seller\MaterialsController');
+        
         Route::apiResource('seller', 'SellerController');
+
+
     });
 
 });

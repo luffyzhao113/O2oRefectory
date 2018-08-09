@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repositories\Modules\SellerCertificate;
+namespace App\Repositories\Modules\SellerMaterial;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\Application;
 use Config;
 use luffyzhao\laravelTools\Repositories\Cache\LaravelCache;
-use App\Model\SellerCertificate;
+use App\Model\SellerMaterial;
 
 class Provider extends ServiceProvider
 {
@@ -23,12 +23,12 @@ class Provider extends ServiceProvider
     public function register()
     {
         $this->app->bind(Interfaces::class, function (Application $app) {
-            $repository = new Eloquent(new SellerCertificate());
+            $repository = new Eloquent(new SellerMaterial());
             if (!Config::get('app.cache')) {
                 return $repository;
             }
 
-            $cache = new LaravelCache($app['cache'], 'SellerCertificate', 3600);
+            $cache = new LaravelCache($app['cache'], 'SellerMaterial', 3600);
 
             return new Cache($repository, $cache);
         });

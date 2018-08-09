@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Base\Seller\Auditing;
+namespace App\Http\Requests\Base\Seller\Material;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FailRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class FailRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,14 +24,7 @@ class FailRequest extends FormRequest
     public function rules()
     {
         return [
-            'remark' => ['required', 'max:200']
-        ];
-    }
-
-    public function attributes()
-    {
-        return [
-            'remark' => '审核不通过理由'
+            //
         ];
     }
 }

@@ -1,8 +1,10 @@
 <template>
-    <component-modal title="查看店铺" :width="750">
+    <component-modal title="查核店铺" :width="750">
         <box title="店铺详情">
-            <detail title="店铺名称">{{seller.name}}</detail>
-            <detail title="商家姓名"><span v-if="seller.certificates">{{seller.certificates.name}}</span></detail>
+            <detail title="店铺名称" v-if="materials.seller">{{materials.seller.name}}</detail>
+        </box>
+        <box title="店铺资料">
+            <detail title="法人姓名"><span>{{materials.name}}</span></detail>
         </box>
         <div slot="footer">
             <Poptip confirm title="确定此操作吗？" transfer @on-ok="auditingSuccess" :loading="loading">
@@ -32,7 +34,7 @@
     data(){
       return {
         auditingModal: false,
-        seller: {},
+        materials: {},
         columns: [
           {
             title: '序号',
@@ -54,8 +56,8 @@
     },
     mounted(){
       this.$nextTick(() => {
-        this.$http.get(`seller/auditing/${this.data.id}`).then((res) => {
-          this.seller = res.data.data
+        this.$http.get(`seller/materials/${this.data.id}`).then((res) => {
+          this.materials = res.data.data
         }).catch((err) => {
           this.formatErrors(err)
         })
@@ -64,7 +66,7 @@
     methods: {
       auditingFail(data){
         this.loading = true;
-        this.$http.put(`seller/auditing/${this.data.id}/fail`, data).then((res) => {
+        this.$http.put(`seller/materials/${this.data.id}/fail`, data).then((res) => {
           this.$Message.success('Success!');
           this.change(false)
         }).catch((res) => {
@@ -75,7 +77,7 @@
       },
       auditingSuccess(){
         this.loading = true;
-        this.$http.put(`seller/auditing/${this.data.id}`).then((res) => {
+        this.$http.put(`seller/materials/${this.data.id}`).then((res) => {
           this.$Message.success('Success!');
           this.change(false)
         }).catch((res) => {

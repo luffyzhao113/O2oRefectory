@@ -18,14 +18,14 @@ class Cache extends CacheAbstractDecorator implements Interfaces
      *
      * @method findWhere
      *
-     * @param array $attributes Where条件
+     * @param $attributes Where条件
      * @param array $columns    获取字段
      *
      * @return Illuminate\Support\Collection|static|null
      *
      * @author luffyzhao@vip.126.com
      */
-    public function findWhere(array $attributes, array $columns = ['*'])
+    public function findWhere($attributes, array $columns = ['*'])
     {
         $cacheKey = $this->getCache('findWhere', [
             $attributes,

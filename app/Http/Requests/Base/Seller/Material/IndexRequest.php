@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Base\Seller\Auditing;
+namespace App\Http\Requests\Base\Seller\Material;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRequest extends FormRequest
+class IndexRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,16 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'seller_id' => ['nullable', 'integer'],
+            'status' => ['nullable', 'integer', 'in:0,1'],
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'seller_id' => '店铺名称',
+            'status' => '资料状态'
         ];
     }
 }

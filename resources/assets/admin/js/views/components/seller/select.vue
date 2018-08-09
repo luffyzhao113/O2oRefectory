@@ -2,6 +2,7 @@
     <Select
             v-model="model"
             filterable
+            clearable
             remote
             :remote-method="remoteMethod"
             :loading="loading" style="width:150px">
@@ -49,8 +50,10 @@
             "name": query,
               "auditing_status": this.auditing,
               "status": this.status
-          }}).then((res) => {
-            console.log(res.data)
+          }}).then(({data}) => {
+            this.options = data.data.data;
+          }).finally(() => {
+              this.loading = false
           });
         }
       }

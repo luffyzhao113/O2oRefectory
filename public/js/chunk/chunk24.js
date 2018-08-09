@@ -29,7 +29,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\admin\\js\\views\\sellers\\auditing\\index.vue"
+Component.options.__file = "resources\\assets\\admin\\js\\views\\sellers\\materials\\index.vue"
 
 /* hot reload */
 if (false) {(function () {

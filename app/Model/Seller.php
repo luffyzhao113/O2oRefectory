@@ -17,7 +17,7 @@ class Seller extends Model
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function certificates(){
-        return $this->hasOne(SellerCertificate::class, 'seller_id', 'id');
+        return $this->hasOne(SellerMaterial::class, 'seller_id', 'id');
     }
 
     /**

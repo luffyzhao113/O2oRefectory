@@ -64,11 +64,11 @@ export const IndexRouter = [
     }
   },
   {
-    path: 'admin.sellers.auditing',
-    name: 'admin.sellers.auditing',
+    path: 'admin.sellers.materials',
+    name: 'admin.sellers.materials',
     meta: {title: '待审核列表'},
     component: resolve => {
-      require(['../../views/sellers/auditing/index.vue'], resolve)
+      require(['../../views/sellers/materials/index.vue'], resolve)
     }
   }
 ]
