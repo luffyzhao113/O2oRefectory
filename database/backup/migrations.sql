@@ -1,0 +1,11 @@
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (1, '2018_06_13_014449_entrust_setup_tables', 1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (2, '2018_06_13_064103_create_base_admin_table', 1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (3, '2018_06_28_113739_base_admin-add_feild', 1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (4, '2018_07_02_172148_create_base_logs', 1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (5, '2018_07_04_100100_add_field_for_logs', 1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (6, '2018_07_04_104246_add_field_for_logs_02', 1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (7, '2018_07_04_111553_create_notifications_table', 1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (8, '2018_07_05_134559_add_field_for_permission', 1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (9, '2018_07_10_093538_create_sellers_table', 1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (10, '2018_07_24_222552_create_seller_certificates_table', 1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (11, '2018_07_24_222816_create_seller_logs_table', 1);
