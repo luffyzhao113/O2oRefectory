@@ -37,8 +37,11 @@
     data() {
       return {
         columns: [{
-          title: '商店名称',
-          key: 'name'
+            title: '商店名称',
+            key: 'name'
+        },{
+            title: '商店二级域名',
+            key: 'domain'
         }, {
           title: '状态',
           render: (h, {row}) => {
@@ -47,7 +50,7 @@
                     return (<span>关闭</span>)
                     break;
                 case 1:
-                    return (<span>开通</span>)
+                    return (<span>开启</span>)
                     break;
               }
           }

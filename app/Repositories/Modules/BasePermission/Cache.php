@@ -18,8 +18,8 @@ class Cache extends CacheAbstractDecorator implements Interfaces
      *
      * @method findWhere
      *
-     * @param $attributes Where条件
-     * @param array $columns    获取字段
+     * @param array $attributes Where条件
+     * @param array $columns 获取字段
      *
      * @return Illuminate\Support\Collection|static|null
      *

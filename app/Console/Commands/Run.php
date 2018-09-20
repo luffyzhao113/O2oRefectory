@@ -46,6 +46,9 @@ class Run extends Command
         // 初始化数据
         if($this->confirm('是否初始化数据')){
             $this->initial();
+        }
+
+        if($this->confirm('是否需要自动生成的数据')) {
             $this->call('db:seed');
         }
     }

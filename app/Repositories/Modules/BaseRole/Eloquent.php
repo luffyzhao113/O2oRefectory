@@ -11,18 +11,4 @@ class Eloquent extends RepositoriesAbstract implements Interfaces
     {
         $this->model = $model;
     }
-
-    /**
-     * 统计关联结果数目
-     * @method withCount
-     * @param $relations
-     *
-     * @return $this
-     *
-     * @author luffyzhao@vip.126.com
-     */
-    public function withCount($relations){
-        $this->model = $this->model->withCount($relations);
-        return $this;
-    }
 }

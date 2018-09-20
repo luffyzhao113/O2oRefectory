@@ -34,6 +34,7 @@ class AdminController extends Controller
      * @return \Illuminate\Http\JsonResponse
      *
      * @author luffyzhao@vip.126.com
+     * @throws \luffyzhao\laravelTools\Searchs\Exceptions\SearchException
      */
     public function index(Request $request){
         $search = new IndexSearch($request->all());

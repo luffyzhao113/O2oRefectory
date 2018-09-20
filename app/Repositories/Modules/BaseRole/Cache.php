@@ -13,11 +13,4 @@ class Cache extends CacheAbstractDecorator implements Interfaces
         $this->cache = $cache;
     }
 
-    public function withCount($relations)
-    {
-        $this->repo = $this->repo->withCount($relations);
-
-        return $this;
-    }
-
 }

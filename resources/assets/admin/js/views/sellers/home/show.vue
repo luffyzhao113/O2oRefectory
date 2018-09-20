@@ -1,14 +1,15 @@
 <template>
     <component-modal title="查看店铺" :width="750">
         <box title="店铺详情">
-                <detail title="店铺名称">{{seller.name}}</detail>
-                <detail title="店铺状态">
-                    <span v-if="seller.status === 0">关闭</span>
-                    <span v-else>开启</span>
-                </detail>
+            <detail title="店铺名称">{{seller.name}}</detail>
+            <detail title="店铺状态">
+                <span v-if="seller.status === 0">关闭</span>
+                <span v-else>开启</span>
+            </detail>
+            <detail title="店铺二级域名">{{seller.domain}}</detail>
         </box>
         <box title="后台操作日志">
-                <Table :columns="columns" :data="seller.logs" size="small"></Table>
+            <Table :columns="columns" :data="seller.logs" size="small"></Table>
         </box>
     </component-modal>
 </template>
@@ -19,14 +20,16 @@
     import http from "../../../mixins/http";
     import Box from "../../../components/box/index";
     import Detail from "../../../components/detail/index";
+
     export default {
         name: "show",
         components: {
-          Detail,
-          Box,
-          ComponentModal},
+            Detail,
+            Box,
+            ComponentModal
+        },
         mixins: [component, http],
-        data(){
+        data() {
             return {
                 seller: {
                     name: '',
@@ -54,7 +57,7 @@
                 ]
             }
         },
-        mounted(){
+        mounted() {
             this.$nextTick(() => {
                 this.$http.get(`seller/${this.data.id}`).then((res) => {
                     this.seller = res.data.data
@@ -67,7 +70,7 @@
 </script>
 
 <style scoped>
-    .tr{
+    .tr {
         text-align: right;
     }
 </style>

@@ -31,7 +31,7 @@ class SellerController extends Controller
             $this->repo->paginate(
                 $search->toArray(),
                 20,
-                ['id', 'name', 'status']
+                ['id', 'name', 'status', 'domain']
             )
         );
     }
