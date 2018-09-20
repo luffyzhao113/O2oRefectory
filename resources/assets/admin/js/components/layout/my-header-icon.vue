@@ -15,7 +15,7 @@
         <div class="layout-header-right-icon-item"  @click="handleMessage">
             <Tooltip placement="bottom" :content="`有 ${messageTotal} 条消息未读`">
                 <Badge dot :count="messageTotal">
-                    <Icon type="ios-bell" size="22"></Icon>
+                    <Icon type="ios-notifications" size="22"></Icon>
                 </Badge>
             </Tooltip>
         </div>
@@ -117,6 +117,9 @@
         width: 30px;
         i {
             vertical-align: middle;
+        }
+        .ivu-badge{
+            display: inline;
         }
     }
 }

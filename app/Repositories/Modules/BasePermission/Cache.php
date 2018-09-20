@@ -25,7 +25,7 @@ class Cache extends CacheAbstractDecorator implements Interfaces
      *
      * @author luffyzhao@vip.126.com
      */
-    public function findWhere($attributes, array $columns = ['*'])
+    public function findWhere(array $attributes, array $columns = ['*'])
     {
         $cacheKey = $this->getCache('findWhere', [
             $attributes,

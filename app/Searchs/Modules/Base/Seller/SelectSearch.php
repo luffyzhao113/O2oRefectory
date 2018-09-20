@@ -14,7 +14,6 @@ class SelectSearch extends SearchAbstract
 {
     protected $relationship = [
         'name' => 'like',
-        'auditing_status' => '=',
         'status' => '='
     ];
 

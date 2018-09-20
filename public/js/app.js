@@ -2220,63 +2220,56 @@ var IndexRouter = exports.IndexRouter = [{
   name: 'common.home',
   meta: { title: '首页' },
   component: function component(resolve) {
-    __webpack_require__.e/* require */(8).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(105)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+    __webpack_require__.e/* require */(23).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(105)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
   }
 }, {
   path: 'profile',
   name: 'common.profile',
   meta: { title: '个人中心' },
   component: function component(resolve) {
-    __webpack_require__.e/* require */(11).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(106)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+    __webpack_require__.e/* require */(24).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(106)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
   }
 }, {
   path: 'sysconfig.permission',
   name: 'sysconfig.permission.index',
   meta: { title: '权限&菜单' },
   component: function component(resolve) {
-    __webpack_require__.e/* require */(3).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(107)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+    __webpack_require__.e/* require */(18).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(107)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
   }
 }, {
   path: 'sysconfig.role',
   name: 'sysconfig.role.index',
   meta: { title: '角色管理' },
   component: function component(resolve) {
-    __webpack_require__.e/* require */(5).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(108)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+    __webpack_require__.e/* require */(20).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(108)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
   }
 }, {
   path: 'sysconfig.admin',
   name: 'sysconfig.admin.index',
   meta: { title: '用户管理' },
   component: function component(resolve) {
-    __webpack_require__.e/* require */(2).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(109)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+    __webpack_require__.e/* require */(17).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(109)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
   }
 }, {
   path: 'sysconfig.logs',
   name: 'sysconfig.logs.index',
   meta: { title: '日志管理' },
   component: function component(resolve) {
-    __webpack_require__.e/* require */(7).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(110)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+    __webpack_require__.e/* require */(22).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(110)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
   }
 }, {
   path: 'common.message',
   name: 'common.message',
   meta: { title: '消息管理' },
   component: function component(resolve) {
-    __webpack_require__.e/* require */(6).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(111)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+    __webpack_require__.e/* require */(21).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(111)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
   }
 }, {
   path: 'admin.sellers.index',
   name: 'admin.sellers.index',
   meta: { title: '店铺列表' },
   component: function component(resolve) {
-    __webpack_require__.e/* require */(4).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(112)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
-  }
-}, {
-  path: 'admin.sellers.materials',
-  name: 'admin.sellers.materials',
-  meta: { title: '待审核列表' },
-  component: function component(resolve) {
-    __webpack_require__.e/* require */(1).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(113)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+    __webpack_require__.e/* require */(19).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(112)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
   }
 }];
 
@@ -3341,7 +3334,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.layout-header-right-icon {\n  display: inline-block;\n  text-align: center;\n  cursor: pointer;\n  width: 100px;\n  color: #fff;\n}\n.layout-header-right-icon-item {\n    width: 30px;\n    display: inline-block;\n}\n.layout-header-right-icon .ivu-tooltip {\n    width: 30px;\n}\n.layout-header-right-icon .ivu-tooltip i {\n      vertical-align: middle;\n}\n", ""]);
+exports.push([module.i, "\n.layout-header-right-icon {\n  display: inline-block;\n  text-align: center;\n  cursor: pointer;\n  width: 100px;\n  color: #fff;\n}\n.layout-header-right-icon-item {\n    width: 30px;\n    display: inline-block;\n}\n.layout-header-right-icon .ivu-tooltip {\n    width: 30px;\n}\n.layout-header-right-icon .ivu-tooltip i {\n      vertical-align: middle;\n}\n.layout-header-right-icon .ivu-tooltip .ivu-badge {\n      display: inline;\n}\n", ""]);
 
 // exports
 
@@ -3539,7 +3532,9 @@ var render = function() {
             _c(
               "Badge",
               { attrs: { dot: "", count: _vm.messageTotal } },
-              [_c("Icon", { attrs: { type: "ios-bell", size: "22" } })],
+              [
+                _c("Icon", { attrs: { type: "ios-notifications", size: "22" } })
+              ],
               1
             )
           ],
@@ -3809,7 +3804,7 @@ var render = function() {
               key: index,
               attrs: {
                 type: "dot",
-                color: _vm.currentPage === item.name ? "blue" : "default",
+                color: _vm.currentPage === item.name ? "primary" : "default",
                 closable: item.name !== "home",
                 name: index
               },

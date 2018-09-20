@@ -20,6 +20,7 @@ class SellerController extends Controller
      * 店铺列表
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
+     * @throws \luffyzhao\laravelTools\Searchs\Exceptions\SearchException
      */
     public function index(Request $request){
         $search = new IndexSearch(
@@ -27,7 +28,7 @@ class SellerController extends Controller
         );
 
         return $this->respondWithSuccess(
-            $this->repo->scope(['auditing'=> [1]])->paginate(
+            $this->repo->paginate(
                 $search->toArray(),
                 20,
                 ['id', 'name', 'status']
@@ -37,7 +38,7 @@ class SellerController extends Controller
 
     public function select(Request $request){
         $search = new SelectSearch(
-            $request->only(['name', 'auditing_status', 'status'])
+            $request->only(['name', 'status'])
         );
 
         return $this->respondWithSuccess(
@@ -49,7 +50,6 @@ class SellerController extends Controller
         );
     }
 
-
     /**
      * 查看店铺详情
      * @param Request $request
@@ -58,7 +58,7 @@ class SellerController extends Controller
      */
     public function show(Request $request, $id){
         return $this->respondWithSuccess(
-            $this->repo->make(['certificates', 'logs'])->find($id)
+            $this->repo->make(['logs'])->find($id)
         );
     }
 }
