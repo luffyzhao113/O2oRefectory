@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Backup;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
-class Back extends Command
+class Run extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'back:run';
+    protected $signature = 'backup:run';
 
     /**
      * The console command description.
@@ -45,12 +45,21 @@ class Back extends Command
         $this->toFiles($tables);
     }
 
-
+    /**
+     * getTables
+     * @return array
+     * @author luffyzhao@vip.126.com
+     */
     protected function getTables() : array
     {
         return DB::select('show tables');
     }
 
+    /**
+     * toFiles
+     * @param array $tables
+     * @author luffyzhao@vip.126.com
+     */
     protected function toFiles(array $tables){
         $config = config('database.connections.'. DB::getDefaultConnection());
 
@@ -65,6 +74,13 @@ class Back extends Command
         }
     }
 
+    /**
+     * saveFile
+     * @param $table
+     * @param int $page
+     * @param string $json
+     * @author luffyzhao@vip.126.com
+     */
     protected function saveFile($table, int $page, string $json){
         $dir = database_path('back-up/' . $_SERVER['REQUEST_TIME'] . '/' . $table);
         if(!is_dir($dir)){

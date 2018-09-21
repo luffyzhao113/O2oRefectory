@@ -1,7 +1,8 @@
 <template>
-    <component-modal title="修改权限">
+    <component-modal title="修改权限" :loading="loading">
         <Form ref="formUpdate" :model="formUpdate" :label-width="80">
-            <FormItem label="权限标识" prop="name" :rules="{required: true, message: '权限标识不能为空，并且格式为 a-z.a-z ！', pattern: /[a-z]+\.[a-z]+/}">
+            <FormItem label="权限标识" prop="name" :rules="{required: true, message: '权限标识不能为空，并且格式为 a-z.a-z ！', pattern:
+             /[a-z]+(\.[a-z]+)?/}">
                 <Input v-model="formUpdate.name" placeholder="标识"></Input>
             </FormItem>
             <FormItem label="权限名称" prop="display_name" :rules="{required: true, message: '权限名称不能为空'}">

@@ -246,7 +246,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.modal-body[data-v-5dddf25a]{\r\n    max-height: 500px;\r\n    overflow-y: auto;\n}\r\n", ""]);
+exports.push([module.i, "\n.modal-body[data-v-5dddf25a] {\n    max-height: 500px;\n    overflow-y: auto;\n}\n", ""]);
 
 // exports
 
@@ -260,8 +260,14 @@ exports.push([module.i, "\n.modal-body[data-v-5dddf25a]{\r\n    max-height: 500p
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -271,27 +277,26 @@ Object.defineProperty(exports, "__esModule", {
 //
 
 exports.default = {
-  name: "component-modal",
-  props: {
-    title: {
-      type: String,
-      default: '弹窗'
+    name: "component-modal",
+    props: {
+        title: {
+            type: String,
+            default: '弹窗'
+        },
+        width: {
+            type: Number,
+            default: 520
+        },
+        loading: {
+            type: Boolean,
+            default: false
+        }
     },
-    width: {
-      type: Number,
-      default: 520
+    methods: {
+        change: function change(v) {
+            this.$parent.$emit('on-change');
+        }
     }
-  },
-  computed: {
-    loading: function loading() {
-      return this.$parent.loading;
-    }
-  },
-  methods: {
-    change: function change(v) {
-      this.$parent.$emit('on-change');
-    }
-  }
 };
 
 /***/ }),
@@ -310,7 +315,6 @@ var render = function() {
         title: _vm.title,
         value: true,
         transfer: false,
-        loading: _vm.loading,
         "mask-closable": false,
         width: _vm.width
       },
@@ -324,8 +328,11 @@ var render = function() {
         { attrs: { slot: "footer" }, slot: "footer" },
         [_vm._t("footer")],
         2
-      )
-    ]
+      ),
+      _vm._v(" "),
+      _vm.loading ? _c("Spin", { attrs: { size: "large", fix: "" } }) : _vm._e()
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -681,10 +688,13 @@ exports.default = {
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
 
+      this.loading = true;
       this.$http.get("permission").then(function (res) {
         _this2.lists = res.data.data;
       }).catch(function (res) {
         _this2.formatErrors(res);
+      }).finally(function () {
+        _this2.loading = false;
       });
     },
     child: function child(parent) {
@@ -784,7 +794,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -854,6 +864,7 @@ exports.default = {
     });
   }
 }; //
+//
 //
 //
 //
@@ -1221,7 +1232,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "component-modal",
-    { attrs: { title: "创建权限" } },
+    { attrs: { title: "创建权限", loading: _vm.loading } },
     [
       _c(
         "Form",
@@ -1239,7 +1250,7 @@ var render = function() {
                 rules: {
                   required: true,
                   message: "权限标识不能为空，并且格式为 a-z.a-z ！",
-                  pattern: /[a-z]+\.[a-z]+/
+                  pattern: /[a-z]+(\.[a-z]+)?/
                 }
               }
             },
@@ -1411,7 +1422,6 @@ var render = function() {
           _c(
             "Button",
             {
-              attrs: { loading: _vm.loading },
               on: {
                 click: function($event) {
                   _vm.createSubmit("formCreate", "permission")
@@ -1526,7 +1536,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -1636,6 +1646,7 @@ exports.default = {
 //
 //
 //
+//
 
 /***/ }),
 
@@ -1648,7 +1659,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "component-modal",
-    { attrs: { title: "修改权限" } },
+    { attrs: { title: "修改权限", loading: _vm.loading } },
     [
       _c(
         "Form",
@@ -1666,7 +1677,7 @@ var render = function() {
                 rules: {
                   required: true,
                   message: "权限标识不能为空，并且格式为 a-z.a-z ！",
-                  pattern: /[a-z]+\.[a-z]+/
+                  pattern: /[a-z]+(\.[a-z]+)?/
                 }
               }
             },
@@ -1963,7 +1974,7 @@ exports.push([module.i, "\n.ivu-table-expanded-cell {\n  padding: 0 !important;\
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 //
 //
@@ -1971,76 +1982,80 @@ Object.defineProperty(exports, "__esModule", {
 //
 
 exports.default = {
-  name: "tabel-expand-tree",
-  props: {
-    data: Array,
-    columns: Array
-  },
-  data: function data() {
-    var _this = this;
+    name: "tabel-expand-tree",
+    props: {
+        data: Array,
+        columns: Array,
+        loading: {
+            type: Boolean,
+            default: false
+        }
+    },
+    data: function data() {
+        var _this = this;
 
-    return {
-      defaultColumn: [{
-        type: 'expand',
-        render: function render(h, _ref) {
-          var row = _ref.row,
-              index = _ref.index;
+        return {
+            defaultColumn: [{
+                type: 'expand',
+                render: function render(h, _ref) {
+                    var row = _ref.row,
+                        index = _ref.index;
 
-          return h(
-            'i-table',
-            {
-              attrs: {
-                'show-header': false,
+                    return h(
+                        'i-table',
+                        {
+                            attrs: {
+                                'show-header': false,
 
-                data: _this.child(row.id),
-                columns: _this.mergeCol },
-              directives: [{
-                name: 'show',
-                value: _this.child(row.id) && _this.child(row.id).length
-              }],
-              'class': 'table-expand-tree-' + _this.level(row).length },
-            []
-          );
+                                data: _this.child(row.id),
+                                columns: _this.mergeCol },
+                            directives: [{
+                                name: 'show',
+                                value: _this.child(row.id) && _this.child(row.id).length
+                            }],
+                            'class': 'table-expand-tree-' + _this.level(row).length },
+                        []
+                    );
+                },
+                width: 50
+            }]
+        };
+    },
+
+    computed: {
+        parent: function parent() {
+            return this.child(0);
         },
-        width: 50
-      }]
-    };
-  },
-
-  computed: {
-    parent: function parent() {
-      return this.child(0);
+        mergeCol: function mergeCol() {
+            return this.defaultColumn.concat(this.columns);
+        },
+        defaultData: function defaultData() {
+            var data = JSON.parse(JSON.stringify(this.data));
+            data.forEach(function (val, index) {
+                data[index]._expanded = true;
+            });
+            return data;
+        }
     },
-    mergeCol: function mergeCol() {
-      return this.defaultColumn.concat(this.columns);
-    },
-    defaultData: function defaultData() {
-      var data = JSON.parse(JSON.stringify(this.data));
-      data.forEach(function (val, index) {
-        data[index]._expanded = true;
-      });
-      return data;
+    methods: {
+        child: function child(parent) {
+            return JSON.parse(JSON.stringify(this.defaultData.filter(function (val) {
+                return val.parent_id == parent;
+            })));
+        },
+        level: function level(row) {
+            var lists = [],
+                parentRow = void 0;
+            parentRow = this.defaultData.find(function (val) {
+                return val.id == row.parent_id;
+            });
+            if (parentRow) {
+                lists.push(parentRow);
+                lists = lists.concat(this.level(parentRow));
+            }
+            return lists;
+        }
     }
-  },
-  methods: {
-    child: function child(parent) {
-      return JSON.parse(JSON.stringify(this.defaultData.filter(function (val) {
-        return val.parent_id == parent;
-      })));
-    },
-    level: function level(row) {
-      var lists = [],
-          parentRow = void 0;
-      parentRow = this.defaultData.find(function (val) {
-        return val.id == row.parent_id;
-      });
-      if (parentRow) {
-        lists.push(parentRow);
-        lists = lists.concat(this.level(parentRow));
-      }
-      return lists;
-    }
-  }
 };
 
 /***/ }),
@@ -2052,7 +2067,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("Table", { attrs: { columns: _vm.mergeCol, data: _vm.parent } })
+  return _c("Table", {
+    attrs: { columns: _vm.mergeCol, data: _vm.parent, loading: _vm.loading }
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -2107,7 +2124,11 @@ var render = function() {
               _vm._v(" "),
               _c("TabelExpandTree", {
                 staticClass: "permission-role",
-                attrs: { columns: _vm.columns, data: _vm.lists }
+                attrs: {
+                  columns: _vm.columns,
+                  data: _vm.lists,
+                  loading: _vm.loading
+                }
               })
             ],
             1

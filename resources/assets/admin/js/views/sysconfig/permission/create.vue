@@ -1,7 +1,8 @@
 <template>
-    <component-modal title="创建权限">
+    <component-modal title="创建权限" :loading="loading">
         <Form ref="formCreate" :model="formCreate" :label-width="80">
-            <FormItem label="权限标识" prop="name" :rules="{required: true, message: '权限标识不能为空，并且格式为 a-z.a-z ！', pattern: /[a-z]+\.[a-z]+/}">
+            <FormItem label="权限标识" prop="name" :rules="{required: true, message: '权限标识不能为空，并且格式为 a-z.a-z ！', pattern:
+             /[a-z]+(\.[a-z]+)?/}">
                 <Input v-model="formCreate.name" placeholder="标识"></Input>
             </FormItem>
             <FormItem label="权限名称" prop="display_name" :rules="{required: true, message: '权限名称不能为空'}">
@@ -27,7 +28,7 @@
             </FormItem>
         </Form>
         <div slot="footer">
-            <Button :loading="loading" @click="createSubmit('formCreate', 'permission')">创建</Button>
+            <Button @click="createSubmit('formCreate', 'permission')">创建</Button>
         </div>
     </component-modal>
 </template>

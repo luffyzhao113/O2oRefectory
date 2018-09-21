@@ -246,7 +246,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.modal-body[data-v-5dddf25a]{\r\n    max-height: 500px;\r\n    overflow-y: auto;\n}\r\n", ""]);
+exports.push([module.i, "\n.modal-body[data-v-5dddf25a] {\n    max-height: 500px;\n    overflow-y: auto;\n}\n", ""]);
 
 // exports
 
@@ -260,8 +260,14 @@ exports.push([module.i, "\n.modal-body[data-v-5dddf25a]{\r\n    max-height: 500p
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -271,27 +277,26 @@ Object.defineProperty(exports, "__esModule", {
 //
 
 exports.default = {
-  name: "component-modal",
-  props: {
-    title: {
-      type: String,
-      default: '弹窗'
+    name: "component-modal",
+    props: {
+        title: {
+            type: String,
+            default: '弹窗'
+        },
+        width: {
+            type: Number,
+            default: 520
+        },
+        loading: {
+            type: Boolean,
+            default: false
+        }
     },
-    width: {
-      type: Number,
-      default: 520
+    methods: {
+        change: function change(v) {
+            this.$parent.$emit('on-change');
+        }
     }
-  },
-  computed: {
-    loading: function loading() {
-      return this.$parent.loading;
-    }
-  },
-  methods: {
-    change: function change(v) {
-      this.$parent.$emit('on-change');
-    }
-  }
 };
 
 /***/ }),
@@ -310,7 +315,6 @@ var render = function() {
         title: _vm.title,
         value: true,
         transfer: false,
-        loading: _vm.loading,
         "mask-closable": false,
         width: _vm.width
       },
@@ -324,8 +328,11 @@ var render = function() {
         { attrs: { slot: "footer" }, slot: "footer" },
         [_vm._t("footer")],
         2
-      )
-    ]
+      ),
+      _vm._v(" "),
+      _vm.loading ? _c("Spin", { attrs: { size: "large", fix: "" } }) : _vm._e()
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -459,6 +466,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
 
 exports.default = {
     name: "my-lists",
@@ -474,6 +482,10 @@ exports.default = {
             default: function _default() {
                 return [];
             }
+        },
+        loading: {
+            type: Boolean,
+            default: false
         }
     },
     data: function data() {
@@ -547,7 +559,8 @@ var render = function() {
                   columns: _vm.tableCol,
                   data: _vm.value.data,
                   size: "small",
-                  "row-class-name": _vm.rowClassName
+                  "row-class-name": _vm.rowClassName,
+                  loading: _vm.loading
                 }
               }),
               _vm._v(" "),
@@ -818,7 +831,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.notice-title .ivu-badge{\n    margin: 0 10px;\n    cursor: pointer;\n}\n.notice-title .active{\n    color: #2d8cf0;\n}\n", ""]);
+exports.push([module.i, "\n.notice-title .ivu-badge {\n    margin: 0 10px;\n    cursor: pointer;\n}\n.notice-title .active {\n    color: #2d8cf0;\n}\n", ""]);
 
 // exports
 
@@ -832,7 +845,7 @@ exports.push([module.i, "\n.notice-title .ivu-badge{\n    margin: 0 10px;\n    c
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _myLists = __webpack_require__(124);
@@ -872,88 +885,93 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 
 exports.default = {
-  components: { TrueOrFalse: _trueOrFalse2.default, MyLists: _myLists2.default, Show: _show2.default },
-  name: "messages",
-  mixins: [_lists2.default],
-  computed: {
-    messageTotal: function messageTotal() {
-      return this.$store.state.Messages.total;
-    }
-  },
-  data: function data() {
-    var _this = this;
-
-    return {
-      columns: [{
-        title: '标题',
-        render: function render(h, _ref) {
-          var row = _ref.row;
-
-          return h(
-            "span",
-            null,
-            [row.data.title]
-          );
+    components: { TrueOrFalse: _trueOrFalse2.default, MyLists: _myLists2.default, Show: _show2.default },
+    name: "messages",
+    mixins: [_lists2.default],
+    computed: {
+        messageTotal: function messageTotal() {
+            return this.$store.state.Messages.total;
         }
-      }, {
-        title: '状态',
-        render: function render(h, _ref2) {
-          var row = _ref2.row;
-
-          return h(
-            "span",
-            null,
-            [row.read_at ? '已读' : '未读']
-          );
-        }
-      }, {
-        title: '发送时间',
-        key: 'created_at'
-      }, {
-        title: '操作',
-        render: function render(h, _ref3) {
-          var row = _ref3.row;
-
-          return h(
-            "i-button",
-            {
-              attrs: { size: "small" },
-              on: {
-                "click": function click() {
-                  return _this.showComponent('Show', row);
-                }
-              }
-            },
-            ["\u67E5\u770B"]
-          );
-        }
-      }],
-      active: 'all'
-    };
-  },
-
-  methods: {
-    search: function search() {
-      var _this2 = this;
-
-      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-
-      this.$http.get("auth/message", { params: this.request(page) }).then(function (res) {
-        _this2.assignmentData(res.data.data);
-      });
     },
-    cursor: function cursor(type) {
-      this.active = type;
-      if (type == 'all') {
-        this.searchForm.read_at = '';
-      } else if (type === 'notRead') {
-        this.searchForm.read_at = 1;
-      } else if (type === 'read') {
-        this.searchForm.read_at = 0;
-      }
-      this.search(1);
+    data: function data() {
+        var _this = this;
+
+        return {
+            columns: [{
+                title: '标题',
+                render: function render(h, _ref) {
+                    var row = _ref.row;
+
+                    return h(
+                        "span",
+                        null,
+                        [row.data.title]
+                    );
+                }
+            }, {
+                title: '状态',
+                render: function render(h, _ref2) {
+                    var row = _ref2.row;
+
+                    return h(
+                        "span",
+                        null,
+                        [row.read_at ? '已读' : '未读']
+                    );
+                }
+            }, {
+                title: '发送时间',
+                key: 'created_at'
+            }, {
+                title: '操作',
+                render: function render(h, _ref3) {
+                    var row = _ref3.row;
+
+                    return h(
+                        "i-button",
+                        {
+                            attrs: { size: "small" },
+                            on: {
+                                "click": function click() {
+                                    return _this.showComponent('Show', row);
+                                }
+                            }
+                        },
+                        ["\u67E5\u770B"]
+                    );
+                }
+            }],
+            active: 'all'
+        };
+    },
+
+    methods: {
+        search: function search() {
+            var _this2 = this;
+
+            var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+
+            this.loading = true;
+            this.$http.get("auth/message", { params: this.request(page) }).then(function (res) {
+                _this2.assignmentData(res.data.data);
+            }).catch(function (res) {
+                _this2.formatError(res);
+            }).finally(function () {
+                _this2.loading = false;
+            });
+        },
+        cursor: function cursor(type) {
+            this.active = type;
+            if (type == 'all') {
+                this.searchForm.read_at = '';
+            } else if (type === 'notRead') {
+                this.searchForm.read_at = 1;
+            } else if (type === 'read') {
+                this.searchForm.read_at = 0;
+            }
+            this.search(1);
+        }
     }
-  }
 };
 
 /***/ }),
@@ -1131,7 +1149,7 @@ var render = function() {
   return _c(
     "my-lists",
     {
-      attrs: { columns: _vm.columns },
+      attrs: { columns: _vm.columns, loading: _vm.loading },
       on: { change: _vm.search },
       model: {
         value: _vm.data,

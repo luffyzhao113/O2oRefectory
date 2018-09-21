@@ -1,5 +1,5 @@
 <template>
-    <component-modal title="创建用户">
+    <component-modal title="创建用户" :loading="loading">
         <Form ref="formCreate" :model="formCreate" :label-width="80" :rules="ruleCreate">
             <FormItem label="用户姓名" prop="name">
                 <Input v-model="formCreate.name" placeholder="用户邮箱"></Input>
@@ -24,7 +24,7 @@
             </FormItem>
         </Form>
         <div slot="footer">
-            <Button :loading="loading" @click="createSubmit('formCreate', 'admin')">创建</Button>
+            <Button @click="createSubmit('formCreate', 'admin')">创建</Button>
         </div>
     </component-modal>
 </template>

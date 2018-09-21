@@ -7,7 +7,7 @@ use luffyzhao\laravelTools\Searchs\Facades\SearchAbstract;
 class IndexSearch extends SearchAbstract
 {
     protected $relationship = [
-        'auditing_status' => '=',
+        'status' => '=',
         'name' => '='
     ];
 }

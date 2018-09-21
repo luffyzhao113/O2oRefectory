@@ -248,6 +248,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
 
 exports.default = {
     name: "my-lists",
@@ -263,6 +264,10 @@ exports.default = {
             default: function _default() {
                 return [];
             }
+        },
+        loading: {
+            type: Boolean,
+            default: false
         }
     },
     data: function data() {
@@ -336,7 +341,8 @@ var render = function() {
                   columns: _vm.tableCol,
                   data: _vm.value.data,
                   size: "small",
-                  "row-class-name": _vm.rowClassName
+                  "row-class-name": _vm.rowClassName,
+                  loading: _vm.loading
                 }
               }),
               _vm._v(" "),
@@ -407,7 +413,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -474,10 +480,13 @@ exports.default = {
 
             var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
 
+            this.loading = true;
             this.$http.get("logs", { params: this.request(page) }).then(function (res) {
                 _this.assignmentData(res.data.data);
             }).catch(function (res) {
                 _this.formatErrors(res);
+            }).finally(function () {
+                _this.loading = false;
             });
         }
     }
@@ -704,7 +713,7 @@ var render = function() {
   return _c(
     "my-lists",
     {
-      attrs: { columns: _vm.columns },
+      attrs: { columns: _vm.columns, loading: _vm.loading },
       on: { change: _vm.search },
       model: {
         value: _vm.data,

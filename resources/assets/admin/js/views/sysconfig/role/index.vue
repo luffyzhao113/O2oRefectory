@@ -1,5 +1,5 @@
 <template>
-    <my-lists v-model="data" :columns="columns" @change="search">
+    <my-lists v-model="data" :columns="columns" @change="search" :loading="loading">
         <Card>
             <p slot="title">
                 <span>搜索</span>
@@ -20,51 +20,57 @@
 </template>
 
 <script>
-  import MyLists from "../../../components/layout/my-lists";
-  import lists from "../../../mixins/lists";
-  import Create from "./create"
-  import Update from "./update"
-  import Permission from "./permission"
+    import MyLists from "../../../components/layout/my-lists";
+    import lists from "../../../mixins/lists";
+    import Create from "./create"
+    import Update from "./update"
+    import Permission from "./permission"
 
-  export default {
-    components: {MyLists, Create, Update, Permission},
-    mixins: [lists],
-    name: "index",
-    data(){
-      return {
-        columns: [{
-          title: '角色名称',
-          key: 'name'
-        }, {
-          title: '用户数量',
-          key: 'users_count'
-        }, {
-          title: '操作',
-          render: (h, {row}) => {
-            return (<div>
-              <i-button size="small" on-click={()=>this.showComponent('Update', row)}>修改</i-button>
-              <i-button size="small" on-click={()=>this.showComponent('Permission', row)}>分配权限</i-button>
-              <poptip
-                confirm
-                transfer
-                title="确定要删除吗？"
-                on-on-ok={()=>this.destroyItem(row, `role/${row.id}`)}
-              >
-                <i-button size="small">删除</i-button>
-              </poptip>
-            </div>);
-          }
-        }]
-      }
-    },
-    methods:{
-      search(page = 1){
-        this.$http.get(`role`, {params: this.request(page)}).then((res) => {
-            this.assignmentData(res.data.data);
-        })
-      }
+    export default {
+        components: {MyLists, Create, Update, Permission},
+        mixins: [lists],
+        name: "index",
+        data() {
+            return {
+                columns: [{
+                    title: '角色名称',
+                    key: 'name'
+                }, {
+                    title: '用户数量',
+                    key: 'users_count'
+                }, {
+                    title: '操作',
+                    render: (h, {row}) => {
+                        return (<div>
+                            <i-button size="small" on-click={() => this.showComponent('Update', row)}>修改</i-button>
+                            <i-button size="small" on-click={() => this.showComponent('Permission', row)}>分配权限
+                            </i-button>
+                            <poptip
+                                confirm
+                                transfer
+                                title="确定要删除吗？"
+                                on-on-ok={() => this.destroyItem(row, `role/${row.id}`)}
+                            >
+                                <i-button size="small">删除</i-button>
+                            </poptip>
+                        </div>);
+                    }
+                }]
+            }
+        },
+        methods: {
+            search(page = 1) {
+                this.loading = true
+                this.$http.get(`role`, {params: this.request(page)}).then((res) => {
+                    this.assignmentData(res.data.data);
+                }).catch((res) => {
+                    this.formatError(res)
+                }).finally(() => {
+                    this.loading = false
+                })
+            }
+        }
     }
-  }
 </script>
 
 <style scoped>

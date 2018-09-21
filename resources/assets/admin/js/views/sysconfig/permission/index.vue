@@ -6,7 +6,7 @@
                     <span>列表</span>
                     <Button size="small" type="success" @click="showComponent('Create')">添加</Button>
                 </p>
-                <TabelExpandTree :columns="columns" :data="lists" class="permission-role"></TabelExpandTree>
+                <TabelExpandTree :columns="columns" :data="lists" class="permission-role" :loading="loading"></TabelExpandTree>
             </Card>
         </div>
         <components v-bind:is="component.current" @on-change="hideComponent" :data="component.data"></components>
@@ -72,10 +72,13 @@
     },
     methods: {
       search(page = 1){
+          this.loading = true
         this.$http.get(`permission`).then((res) => {
           this.lists = res.data.data
         }).catch((res) => {
           this.formatErrors(res)
+        }).finally(() => {
+            this.loading = false
         })
       },
       child(parent) {

@@ -1,8 +1,8 @@
 <template>
-    <component-modal title="分配权限">
+    <component-modal title="分配权限" :loading="loading">
         <Tree :data="treePermissions" show-checkbox></Tree>
         <div slot="footer">
-            <Button :loading="loading" @click="correlationSubmit()">创建</Button>
+            <Button @click="correlationSubmit()">创建</Button>
         </div>
     </component-modal>
 </template>

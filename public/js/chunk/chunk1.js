@@ -246,7 +246,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.modal-body[data-v-5dddf25a]{\r\n    max-height: 500px;\r\n    overflow-y: auto;\n}\r\n", ""]);
+exports.push([module.i, "\n.modal-body[data-v-5dddf25a] {\n    max-height: 500px;\n    overflow-y: auto;\n}\n", ""]);
 
 // exports
 
@@ -260,8 +260,14 @@ exports.push([module.i, "\n.modal-body[data-v-5dddf25a]{\r\n    max-height: 500p
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -271,27 +277,26 @@ Object.defineProperty(exports, "__esModule", {
 //
 
 exports.default = {
-  name: "component-modal",
-  props: {
-    title: {
-      type: String,
-      default: '弹窗'
+    name: "component-modal",
+    props: {
+        title: {
+            type: String,
+            default: '弹窗'
+        },
+        width: {
+            type: Number,
+            default: 520
+        },
+        loading: {
+            type: Boolean,
+            default: false
+        }
     },
-    width: {
-      type: Number,
-      default: 520
+    methods: {
+        change: function change(v) {
+            this.$parent.$emit('on-change');
+        }
     }
-  },
-  computed: {
-    loading: function loading() {
-      return this.$parent.loading;
-    }
-  },
-  methods: {
-    change: function change(v) {
-      this.$parent.$emit('on-change');
-    }
-  }
 };
 
 /***/ }),
@@ -310,7 +315,6 @@ var render = function() {
         title: _vm.title,
         value: true,
         transfer: false,
-        loading: _vm.loading,
         "mask-closable": false,
         width: _vm.width
       },
@@ -324,8 +328,11 @@ var render = function() {
         { attrs: { slot: "footer" }, slot: "footer" },
         [_vm._t("footer")],
         2
-      )
-    ]
+      ),
+      _vm._v(" "),
+      _vm.loading ? _c("Spin", { attrs: { size: "large", fix: "" } }) : _vm._e()
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -459,6 +466,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
 
 exports.default = {
     name: "my-lists",
@@ -474,6 +482,10 @@ exports.default = {
             default: function _default() {
                 return [];
             }
+        },
+        loading: {
+            type: Boolean,
+            default: false
         }
     },
     data: function data() {
@@ -547,7 +559,8 @@ var render = function() {
                   columns: _vm.tableCol,
                   data: _vm.value.data,
                   size: "small",
-                  "row-class-name": _vm.rowClassName
+                  "row-class-name": _vm.rowClassName,
+                  loading: _vm.loading
                 }
               }),
               _vm._v(" "),
@@ -930,7 +943,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -1095,10 +1108,13 @@ exports.default = {
 
             var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
 
+            this.loading = true;
             this.$http.get("admin", { params: this.request(page) }).then(function (res) {
                 _this2.assignmentData(res.data.data);
             }).catch(function (res) {
                 _this2.formatErrors(res);
+            }).finally(function () {
+                _this2.loading = false;
             });
         }
     }
@@ -1471,7 +1487,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "component-modal",
-    { attrs: { title: "更新用户" } },
+    { attrs: { title: "更新用户", loading: _vm.loading } },
     [
       _c(
         "Form",
@@ -1614,7 +1630,6 @@ var render = function() {
           _c(
             "Button",
             {
-              attrs: { loading: _vm.loading },
               on: {
                 click: function($event) {
                   _vm.updateSubmit("formUpdate", "admin/" + _vm.data.id)
@@ -1863,7 +1878,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "component-modal",
-    { attrs: { title: "创建用户" } },
+    { attrs: { title: "创建用户", loading: _vm.loading } },
     [
       _c(
         "Form",
@@ -2006,7 +2021,6 @@ var render = function() {
           _c(
             "Button",
             {
-              attrs: { loading: _vm.loading },
               on: {
                 click: function($event) {
                   _vm.createSubmit("formCreate", "admin")
@@ -2044,7 +2058,7 @@ var render = function() {
   return _c(
     "my-lists",
     {
-      attrs: { columns: _vm.columns },
+      attrs: { columns: _vm.columns, loading: _vm.loading },
       on: { change: _vm.search },
       model: {
         value: _vm.data,

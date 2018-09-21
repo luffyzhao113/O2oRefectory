@@ -246,7 +246,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.modal-body[data-v-5dddf25a]{\r\n    max-height: 500px;\r\n    overflow-y: auto;\n}\r\n", ""]);
+exports.push([module.i, "\n.modal-body[data-v-5dddf25a] {\n    max-height: 500px;\n    overflow-y: auto;\n}\n", ""]);
 
 // exports
 
@@ -260,8 +260,14 @@ exports.push([module.i, "\n.modal-body[data-v-5dddf25a]{\r\n    max-height: 500p
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -271,27 +277,26 @@ Object.defineProperty(exports, "__esModule", {
 //
 
 exports.default = {
-  name: "component-modal",
-  props: {
-    title: {
-      type: String,
-      default: '弹窗'
+    name: "component-modal",
+    props: {
+        title: {
+            type: String,
+            default: '弹窗'
+        },
+        width: {
+            type: Number,
+            default: 520
+        },
+        loading: {
+            type: Boolean,
+            default: false
+        }
     },
-    width: {
-      type: Number,
-      default: 520
+    methods: {
+        change: function change(v) {
+            this.$parent.$emit('on-change');
+        }
     }
-  },
-  computed: {
-    loading: function loading() {
-      return this.$parent.loading;
-    }
-  },
-  methods: {
-    change: function change(v) {
-      this.$parent.$emit('on-change');
-    }
-  }
 };
 
 /***/ }),
@@ -310,7 +315,6 @@ var render = function() {
         title: _vm.title,
         value: true,
         transfer: false,
-        loading: _vm.loading,
         "mask-closable": false,
         width: _vm.width
       },
@@ -324,8 +328,11 @@ var render = function() {
         { attrs: { slot: "footer" }, slot: "footer" },
         [_vm._t("footer")],
         2
-      )
-    ]
+      ),
+      _vm._v(" "),
+      _vm.loading ? _c("Spin", { attrs: { size: "large", fix: "" } }) : _vm._e()
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -459,6 +466,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
 
 exports.default = {
     name: "my-lists",
@@ -474,6 +482,10 @@ exports.default = {
             default: function _default() {
                 return [];
             }
+        },
+        loading: {
+            type: Boolean,
+            default: false
         }
     },
     data: function data() {
@@ -547,7 +559,8 @@ var render = function() {
                   columns: _vm.tableCol,
                   data: _vm.value.data,
                   size: "small",
-                  "row-class-name": _vm.rowClassName
+                  "row-class-name": _vm.rowClassName,
+                  loading: _vm.loading
                 }
               }),
               _vm._v(" "),
@@ -678,7 +691,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -692,7 +705,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _myLists = __webpack_require__(124);
@@ -718,88 +731,93 @@ var _permission2 = _interopRequireDefault(_permission);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-  components: { MyLists: _myLists2.default, Create: _create2.default, Update: _update2.default, Permission: _permission2.default },
-  mixins: [_lists2.default],
-  name: "index",
-  data: function data() {
-    var _this = this;
+    components: { MyLists: _myLists2.default, Create: _create2.default, Update: _update2.default, Permission: _permission2.default },
+    mixins: [_lists2.default],
+    name: "index",
+    data: function data() {
+        var _this = this;
 
-    return {
-      columns: [{
-        title: '角色名称',
-        key: 'name'
-      }, {
-        title: '用户数量',
-        key: 'users_count'
-      }, {
-        title: '操作',
-        render: function render(h, _ref) {
-          var row = _ref.row;
+        return {
+            columns: [{
+                title: '角色名称',
+                key: 'name'
+            }, {
+                title: '用户数量',
+                key: 'users_count'
+            }, {
+                title: '操作',
+                render: function render(h, _ref) {
+                    var row = _ref.row;
 
-          return h(
-            "div",
-            null,
-            [h(
-              "i-button",
-              {
-                attrs: { size: "small" },
-                on: {
-                  "click": function click() {
-                    return _this.showComponent('Update', row);
-                  }
+                    return h(
+                        "div",
+                        null,
+                        [h(
+                            "i-button",
+                            {
+                                attrs: { size: "small" },
+                                on: {
+                                    "click": function click() {
+                                        return _this.showComponent('Update', row);
+                                    }
+                                }
+                            },
+                            ["\u4FEE\u6539"]
+                        ), h(
+                            "i-button",
+                            {
+                                attrs: { size: "small" },
+                                on: {
+                                    "click": function click() {
+                                        return _this.showComponent('Permission', row);
+                                    }
+                                }
+                            },
+                            ["\u5206\u914D\u6743\u9650"]
+                        ), h(
+                            "poptip",
+                            {
+                                attrs: {
+                                    confirm: true,
+                                    transfer: true,
+                                    title: "\u786E\u5B9A\u8981\u5220\u9664\u5417\uFF1F"
+                                },
+                                on: {
+                                    "on-ok": function onOk() {
+                                        return _this.destroyItem(row, "role/" + row.id);
+                                    }
+                                }
+                            },
+                            [h(
+                                "i-button",
+                                {
+                                    attrs: { size: "small" }
+                                },
+                                ["\u5220\u9664"]
+                            )]
+                        )]
+                    );
                 }
-              },
-              ["\u4FEE\u6539"]
-            ), h(
-              "i-button",
-              {
-                attrs: { size: "small" },
-                on: {
-                  "click": function click() {
-                    return _this.showComponent('Permission', row);
-                  }
-                }
-              },
-              ["\u5206\u914D\u6743\u9650"]
-            ), h(
-              "poptip",
-              {
-                attrs: {
-                  confirm: true,
-                  transfer: true,
-                  title: "\u786E\u5B9A\u8981\u5220\u9664\u5417\uFF1F"
-                },
-                on: {
-                  "on-ok": function onOk() {
-                    return _this.destroyItem(row, "role/" + row.id);
-                  }
-                }
-              },
-              [h(
-                "i-button",
-                {
-                  attrs: { size: "small" }
-                },
-                ["\u5220\u9664"]
-              )]
-            )]
-          );
+            }]
+        };
+    },
+
+    methods: {
+        search: function search() {
+            var _this2 = this;
+
+            var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+
+            this.loading = true;
+            this.$http.get("role", { params: this.request(page) }).then(function (res) {
+                _this2.assignmentData(res.data.data);
+            }).catch(function (res) {
+                _this2.formatError(res);
+            }).finally(function () {
+                _this2.loading = false;
+            });
         }
-      }]
-    };
-  },
-
-  methods: {
-    search: function search() {
-      var _this2 = this;
-
-      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-
-      this.$http.get("role", { params: this.request(page) }).then(function (res) {
-        _this2.assignmentData(res.data.data);
-      });
     }
-  }
 }; //
 //
 //
@@ -989,7 +1007,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "component-modal",
-    { attrs: { title: "创建角色" } },
+    { attrs: { title: "创建角色", loading: _vm.loading } },
     [
       _c(
         "Form",
@@ -1081,7 +1099,6 @@ var render = function() {
           _c(
             "Button",
             {
-              attrs: { loading: _vm.loading },
               on: {
                 click: function($event) {
                   _vm.createSubmit("formCreate", "role")
@@ -1283,7 +1300,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "component-modal",
-    { attrs: { title: "修改角色" } },
+    { attrs: { title: "修改角色", loading: _vm.loading } },
     [
       _c(
         "Form",
@@ -1661,7 +1678,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "component-modal",
-    { attrs: { title: "分配权限" } },
+    { attrs: { title: "分配权限", loading: _vm.loading } },
     [
       _c("Tree", { attrs: { data: _vm.treePermissions, "show-checkbox": "" } }),
       _vm._v(" "),
@@ -1672,7 +1689,6 @@ var render = function() {
           _c(
             "Button",
             {
-              attrs: { loading: _vm.loading },
               on: {
                 click: function($event) {
                   _vm.correlationSubmit()
@@ -1710,7 +1726,7 @@ var render = function() {
   return _c(
     "my-lists",
     {
-      attrs: { columns: _vm.columns },
+      attrs: { columns: _vm.columns, loading: _vm.loading },
       on: { change: _vm.search },
       model: {
         value: _vm.data,

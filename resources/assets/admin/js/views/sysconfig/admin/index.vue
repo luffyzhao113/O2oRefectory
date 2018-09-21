@@ -1,5 +1,5 @@
 <template>
-    <my-lists v-model="data" :columns="columns" @change="search">
+    <my-lists v-model="data" :columns="columns" @change="search" :loading="loading">
         <Card>
             <p slot="title">
                 <span>搜索</span>
@@ -80,10 +80,13 @@
         },
         methods: {
             search(page = 1){
+                this.loading = true
                 this.$http.get(`admin`, {params: this.request(page)}).then((res) => {
                     this.assignmentData(res.data.data);
                 }).catch((res) => {
                   this.formatErrors(res)
+                }).finally(() => {
+                    this.loading = false
                 })
             }
         }

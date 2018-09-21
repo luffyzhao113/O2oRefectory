@@ -2265,8 +2265,8 @@ var IndexRouter = exports.IndexRouter = [{
     __webpack_require__.e/* require */(5).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(111)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
   }
 }, {
-  path: 'admin.sellers.index',
-  name: 'admin.sellers.index',
+  path: 'admin.sellers',
+  name: 'admin.sellers',
   meta: { title: '店铺列表' },
   component: function component(resolve) {
     __webpack_require__.e/* require */(3).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(112)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);

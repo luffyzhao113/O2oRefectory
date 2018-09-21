@@ -7,7 +7,8 @@
                     <slot name="title"><span>列表</span></slot>
                     <slot name="button"></slot>
                 </p>
-                <Table :columns="tableCol" :data="value.data" size="small" ref="table" :row-class-name="rowClassName"></Table>
+                <Table :columns="tableCol" :data="value.data" size="small" ref="table" :row-class-name="rowClassName"
+                :loading="loading"></Table>
                 <Page :total="value.page.total" size="small" :current="value.page.current" :page-size="value.page.page_size" show-total @on-change="change"></Page>
             </Card>
         </div>
@@ -25,6 +26,10 @@
             columns: {
                 type: Array,
                 default: () => {return []}
+            },
+            loading: {
+                type: Boolean,
+                default: false
             }
         },
         data() {

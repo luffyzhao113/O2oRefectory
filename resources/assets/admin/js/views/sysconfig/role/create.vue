@@ -1,5 +1,5 @@
 <template>
-    <component-modal title="创建角色">
+    <component-modal title="创建角色" :loading="loading">
         <Form ref="formCreate" :model="formCreate" :label-width="80">
             <FormItem label="角色名称" prop="name" :rules="{required: true, message: '角色名称不能为空'}">
                 <Input v-model="formCreate.name" placeholder="角色名称"></Input>
@@ -15,7 +15,7 @@
             </FormItem>
         </Form>
         <div slot="footer">
-            <Button :loading="loading" @click="createSubmit('formCreate', 'role')">创建</Button>
+            <Button @click="createSubmit('formCreate', 'role')">创建</Button>
         </div>
     </component-modal>
 </template>

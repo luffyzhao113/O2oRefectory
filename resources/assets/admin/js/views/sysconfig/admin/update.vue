@@ -1,5 +1,5 @@
 <template>
-    <component-modal title="更新用户">
+    <component-modal title="更新用户" :loading="loading">
         <Form ref="formUpdate" :model="formUpdate" :label-width="80" :rules="ruleUpdate">
             <FormItem label="用户姓名" prop="name">
                 <Input v-model="formUpdate.name" placeholder="用户邮箱"></Input>
@@ -24,7 +24,7 @@
             </FormItem>
         </Form>
         <div slot="footer">
-            <Button :loading="loading" @click="updateSubmit('formUpdate', `admin/${data.id}`)">创建</Button>
+            <Button @click="updateSubmit('formUpdate', `admin/${data.id}`)">创建</Button>
         </div>
     </component-modal>
 </template>

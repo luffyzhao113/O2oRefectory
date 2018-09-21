@@ -1,5 +1,5 @@
 <template>
-    <component-modal title="查看店铺" :width="750">
+    <component-modal title="查看店铺" :width="750" :loading="loading">
         <box title="店铺详情">
             <detail title="店铺名称">{{seller.name}}</detail>
             <detail title="店铺状态">
@@ -59,10 +59,13 @@
         },
         mounted() {
             this.$nextTick(() => {
+                this.loading = true
                 this.$http.get(`seller/${this.data.id}`).then((res) => {
                     this.seller = res.data.data
                 }).catch((err) => {
                     this.formatErrors(err)
+                }).finally(() => {
+                    this.loading = false
                 })
             })
         }

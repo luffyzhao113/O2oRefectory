@@ -1,5 +1,5 @@
 <template>
-    <component-modal title="修改角色">
+    <component-modal title="修改角色" :loading="loading">
         <Form ref="formUpdate" :model="formUpdate" :label-width="80">
             <FormItem label="角色名称" prop="name" :rules="{required: true, message: '角色名称不能为空'}">
                 <Input v-model="formUpdate.name" placeholder="角色名称"></Input>
