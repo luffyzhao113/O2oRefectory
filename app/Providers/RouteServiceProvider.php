@@ -41,6 +41,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapBaseRoutes();
 
+        $this->mapSellerRoutes();
         //
     }
 
@@ -86,5 +87,15 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('base')
             ->namespace($this->namespace . '\Base')
             ->group(base_path('routes/base.php'));
+    }
+
+    /**
+     * mapSellerRoutes
+     * @author luffyzhao@vip.126.com
+     */
+    protected function mapSellerRoutes(){
+        Route::middleware('seller')
+            ->namespace($this->namespace . '\Seller')
+            ->group(base_path('routes/seller.php'));
     }
 }

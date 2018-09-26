@@ -8,9 +8,6 @@
             </detail>
             <detail title="店铺二级域名">{{seller.domain}}</detail>
         </box>
-        <box title="后台操作日志">
-            <Table :columns="columns" :data="seller.logs" size="small"></Table>
-        </box>
     </component-modal>
 </template>
 

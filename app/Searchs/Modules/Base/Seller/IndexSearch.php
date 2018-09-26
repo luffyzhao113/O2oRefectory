@@ -8,6 +8,7 @@ class IndexSearch extends SearchAbstract
 {
     protected $relationship = [
         'status' => '=',
-        'name' => '='
+        'name' => '=',
+        'domain' => '='
     ];
 }

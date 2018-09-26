@@ -7,8 +7,9 @@ export const Validator = (data) => {
         }
 
         $http.get('validator/seller', {params: {
-            domain: value
-        }}).then((res) => {
+                domain: value,
+                except: data.data.id
+            }}).then((res) => {
             if(res.data.data === null){
                 callback()
             }else{

@@ -1,5 +1,5 @@
 <template>
-    <Select v-model="model" clearable @on-change="setValue" style="width:150px">
+    <Select v-model="model" clearable @on-change="setValue" transfer style="width:150px">
         <Option :value="1">{{trueValueModel}}</Option>
         <Option :value="0">{{falseValueModel}}</Option>
         <slot></slot>

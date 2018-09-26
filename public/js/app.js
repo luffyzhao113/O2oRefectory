@@ -456,8 +456,80 @@ var $cache = exports.$cache = cache;
 /* 7 */,
 /* 8 */,
 /* 9 */,
-/* 10 */,
-/* 11 */
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.$http = undefined;
+
+var _axios = __webpack_require__(13);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _index = __webpack_require__(5);
+
+var _index2 = _interopRequireDefault(_index);
+
+var _router = __webpack_require__(19);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var instance = _axios2.default.create({
+    baseURL: '/base/',
+    timeout: 10000
+});
+
+// 添加请求拦截器
+instance.interceptors.request.use(function (config) {
+    // 在发送请求之前做些什么
+    var $token = _index2.default.$cache.get('token');
+    config.headers = {
+        'Accept': 'application/json'
+    };
+    if ($token) {
+        config.headers['authorization'] = 'bearer ' + $token;
+    }
+    return config;
+}, function (error) {
+    // 对请求错误做些什么
+    return Promise.reject(error);
+});
+
+// 添加响应拦截器
+instance.interceptors.response.use(function (response) {
+    // 对响应数据做点什么
+    return response;
+}, function (error) {
+    // 对响应错误做点什么
+    if (error.response && error.response.status === 401 && error.response.data.message === 'Unauthenticated.') {
+        _router.router.app.$cache.clear();
+        _router.router.app.$router.push({
+            name: 'common.login'
+        });
+        window.location.reload();
+    } else {
+        return Promise.reject(error);
+    }
+});
+
+exports.default = {
+    install: function install(Vue) {
+        Vue.prototype.$http = instance;
+        Vue.http = instance;
+    },
+
+    $http: instance
+};
+var $http = exports.$http = instance;
+
+/***/ }),
+/* 11 */,
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1403,78 +1475,6 @@ var index_esm = {
 
 
 /***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.$http = undefined;
-
-var _axios = __webpack_require__(13);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-var _index = __webpack_require__(5);
-
-var _index2 = _interopRequireDefault(_index);
-
-var _router = __webpack_require__(19);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var instance = _axios2.default.create({
-    baseURL: '/base/',
-    timeout: 10000
-});
-
-// 添加请求拦截器
-instance.interceptors.request.use(function (config) {
-    // 在发送请求之前做些什么
-    var $token = _index2.default.$cache.get('token');
-    config.headers = {
-        'Accept': 'application/json'
-    };
-    if ($token) {
-        config.headers['authorization'] = 'bearer ' + $token;
-    }
-    return config;
-}, function (error) {
-    // 对请求错误做些什么
-    return Promise.reject(error);
-});
-
-// 添加响应拦截器
-instance.interceptors.response.use(function (response) {
-    // 对响应数据做点什么
-    return response;
-}, function (error) {
-    // 对响应错误做点什么
-    if (error.response && error.response.status === 401 && error.response.data.message === 'Unauthenticated.') {
-        _router.router.app.$cache.clear();
-        _router.router.app.$router.push({
-            name: 'common.login'
-        });
-        window.location.reload();
-    } else {
-        return Promise.reject(error);
-    }
-});
-
-exports.default = {
-    install: function install(Vue) {
-        Vue.prototype.$http = instance;
-        Vue.http = instance;
-    },
-
-    $http: instance
-};
-var $http = exports.$http = instance;
-
-/***/ }),
 /* 13 */,
 /* 14 */,
 /* 15 */,
@@ -1756,7 +1756,7 @@ var _store2 = _interopRequireDefault(_store);
 
 var _index = __webpack_require__(19);
 
-var _ajax = __webpack_require__(12);
+var _ajax = __webpack_require__(10);
 
 var _ajax2 = _interopRequireDefault(_ajax);
 
@@ -1967,7 +1967,7 @@ var _vue = __webpack_require__(4);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _vuex = __webpack_require__(11);
+var _vuex = __webpack_require__(12);
 
 var _vuex2 = _interopRequireDefault(_vuex);
 
@@ -2153,7 +2153,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _ajax = __webpack_require__(12);
+var _ajax = __webpack_require__(10);
 
 var _ajax2 = _interopRequireDefault(_ajax);
 
@@ -2234,7 +2234,7 @@ var IndexRouter = exports.IndexRouter = [{
   name: 'sysconfig.permission.index',
   meta: { title: '权限&菜单' },
   component: function component(resolve) {
-    __webpack_require__.e/* require */(2).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(107)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+    __webpack_require__.e/* require */(3).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(107)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
   }
 }, {
   path: 'sysconfig.role',
@@ -2248,7 +2248,7 @@ var IndexRouter = exports.IndexRouter = [{
   name: 'sysconfig.admin.index',
   meta: { title: '用户管理' },
   component: function component(resolve) {
-    __webpack_require__.e/* require */(1).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(109)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+    __webpack_require__.e/* require */(2).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(109)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
   }
 }, {
   path: 'sysconfig.logs',
@@ -2269,7 +2269,7 @@ var IndexRouter = exports.IndexRouter = [{
   name: 'admin.sellers',
   meta: { title: '店铺列表' },
   component: function component(resolve) {
-    __webpack_require__.e/* require */(3).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(112)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+    __webpack_require__.e/* require */(1).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(112)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
   }
 }];
 
@@ -3967,7 +3967,7 @@ var _tools = __webpack_require__(21);
 
 var _tools2 = _interopRequireDefault(_tools);
 
-var _vuex = __webpack_require__(11);
+var _vuex = __webpack_require__(12);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

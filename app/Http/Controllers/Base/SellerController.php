@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Base;
 
+use App\Http\Requests\Base\Seller\StoreRequest;
+use App\Http\Requests\Base\Seller\UpdateRequest;
 use App\Searchs\Modules\Base\Seller\IndexSearch;
 use App\Searchs\Modules\Base\Seller\SelectSearch;
 use Illuminate\Http\Request;
@@ -11,6 +13,7 @@ use App\Repositories\Modules\Seller\Interfaces;
 class SellerController extends Controller
 {
     protected $repo;
+
     public function __construct(Interfaces $repo)
     {
         $this->repo = $repo;
@@ -22,9 +25,10 @@ class SellerController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \luffyzhao\laravelTools\Searchs\Exceptions\SearchException
      */
-    public function index(Request $request){
+    public function index(Request $request)
+    {
         $search = new IndexSearch(
-            $request->only(['status', 'name'])
+            $request->only(['status', 'name', 'domain'])
         );
 
         return $this->respondWithSuccess(
@@ -36,7 +40,15 @@ class SellerController extends Controller
         );
     }
 
-    public function select(Request $request){
+    /**
+     * 选择
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \luffyzhao\laravelTools\Searchs\Exceptions\SearchException
+     * @author luffyzhao@vip.126.com
+     */
+    public function select(Request $request)
+    {
         $search = new SelectSearch(
             $request->only(['name', 'status'])
         );
@@ -51,14 +63,58 @@ class SellerController extends Controller
     }
 
     /**
+     * 添加店铺
+     * @param StoreRequest $request
+     * @author luffyzhao@vip.126.com
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(StoreRequest $request)
+    {
+        return $this->respondWithSuccess(
+            $this->repo->create(
+                $request->only(
+                    [
+                        'name',
+                        'status',
+                        'domain',
+                    ]
+                )
+            )
+        );
+    }
+
+    /**
+     * 更新店铺
+     * @param UpdateRequest $request
+     * @param $id
+     * @author luffyzhao@vip.126.com
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(UpdateRequest $request, $id)
+    {
+        return $this->respondWithSuccess(
+            $this->repo->update(
+                $this->repo->find($id),
+                $request->only(
+                    [
+                        'name',
+                        'status',
+                        'domain',
+                    ]
+                )
+            )
+        );
+    }
+
+    /**
      * 查看店铺详情
-     * @param Request $request
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Request $request, $id){
+    public function show($id)
+    {
         return $this->respondWithSuccess(
-            $this->repo->make(['logs'])->find($id)
+            $this->repo->find($id)
         );
     }
 }

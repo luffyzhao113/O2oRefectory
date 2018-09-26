@@ -8,6 +8,9 @@
                 <FormItem prop="name" label="店铺名称">
                     <Input type="text" v-model="searchForm.name"></Input>
                 </FormItem>
+                <FormItem prop="domain" label="二级域名">
+                    <Input type="text" v-model="searchForm.domain"></Input>
+                </FormItem>
                 <FormItem prop="status" label="店铺状态">
                     <true-or-false v-model="searchForm.status" true-value="开通" false-value="关闭"></true-or-false>
                 </FormItem>
@@ -27,13 +30,15 @@
     import TrueOrFalse from "../../../components/select/true-or-false";
     import Show from "./show"
     import Create from "./create"
+    import Update from "./update"
 
     export default {
         components: {
             TrueOrFalse,
             MyLists,
             Show,
-            Create
+            Create,
+            Update
         },
         mixins: [lists],
         name: "sellers-index",
@@ -60,12 +65,16 @@
                 }, {
                     title: '操作',
                     render: (h, {row}) => {
-                        return (<div>
-                            <i-button v-show={row.status !== 0} on-click={() => {
+                        return (<button-group>
+                            <i-button on-click={() => {
                                 this.showComponent('Show', row)
                             }} size="small">查看
                             </i-button>
-                        </div>);
+                            <i-button on-click={() => {
+                                this.showComponent('Update', row)
+                            }} size="small">修改
+                            </i-button>
+                        </button-group>);
                     }
                 }]
             }
