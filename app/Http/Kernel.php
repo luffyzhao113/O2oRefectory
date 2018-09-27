@@ -43,6 +43,7 @@ class Kernel extends HttpKernel
         'seller' => [
             'throttle:200,1',
             'bindings',
+            \App\Http\Middleware\SellerMiddleware::class
         ]
     ];
 

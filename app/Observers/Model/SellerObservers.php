@@ -21,6 +21,9 @@ class SellerObservers
      */
     public function saved(Seller $seller)
     {
-        dd($seller);
+        // 这里放缓存
+        if($seller->wasRecentlyCreated){
+
+        }
     }
 }
