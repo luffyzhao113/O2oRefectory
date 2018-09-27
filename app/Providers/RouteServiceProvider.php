@@ -83,7 +83,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapBaseRoutes()
     {
-        Route::domain('base.o2orefectory.test')
+        Route::domain('base.'.config('seller.server_alias'))
             ->middleware('base')
             ->namespace($this->namespace.'\Base')
             ->group(base_path('routes/base.php'));
@@ -95,7 +95,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapSellerRoutes()
     {
-        Route::domain('{domain}.o2orefectory.test')
+        Route::domain('{domain}.'.config('seller.server_alias'))
             ->middleware('seller')
             ->namespace($this->namespace.'\Seller')
             ->group(base_path('routes/seller.php'));

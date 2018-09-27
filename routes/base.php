@@ -6,7 +6,7 @@
  * Time: 20:54
  */
 
-Route::get('/', 'HomeController@base');
+Route::get('/', 'ViewController@index');
 
 Route::post('auth', 'AuthController@store')->name('login');
 

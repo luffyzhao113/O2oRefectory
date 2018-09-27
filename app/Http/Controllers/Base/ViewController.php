@@ -11,10 +11,10 @@ namespace App\Http\Controllers\Base;
 
 use App\Http\Controllers\Controller;
 
-class HomeController extends Controller
+class ViewController extends Controller
 {
-    public function base()
+    public function index()
     {
-        return view('base');
+        return view('base/index');
     }
 }

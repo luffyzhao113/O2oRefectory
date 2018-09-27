@@ -10,6 +10,7 @@ namespace App\Observers\Model;
 
 
 use App\Model\Seller;
+use Illuminate\Support\Facades\Cache;
 
 class SellerObservers
 {
@@ -21,9 +22,9 @@ class SellerObservers
      */
     public function saved(Seller $seller)
     {
-        // 这里放缓存
-        if($seller->wasRecentlyCreated){
-
+        if(!$seller->wasRecentlyCreated){
+            $key = config('seller.cache.domain_prefix') .$seller->getOriginal('domain');
+            Cache::forget($key);
         }
     }
 }
