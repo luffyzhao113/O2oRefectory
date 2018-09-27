@@ -63,7 +63,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = {
     props: {
-        data: {}
+        componentProps: {}
     },
     data: function data() {
         return {
@@ -1270,7 +1270,7 @@ exports.default = {
     var _this = this;
 
     this.$nextTick(function () {
-      _this.$http.get("admin/" + _this.data.id).then(function (res) {
+      _this.$http.get("admin/" + _this.componentProps.id).then(function (res) {
         _this.formUpdate = Object.assign(_this.unObserver(_this.formUpdate), res.data.data);
       }).catch(function (err) {
         _this.formatErrors(err);
@@ -1633,7 +1633,10 @@ var render = function() {
             {
               on: {
                 click: function($event) {
-                  _vm.updateSubmit("formUpdate", "admin/" + _vm.data.id)
+                  _vm.updateSubmit(
+                    "formUpdate",
+                    "admin/" + _vm.componentProps.id
+                  )
                 }
               }
             },
@@ -2202,7 +2205,7 @@ var render = function() {
       _vm._v(" "),
       _c(_vm.component.current, {
         tag: "components",
-        attrs: { data: _vm.component.data },
+        attrs: { componentProps: _vm.component.data },
         on: { "on-change": _vm.hideComponent }
       })
     ],

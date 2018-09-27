@@ -52,7 +52,7 @@
                     this.formatErrors(res)
                 })
 
-                this.$http.get(`role/${this.data.id}/permission`).then((res) => {
+                this.$http.get(`role/${this.componentProps.id}/permission`).then((res) => {
                     this.role = res.data.data
                 }).catch((res) => {
                     this.formatErrors(res)
@@ -61,9 +61,9 @@
             })
         },
         methods: {
-            correlationSubmit(){
+            correlationSubmit() {
                 this.loading = true
-                this.$http.post(`role/${this.data.id}/permission`, {
+                this.$http.post(`role/${this.componentProps.id}/permission`, {
                     permission: this.permissions
                 }).then((res) => {
                     this.$Message.success('Success!');
@@ -102,7 +102,7 @@
             toChecked(data) {
                 let arr = [];
                 data.forEach((item) => {
-                    if(item.indeterminate === true || item.checked === true ){
+                    if (item.indeterminate === true || item.checked === true) {
                         arr.push(item.id)
                         if (item.children && item.children.length > 0) {
                             arr = arr.concat(this.toChecked(item.children));

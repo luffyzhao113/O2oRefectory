@@ -28,7 +28,7 @@
             </FormItem>
         </Form>
         <div slot="footer">
-            <Button @click="updateSubmit('formUpdate', `permission/${data.id}`)">更新</Button>
+            <Button @click="updateSubmit('formUpdate', `permission/${componentProps.id}`)">更新</Button>
         </div>
     </component-modal>
 </template>
@@ -66,7 +66,7 @@
       }).catch((err) => {
         this.formatErrors(err)
       })
-      this.$http.get(`permission/${this.data.id}`).then((res) => {
+      this.$http.get(`permission/${this.componentProps.id}`).then((res) => {
         this.formUpdate = res.data.data
       }).catch((err) => {
         this.formatErrors(err)

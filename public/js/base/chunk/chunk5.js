@@ -63,7 +63,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = {
     props: {
-        data: {}
+        componentProps: {}
     },
     data: function data() {
         return {
@@ -1222,7 +1222,7 @@ var render = function() {
       _vm._v(" "),
       _c(_vm.component.current, {
         tag: "components",
-        attrs: { data: _vm.component.data },
+        attrs: { componentProps: _vm.component.data },
         on: { "on-change": _vm.hideComponent }
       })
     ],

@@ -28,9 +28,6 @@ class CreateBaseAdminTable extends Migration
             $table->rememberToken()->comment('管理员token');
             // 数据表时间
             $table->timestamps();
-
-            $table->foreign('role_id')->references('id')->on('base_roles')
-                ->onUpdate('cascade')->onDelete('cascade');
         });
     }
     /**

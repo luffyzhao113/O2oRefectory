@@ -413,7 +413,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -491,7 +491,6 @@ exports.default = {
         }
     }
 }; //
-//
 //
 //
 //
@@ -773,19 +772,6 @@ var render = function() {
                       }
                     },
                     [_vm._v("搜索")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "Button",
-                    {
-                      attrs: { type: "warning" },
-                      on: {
-                        click: function($event) {
-                          _vm.showComponent("Create")
-                        }
-                      }
-                    },
-                    [_vm._v("添加")]
                   )
                 ],
                 1

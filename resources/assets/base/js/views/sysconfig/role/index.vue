@@ -15,7 +15,7 @@
             </Form>
         </Card>
 
-        <components v-bind:is="component.current" @on-change="hideComponent" :data="component.data"></components>
+        <components v-bind:is="component.current" @on-change="hideComponent" :componentProps="component.data"></components>
     </my-lists>
 </template>
 

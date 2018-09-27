@@ -24,7 +24,7 @@
             </FormItem>
         </Form>
         <div slot="footer">
-            <Button @click="updateSubmit('formUpdate', `admin/${data.id}`)">创建</Button>
+            <Button @click="updateSubmit('formUpdate', `admin/${componentProps.id}`)">创建</Button>
         </div>
     </component-modal>
 </template>
@@ -58,7 +58,7 @@
         },
         mounted(){
           this.$nextTick(() => {
-            this.$http.get(`admin/${this.data.id}`).then((res) => {
+            this.$http.get(`admin/${this.componentProps.id}`).then((res) => {
               this.formUpdate = Object.assign(this.unObserver(this.formUpdate), res.data.data)
             }).catch((err) => {
               this.formatErrors(err)

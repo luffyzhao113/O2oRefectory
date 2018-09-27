@@ -15,7 +15,7 @@
             </FormItem>
         </Form>
         <div slot="footer">
-            <Button @click="updateSubmit('formUpdate', `role/${data.id}`)">更新</Button>
+            <Button @click="updateSubmit('formUpdate', `role/${componentProps.id}`)">更新</Button>
         </div>
     </component-modal>
 </template>
@@ -38,7 +38,7 @@
             }
         },
         mounted(){
-            this.$http.get(`role/${this.data.id}`).then((res) => {
+            this.$http.get(`role/${this.componentProps.id}`).then((res) => {
                 this.formUpdate = res.data.data
             }).catch((err) => {
                 this.formatErrors(err)

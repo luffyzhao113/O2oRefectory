@@ -57,7 +57,7 @@
         mounted() {
             this.$nextTick(() => {
                 this.loading = true
-                this.$http.get(`seller/${this.data.id}`).then((res) => {
+                this.$http.get(`seller/${this.componentProps.id}`).then((res) => {
                     this.seller = res.data.data
                 }).catch((err) => {
                     this.formatErrors(err)

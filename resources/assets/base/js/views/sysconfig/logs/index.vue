@@ -10,7 +10,6 @@
                 </FormItem>
                 <FormItem :label-width="1">
                     <Button @click="search(1)" type="primary">搜索</Button>
-                    <Button @click="showComponent('Create')" type="warning">添加</Button>
                 </FormItem>
             </Form>
         </Card>

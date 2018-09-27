@@ -9,7 +9,7 @@
                 <TabelExpandTree :columns="columns" :data="lists" class="permission-role" :loading="loading"></TabelExpandTree>
             </Card>
         </div>
-        <components v-bind:is="component.current" @on-change="hideComponent" :data="component.data"></components>
+        <components v-bind:is="component.current" @on-change="hideComponent" :componentProps="component.data"></components>
     </div>
 </template>
 

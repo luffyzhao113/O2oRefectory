@@ -63,7 +63,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = {
     props: {
-        data: {}
+        componentProps: {}
     },
     data: function data() {
         return {
@@ -1438,7 +1438,7 @@ exports.default = {
     }).catch(function (err) {
       _this.formatErrors(err);
     });
-    this.$http.get("permission/" + this.data.id).then(function (res) {
+    this.$http.get("permission/" + this.componentProps.id).then(function (res) {
       _this.formUpdate = res.data.data;
     }).catch(function (err) {
       _this.formatErrors(err);
@@ -1646,7 +1646,10 @@ var render = function() {
             {
               on: {
                 click: function($event) {
-                  _vm.updateSubmit("formUpdate", "permission/" + _vm.data.id)
+                  _vm.updateSubmit(
+                    "formUpdate",
+                    "permission/" + _vm.componentProps.id
+                  )
                 }
               }
             },
@@ -1937,7 +1940,7 @@ var render = function() {
       _vm._v(" "),
       _c(_vm.component.current, {
         tag: "components",
-        attrs: { data: _vm.component.data },
+        attrs: { componentProps: _vm.component.data },
         on: { "on-change": _vm.hideComponent }
       })
     ],

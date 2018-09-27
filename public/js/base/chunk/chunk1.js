@@ -12,7 +12,7 @@ var normalizeComponent = __webpack_require__(3)
 /* script */
 var __vue_script__ = __webpack_require__(245)
 /* template */
-var __vue_template__ = __webpack_require__(276)
+var __vue_template__ = __webpack_require__(281)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -63,7 +63,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = {
     props: {
-        data: {}
+        componentProps: {}
     },
     data: function data() {
         return {
@@ -995,7 +995,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -1036,34 +1036,11 @@ var _update = __webpack_require__(270);
 
 var _update2 = _interopRequireDefault(_update);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _manager = __webpack_require__(276);
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+var _manager2 = _interopRequireDefault(_manager);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
     components: {
@@ -1071,7 +1048,8 @@ exports.default = {
         MyLists: _myLists2.default,
         Show: _show2.default,
         Create: _create2.default,
-        Update: _update2.default
+        Update: _update2.default,
+        Manager: _manager2.default
     },
     mixins: [_lists2.default],
     name: "sellers-index",
@@ -1137,6 +1115,17 @@ exports.default = {
                                 attrs: { size: "small" }
                             },
                             ["\u4FEE\u6539"]
+                        ), h(
+                            "i-button",
+                            {
+                                on: {
+                                    "click": function click() {
+                                        _this.showComponent('Manager', row);
+                                    }
+                                },
+                                attrs: { size: "small" }
+                            },
+                            ["\u67E5\u770B\u5E97\u94FA\u7BA1\u7406\u5458"]
                         )]
                     );
                 }
@@ -1160,7 +1149,32 @@ exports.default = {
             });
         }
     }
-};
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /***/ }),
 
@@ -1333,7 +1347,7 @@ exports.default = {
 
         this.$nextTick(function () {
             _this.loading = true;
-            _this.$http.get("seller/" + _this.data.id).then(function (res) {
+            _this.$http.get("seller/" + _this.componentProps.id).then(function (res) {
                 _this.seller = res.data.data;
             }).catch(function (err) {
                 _this.formatErrors(err);
@@ -2258,7 +2272,7 @@ exports.default = {
         var _this = this;
 
         this.$nextTick(function () {
-            _this.$http.get("seller/" + _this.data.id).then(function (res) {
+            _this.$http.get("seller/" + _this.componentProps.id).then(function (res) {
                 _this.formUpdate = Object.assign(_this.unObserver(_this.formUpdate), res.data.data);
             }).catch(function (err) {
                 _this.formatErrors(err);
@@ -2320,7 +2334,7 @@ var Validator = exports.Validator = function Validator(data) {
 
         _index.$http.get('validator/seller', { params: {
                 domain: value,
-                except: data.data.id
+                except: data.componentProps.id
             } }).then(function (res) {
             if (res.data.data === null) {
                 callback();
@@ -2457,7 +2471,10 @@ var render = function() {
             {
               on: {
                 click: function($event) {
-                  _vm.updateSubmit("formUpdate", "seller/" + _vm.data.id)
+                  _vm.updateSubmit(
+                    "formUpdate",
+                    "seller/" + _vm.componentProps.id
+                  )
                 }
               }
             },
@@ -2483,6 +2500,156 @@ if (false) {
 /***/ }),
 
 /***/ 276:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(277)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(279)
+/* template */
+var __vue_template__ = __webpack_require__(280)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-1576421c"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\base\\js\\views\\sellers\\home\\manager.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1576421c", Component.options)
+  } else {
+    hotAPI.reload("data-v-1576421c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 277:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(278);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("8b6eaad8", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1576421c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./manager.vue", function() {
+     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1576421c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./manager.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 278:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 279:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _componentModal = __webpack_require__(118);
+
+var _componentModal2 = _interopRequireDefault(_componentModal);
+
+var _component = __webpack_require__(117);
+
+var _component2 = _interopRequireDefault(_component);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+    name: "manager",
+    components: { ComponentModal: _componentModal2.default },
+    mixins: [_component2.default]
+};
+
+/***/ }),
+
+/***/ 280:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("component-modal", { attrs: { title: "查看店铺管理员" } })
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1576421c", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 281:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -2612,7 +2779,7 @@ var render = function() {
       _vm._v(" "),
       _c(_vm.component.current, {
         tag: "components",
-        attrs: { data: _vm.component.data },
+        attrs: { componentProps: _vm.component.data },
         on: { "on-change": _vm.hideComponent }
       })
     ],

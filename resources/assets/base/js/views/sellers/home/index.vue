@@ -20,7 +20,7 @@
                 </FormItem>
             </Form>
         </Card>
-        <components v-bind:is="component.current" @on-change="hideComponent" :data="component.data"></components>
+        <components v-bind:is="component.current" @on-change="hideComponent" :componentProps="component.data"></components>
     </my-lists>
 </template>
 
@@ -31,6 +31,7 @@
     import Show from "./show"
     import Create from "./create"
     import Update from "./update"
+    import Manager from "./manager"
 
     export default {
         components: {
@@ -38,7 +39,8 @@
             MyLists,
             Show,
             Create,
-            Update
+            Update,
+            Manager
         },
         mixins: [lists],
         name: "sellers-index",
@@ -73,6 +75,10 @@
                             <i-button on-click={() => {
                                 this.showComponent('Update', row)
                             }} size="small">修改
+                            </i-button>
+                            <i-button on-click={() => {
+                                this.showComponent('Manager', row)
+                            }} size="small">查看店铺管理员
                             </i-button>
                         </button-group>);
                     }

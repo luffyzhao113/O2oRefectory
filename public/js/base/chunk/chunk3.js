@@ -63,7 +63,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = {
     props: {
-        data: {}
+        componentProps: {}
     },
     data: function data() {
         return {
@@ -1260,7 +1260,7 @@ exports.default = {
     mounted: function mounted() {
         var _this = this;
 
-        this.$http.get("role/" + this.data.id).then(function (res) {
+        this.$http.get("role/" + this.componentProps.id).then(function (res) {
             _this.formUpdate = res.data.data;
         }).catch(function (err) {
             _this.formatErrors(err);
@@ -1394,7 +1394,10 @@ var render = function() {
             {
               on: {
                 click: function($event) {
-                  _vm.updateSubmit("formUpdate", "role/" + _vm.data.id)
+                  _vm.updateSubmit(
+                    "formUpdate",
+                    "role/" + _vm.componentProps.id
+                  )
                 }
               }
             },
@@ -1595,7 +1598,7 @@ exports.default = {
                 _this2.formatErrors(res);
             });
 
-            _this2.$http.get("role/" + _this2.data.id + "/permission").then(function (res) {
+            _this2.$http.get("role/" + _this2.componentProps.id + "/permission").then(function (res) {
                 _this2.role = res.data.data;
             }).catch(function (res) {
                 _this2.formatErrors(res);
@@ -1608,7 +1611,7 @@ exports.default = {
             var _this3 = this;
 
             this.loading = true;
-            this.$http.post("role/" + this.data.id + "/permission", {
+            this.$http.post("role/" + this.componentProps.id + "/permission", {
                 permission: this.permissions
             }).then(function (res) {
                 _this3.$Message.success('Success!');
@@ -1809,7 +1812,7 @@ var render = function() {
       _vm._v(" "),
       _c(_vm.component.current, {
         tag: "components",
-        attrs: { data: _vm.component.data },
+        attrs: { componentProps: _vm.component.data },
         on: { "on-change": _vm.hideComponent }
       })
     ],
