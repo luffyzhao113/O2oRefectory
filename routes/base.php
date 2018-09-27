@@ -6,6 +6,8 @@
  * Time: 20:54
  */
 
+Route::get('/', 'HomeController@base');
+
 Route::post('auth', 'AuthController@store')->name('login');
 
 Route::group(['middleware' => 'auth'], function (){

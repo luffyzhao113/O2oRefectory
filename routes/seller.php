@@ -3,10 +3,10 @@
  *  商家
  */
 
-Route::domain('{domain}.o2orefectory.test')->group(function () {
-//    Route::get('/', \App\Http\Controllers\Web\HomeController::class . '@seller');
+Route::get('/', 'HomeController@seller');
 
-    Route::prefix('api')->group(function () {
+Route::prefix('api')->group(
+    function () {
 //        Route::get('/', '');
-    });
-});
+    }
+);;

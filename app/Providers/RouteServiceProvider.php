@@ -55,8 +55,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web.php'));
     }
 
     /**
@@ -69,9 +69,9 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::prefix('api')
-             ->middleware('api')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/api.php'));
+            ->middleware('api')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/api.php'));
     }
 
     /**
@@ -83,9 +83,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapBaseRoutes()
     {
-        Route::prefix('base')
+        Route::domain('base.o2orefectory.test')
             ->middleware('base')
-            ->namespace($this->namespace . '\Base')
+            ->namespace($this->namespace.'\Base')
             ->group(base_path('routes/base.php'));
     }
 
@@ -93,9 +93,11 @@ class RouteServiceProvider extends ServiceProvider
      * mapSellerRoutes
      * @author luffyzhao@vip.126.com
      */
-    protected function mapSellerRoutes(){
-        Route::middleware('seller')
-            ->namespace($this->namespace . '\Seller')
+    protected function mapSellerRoutes()
+    {
+        Route::domain('{domain}.o2orefectory.test')
+            ->middleware('seller')
+            ->namespace($this->namespace.'\Seller')
             ->group(base_path('routes/seller.php'));
     }
 }
