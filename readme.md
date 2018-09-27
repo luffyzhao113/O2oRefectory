@@ -34,3 +34,5 @@ php artisan back:restore
 [前端开发手册](storage/doc/前端开发手册.md)
 
 [后台开发手册](storage/doc/后台开发手册.md)
+
+[扩展阅读](https://github.com/luffyzhao/luffy-laravel-tools/blob/master/README.md)
