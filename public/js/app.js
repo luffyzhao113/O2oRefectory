@@ -480,7 +480,7 @@ var _router = __webpack_require__(19);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var instance = _axios2.default.create({
-    baseURL: '/base/',
+    baseURL: '/',
     timeout: 10000
 });
 
