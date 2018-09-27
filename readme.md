@@ -13,8 +13,7 @@ php artisan run:app
 
 php artisan back:restore
 
- 登录邮箱 `luffyzhao@vip.126.com` 密码 `123456`
- 
+ ```
  <VirtualHost _default_:80>
    DocumentRoot "yourpath/public"
    ServerName o2orefectory.test
@@ -25,9 +24,11 @@ php artisan back:restore
      Require all granted
    </Directory>
  </VirtualHost>
-
+```
 后台访问地址 `base.o2orefectory.test`  
 
+ 登录邮箱 `luffyzhao@vip.126.com` 密码 `123456`
+ 
 ### 手册
 
 [前端开发手册](storage/doc/前端开发手册.md)
