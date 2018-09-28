@@ -21,6 +21,27 @@
                 </box-item>
 
             </Box>
+
+            <Box title="管理员">
+                <box-item :span="8">
+                    <FormItem label="登录账号">
+                        <Input v-model="formCreate.admins.name" placeholder="登录账号"></Input>
+                    </FormItem>
+                </box-item>
+
+                <box-item :span="8">
+                    <FormItem label="登录密码">
+                        <Input v-model="formCreate.admins.password" placeholder="登录密码"></Input>
+                    </FormItem>
+                </box-item>
+
+                <box-item :span="8">
+                    <FormItem label="确认密码">
+                        <Input v-model="formCreate.admins.password" placeholder="确认密码"></Input>
+                    </FormItem>
+                </box-item>
+            </Box>
+
         </Form>
 
         <div slot="footer">
@@ -46,7 +67,8 @@
             let $this = this
             return {
                 formCreate: {
-                    name: ''
+                    name: '',
+                    admins: {}
                 },
                 ruleCreate: Validator($this)
             }

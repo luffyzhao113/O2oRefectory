@@ -1,6 +1,6 @@
 <template>
-    <component-modal title="查看店铺管理员">
-
+    <component-modal title="查看店铺管理员" :width="800">
+        111
     </component-modal>
 </template>
 

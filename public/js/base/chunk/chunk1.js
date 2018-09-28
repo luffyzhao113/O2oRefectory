@@ -1761,7 +1761,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -1814,12 +1814,34 @@ exports.default = {
         var $this = this;
         return {
             formCreate: {
-                name: ''
+                name: '',
+                admins: {}
             },
             ruleCreate: (0, _create.Validator)($this)
         };
     }
 }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2074,6 +2096,88 @@ var render = function() {
                             _vm.$set(_vm.formCreate, "status", $$v)
                           },
                           expression: "formCreate.status"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "Box",
+            { attrs: { title: "管理员" } },
+            [
+              _c(
+                "box-item",
+                { attrs: { span: 8 } },
+                [
+                  _c(
+                    "FormItem",
+                    { attrs: { label: "登录账号" } },
+                    [
+                      _c("Input", {
+                        attrs: { placeholder: "登录账号" },
+                        model: {
+                          value: _vm.formCreate.admins.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formCreate.admins, "name", $$v)
+                          },
+                          expression: "formCreate.admins.name"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "box-item",
+                { attrs: { span: 8 } },
+                [
+                  _c(
+                    "FormItem",
+                    { attrs: { label: "登录密码" } },
+                    [
+                      _c("Input", {
+                        attrs: { placeholder: "登录密码" },
+                        model: {
+                          value: _vm.formCreate.admins.password,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formCreate.admins, "password", $$v)
+                          },
+                          expression: "formCreate.admins.password"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "box-item",
+                { attrs: { span: 8 } },
+                [
+                  _c(
+                    "FormItem",
+                    { attrs: { label: "确认密码" } },
+                    [
+                      _c("Input", {
+                        attrs: { placeholder: "确认密码" },
+                        model: {
+                          value: _vm.formCreate.admins.password,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formCreate.admins, "password", $$v)
+                          },
+                          expression: "formCreate.admins.password"
                         }
                       })
                     ],
@@ -2635,7 +2739,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("component-modal", { attrs: { title: "查看店铺管理员" } })
+  return _c(
+    "component-modal",
+    { attrs: { title: "查看店铺管理员", width: 800 } },
+    [_vm._v("\n    111\n")]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
