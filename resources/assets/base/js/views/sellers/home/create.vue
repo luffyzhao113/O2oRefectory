@@ -19,25 +19,25 @@
                         <true-or-false  v-model="formCreate.status" true-value="开启" false-value="关闭"></true-or-false>
                     </FormItem>
                 </box-item>
-
+                
             </Box>
 
             <Box title="管理员">
                 <box-item :span="8">
-                    <FormItem label="登录账号">
-                        <Input v-model="formCreate.admins.name" placeholder="登录账号"></Input>
+                    <FormItem label="登录账号" prop="admins.email">
+                        <Input v-model="formCreate.admins.email" placeholder="登录账号"></Input>
                     </FormItem>
                 </box-item>
 
                 <box-item :span="8">
-                    <FormItem label="登录密码">
-                        <Input v-model="formCreate.admins.password" placeholder="登录密码"></Input>
+                    <FormItem label="登录密码" prop="admins.password">
+                        <Input v-model="formCreate.admins.password" type="password" placeholder="登录密码"></Input>
                     </FormItem>
                 </box-item>
 
                 <box-item :span="8">
-                    <FormItem label="确认密码">
-                        <Input v-model="formCreate.admins.password" placeholder="确认密码"></Input>
+                    <FormItem label="确认密码" prop="admins.password_confirmation">
+                        <Input v-model="formCreate.admins.password_confirmation" type="password" placeholder="确认密码"></Input>
                     </FormItem>
                 </box-item>
             </Box>

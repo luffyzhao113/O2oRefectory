@@ -31,7 +31,6 @@
     import Show from "./show"
     import Create from "./create"
     import Update from "./update"
-    import Manager from "./manager"
 
     export default {
         components: {
@@ -39,8 +38,7 @@
             MyLists,
             Show,
             Create,
-            Update,
-            Manager
+            Update
         },
         mixins: [lists],
         name: "sellers-index",
@@ -75,10 +73,6 @@
                             <i-button on-click={() => {
                                 this.showComponent('Update', row)
                             }} size="small">修改
-                            </i-button>
-                            <i-button on-click={() => {
-                                this.showComponent('Manager', row)
-                            }} size="small">查看店铺管理员
                             </i-button>
                         </button-group>);
                     }

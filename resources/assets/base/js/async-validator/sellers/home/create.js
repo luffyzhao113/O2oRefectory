@@ -19,6 +19,20 @@ export const Validator = (data) => {
         })
     };
 
+    let sellerEmail = (rule, value, callback) => {
+        $http.get('validator/seller-email', {params: {
+                email: value
+            }}).then((res) => {
+            if(res.data.data === null){
+                callback()
+            }else{
+                callback(new Error('登录邮箱被占用'))
+            }
+        }).catch(() => {
+            callback(new Error('系统错误'))
+        })
+    }
+
     return {
         name: [
             {required: true, type: 'string', message: '店铺名称不能为空', trigger: 'blur'},
@@ -31,6 +45,26 @@ export const Validator = (data) => {
         ],
         status: [
             {required: true, type: 'number', message: '店铺状态不能为空', trigger: 'change'}
+        ],
+        "admins.email": [
+            {required: true, type: 'email', message: '登录账号不能为空', trigger: 'blur'},
+            {validator: sellerEmail}
+        ],
+        "admins.password": [
+            {required: true, type: 'string', message: '登录密码不能为空', trigger: 'blur'},
+            {type: 'string', min: 6, max: 20, message: '登录密码必须在 6 到 20 个字符之间', trigger: 'blur'}
+        ],
+        "admins.password_confirmation": [
+            {required: true, type: 'string', message: '确认密码不能为空', trigger: 'blur'},
+            {
+                validator(rule, value, callback, source, options) {
+                    if(data.formCreate.admins.password !== value){
+                        callback(new Error('两次输入密码不正确！'));
+                    }else{
+                        callback();
+                    }
+                }, trigger: 'blur'
+            }
         ]
     }
 }

@@ -29,6 +29,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('seller/select', 'SellerController@select');
 
     Route::get('validator/seller', 'ValidatorController@seller');
+    Route::get('validator/seller-email', 'ValidatorController@sellerEmail');
 
     Route::group(['middleware' => ['entrust:base']], function (){
         Route::apiResource('permission', 'PermissionController');

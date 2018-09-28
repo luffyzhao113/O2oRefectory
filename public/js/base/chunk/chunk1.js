@@ -995,7 +995,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -1036,11 +1036,34 @@ var _update = __webpack_require__(270);
 
 var _update2 = _interopRequireDefault(_update);
 
-var _manager = __webpack_require__(276);
-
-var _manager2 = _interopRequireDefault(_manager);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     components: {
@@ -1048,8 +1071,7 @@ exports.default = {
         MyLists: _myLists2.default,
         Show: _show2.default,
         Create: _create2.default,
-        Update: _update2.default,
-        Manager: _manager2.default
+        Update: _update2.default
     },
     mixins: [_lists2.default],
     name: "sellers-index",
@@ -1115,17 +1137,6 @@ exports.default = {
                                 attrs: { size: "small" }
                             },
                             ["\u4FEE\u6539"]
-                        ), h(
-                            "i-button",
-                            {
-                                on: {
-                                    "click": function click() {
-                                        _this.showComponent('Manager', row);
-                                    }
-                                },
-                                attrs: { size: "small" }
-                            },
-                            ["\u67E5\u770B\u5E97\u94FA\u7BA1\u7406\u5458"]
                         )]
                     );
                 }
@@ -1149,32 +1160,7 @@ exports.default = {
             });
         }
     }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+};
 
 /***/ }),
 
@@ -1907,10 +1893,36 @@ var Validator = exports.Validator = function Validator(data) {
         });
     };
 
+    var sellerEmail = function sellerEmail(rule, value, callback) {
+        _index.$http.get('validator/seller-email', { params: {
+                email: value
+            } }).then(function (res) {
+            if (res.data.data === null) {
+                callback();
+            } else {
+                callback(new Error('登录邮箱被占用'));
+            }
+        }).catch(function () {
+            callback(new Error('系统错误'));
+        });
+    };
+
     return {
         name: [{ required: true, type: 'string', message: '店铺名称不能为空', trigger: 'blur' }, { type: 'string', min: 2, max: 20, message: '店铺名称必须在 2 到 20 个字符之间', trigger: 'blur' }],
         domain: [{ required: true, type: 'string', message: '二级域名不能为空', trigger: 'blur' }, { type: 'string', min: 2, max: 10, message: '二级域名必须在 2 到 10 个字符之间', trigger: 'blur' }, { validator: domain, trigger: 'blur' }],
-        status: [{ required: true, type: 'number', message: '店铺状态不能为空', trigger: 'change' }]
+        status: [{ required: true, type: 'number', message: '店铺状态不能为空', trigger: 'change' }],
+        "admins.email": [{ required: true, type: 'email', message: '登录账号不能为空', trigger: 'blur' }, { validator: sellerEmail }],
+        "admins.password": [{ required: true, type: 'string', message: '登录密码不能为空', trigger: 'blur' }, { type: 'string', min: 6, max: 20, message: '登录密码必须在 6 到 20 个字符之间', trigger: 'blur' }],
+        "admins.password_confirmation": [{ required: true, type: 'string', message: '确认密码不能为空', trigger: 'blur' }, {
+            validator: function validator(rule, value, callback, source, options) {
+                if (data.formCreate.admins.password !== value) {
+                    callback(new Error('两次输入密码不正确！'));
+                } else {
+                    callback();
+                }
+            },
+            trigger: 'blur'
+        }]
     };
 };
 
@@ -2118,16 +2130,16 @@ var render = function() {
                 [
                   _c(
                     "FormItem",
-                    { attrs: { label: "登录账号" } },
+                    { attrs: { label: "登录账号", prop: "admins.email" } },
                     [
                       _c("Input", {
                         attrs: { placeholder: "登录账号" },
                         model: {
-                          value: _vm.formCreate.admins.name,
+                          value: _vm.formCreate.admins.email,
                           callback: function($$v) {
-                            _vm.$set(_vm.formCreate.admins, "name", $$v)
+                            _vm.$set(_vm.formCreate.admins, "email", $$v)
                           },
-                          expression: "formCreate.admins.name"
+                          expression: "formCreate.admins.email"
                         }
                       })
                     ],
@@ -2143,10 +2155,10 @@ var render = function() {
                 [
                   _c(
                     "FormItem",
-                    { attrs: { label: "登录密码" } },
+                    { attrs: { label: "登录密码", prop: "admins.password" } },
                     [
                       _c("Input", {
-                        attrs: { placeholder: "登录密码" },
+                        attrs: { type: "password", placeholder: "登录密码" },
                         model: {
                           value: _vm.formCreate.admins.password,
                           callback: function($$v) {
@@ -2168,16 +2180,25 @@ var render = function() {
                 [
                   _c(
                     "FormItem",
-                    { attrs: { label: "确认密码" } },
+                    {
+                      attrs: {
+                        label: "确认密码",
+                        prop: "admins.password_confirmation"
+                      }
+                    },
                     [
                       _c("Input", {
-                        attrs: { placeholder: "确认密码" },
+                        attrs: { type: "password", placeholder: "确认密码" },
                         model: {
-                          value: _vm.formCreate.admins.password,
+                          value: _vm.formCreate.admins.password_confirmation,
                           callback: function($$v) {
-                            _vm.$set(_vm.formCreate.admins, "password", $$v)
+                            _vm.$set(
+                              _vm.formCreate.admins,
+                              "password_confirmation",
+                              $$v
+                            )
                           },
-                          expression: "formCreate.admins.password"
+                          expression: "formCreate.admins.password_confirmation"
                         }
                       })
                     ],
@@ -2598,160 +2619,6 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-13bbebd8", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ 276:
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(277)
-}
-var normalizeComponent = __webpack_require__(3)
-/* script */
-var __vue_script__ = __webpack_require__(279)
-/* template */
-var __vue_template__ = __webpack_require__(280)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-1576421c"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\base\\js\\views\\sellers\\home\\manager.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1576421c", Component.options)
-  } else {
-    hotAPI.reload("data-v-1576421c", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 277:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(278);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("8b6eaad8", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1576421c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./manager.vue", function() {
-     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1576421c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./manager.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-
-/***/ 278:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ 279:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _componentModal = __webpack_require__(118);
-
-var _componentModal2 = _interopRequireDefault(_componentModal);
-
-var _component = __webpack_require__(117);
-
-var _component2 = _interopRequireDefault(_component);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//
-//
-//
-//
-//
-//
-
-exports.default = {
-    name: "manager",
-    components: { ComponentModal: _componentModal2.default },
-    mixins: [_component2.default]
-};
-
-/***/ }),
-
-/***/ 280:
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "component-modal",
-    { attrs: { title: "查看店铺管理员", width: 800 } },
-    [_vm._v("\n    111\n")]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1576421c", module.exports)
   }
 }
 
