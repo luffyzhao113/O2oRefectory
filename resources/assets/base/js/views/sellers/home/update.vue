@@ -21,6 +21,26 @@
                 </box-item>
 
             </Box>
+
+            <Box title="管理员">
+                <box-item :span="8">
+                    <FormItem label="登录账号" prop="admin.email">
+                        <Input v-model="formUpdate.admin.email" placeholder="登录账号"></Input>
+                    </FormItem>
+                </box-item>
+
+                <box-item :span="8">
+                    <FormItem label="登录密码" prop="admin.password">
+                        <Input v-model="formUpdate.admin.password" type="password" placeholder="登录密码"></Input>
+                    </FormItem>
+                </box-item>
+
+                <box-item :span="8">
+                    <FormItem label="确认密码" prop="admin.password_confirmation">
+                        <Input v-model="formUpdate.admin.password_confirmation" type="password" placeholder="确认密码"></Input>
+                    </FormItem>
+                </box-item>
+            </Box>
         </Form>
 
         <div slot="footer">
@@ -47,7 +67,8 @@
             let $this = this;
             return {
                 formUpdate: {
-                    name: ''
+                    name: '',
+                    admin: {}
                 },
                 ruleUpdate: Validator($this)
             }

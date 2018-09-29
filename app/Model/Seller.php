@@ -28,4 +28,22 @@ class Seller extends Model
     public function logs(){
         return $this->hasMany(SellerLog::class, 'seller_id', 'id');
     }
+
+    /**
+     * 管理账号
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @author luffyzhao@vip.126.com
+     */
+    public function admins(){
+        return $this->hasMany(SellerAdmin::class, 'seller_id', 'id');
+    }
+
+    /**
+     * 超级管理员
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @author luffyzhao@vip.126.com
+     */
+    public function admin(){
+        return $this->hasOne(SellerAdmin::class, 'seller_id', 'id')->where('role_id', 0);
+    }
 }

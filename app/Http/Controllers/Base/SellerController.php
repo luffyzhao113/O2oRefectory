@@ -6,9 +6,12 @@ use App\Http\Requests\Base\Seller\StoreRequest;
 use App\Http\Requests\Base\Seller\UpdateRequest;
 use App\Searchs\Modules\Base\Seller\IndexSearch;
 use App\Searchs\Modules\Base\Seller\SelectSearch;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Modules\Seller\Interfaces;
+use Illuminate\Support\Facades\DB;
 
 class SellerController extends Controller
 {
@@ -71,14 +74,19 @@ class SellerController extends Controller
     public function store(StoreRequest $request)
     {
         return $this->respondWithSuccess(
-            $this->repo->create(
-                $request->only(
-                    [
-                        'name',
-                        'status',
-                        'domain',
-                    ]
-                )
+            DB::transaction(
+                function () use ($request) {
+                    return $this->repo->create(
+                        $request->only(
+                            [
+                                'name',
+                                'status',
+                                'domain',
+                                'admin',
+                            ]
+                        )
+                    );
+                }
             )
         );
     }
@@ -93,15 +101,20 @@ class SellerController extends Controller
     public function update(UpdateRequest $request, $id)
     {
         return $this->respondWithSuccess(
-            $this->repo->update(
-                $this->repo->find($id),
-                $request->only(
-                    [
-                        'name',
-                        'status',
-                        'domain',
-                    ]
-                )
+            DB::transaction(
+                function () use ($request, $id) {
+                    $this->repo->update(
+                        $this->repo->find($id),
+                        $request->only(
+                            [
+                                'name',
+                                'status',
+                                'domain',
+                                'admin',
+                            ]
+                        )
+                    );
+                }
             )
         );
     }
@@ -113,8 +126,14 @@ class SellerController extends Controller
      */
     public function show($id)
     {
+        $with = [
+            'admin' => function (HasOne $builder) {
+                $builder->where('role_id', 0)->addSelect(['id', 'seller_id', 'email']);
+            },
+        ];
+
         return $this->respondWithSuccess(
-            $this->repo->find($id)
+            $this->repo->with($with)->find($id)
         );
     }
 }

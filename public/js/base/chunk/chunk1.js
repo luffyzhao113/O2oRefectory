@@ -12,7 +12,7 @@ var normalizeComponent = __webpack_require__(3)
 /* script */
 var __vue_script__ = __webpack_require__(245)
 /* template */
-var __vue_template__ = __webpack_require__(281)
+var __vue_template__ = __webpack_require__(276)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1801,7 +1801,7 @@ exports.default = {
         return {
             formCreate: {
                 name: '',
-                admins: {}
+                admin: {}
             },
             ruleCreate: (0, _create.Validator)($this)
         };
@@ -2130,16 +2130,16 @@ var render = function() {
                 [
                   _c(
                     "FormItem",
-                    { attrs: { label: "登录账号", prop: "admins.email" } },
+                    { attrs: { label: "登录账号", prop: "admin.email" } },
                     [
                       _c("Input", {
                         attrs: { placeholder: "登录账号" },
                         model: {
-                          value: _vm.formCreate.admins.email,
+                          value: _vm.formCreate.admin.email,
                           callback: function($$v) {
-                            _vm.$set(_vm.formCreate.admins, "email", $$v)
+                            _vm.$set(_vm.formCreate.admin, "email", $$v)
                           },
-                          expression: "formCreate.admins.email"
+                          expression: "formCreate.admin.email"
                         }
                       })
                     ],
@@ -2155,16 +2155,16 @@ var render = function() {
                 [
                   _c(
                     "FormItem",
-                    { attrs: { label: "登录密码", prop: "admins.password" } },
+                    { attrs: { label: "登录密码", prop: "admin.password" } },
                     [
                       _c("Input", {
                         attrs: { type: "password", placeholder: "登录密码" },
                         model: {
-                          value: _vm.formCreate.admins.password,
+                          value: _vm.formCreate.admin.password,
                           callback: function($$v) {
-                            _vm.$set(_vm.formCreate.admins, "password", $$v)
+                            _vm.$set(_vm.formCreate.admin, "password", $$v)
                           },
-                          expression: "formCreate.admins.password"
+                          expression: "formCreate.admin.password"
                         }
                       })
                     ],
@@ -2183,22 +2183,22 @@ var render = function() {
                     {
                       attrs: {
                         label: "确认密码",
-                        prop: "admins.password_confirmation"
+                        prop: "admin.password_confirmation"
                       }
                     },
                     [
                       _c("Input", {
                         attrs: { type: "password", placeholder: "确认密码" },
                         model: {
-                          value: _vm.formCreate.admins.password_confirmation,
+                          value: _vm.formCreate.admin.password_confirmation,
                           callback: function($$v) {
                             _vm.$set(
-                              _vm.formCreate.admins,
+                              _vm.formCreate.admin,
                               "password_confirmation",
                               $$v
                             )
                           },
-                          expression: "formCreate.admins.password_confirmation"
+                          expression: "formCreate.admin.password_confirmation"
                         }
                       })
                     ],
@@ -2335,7 +2335,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -2388,7 +2388,8 @@ exports.default = {
         var $this = this;
         return {
             formUpdate: {
-                name: ''
+                name: '',
+                admin: {}
             },
             ruleUpdate: (0, _update.Validator)($this)
         };
@@ -2405,6 +2406,26 @@ exports.default = {
         });
     }
 }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2471,10 +2492,37 @@ var Validator = exports.Validator = function Validator(data) {
         });
     };
 
+    var sellerEmail = function sellerEmail(rule, value, callback) {
+        _index.$http.get('validator/seller-email', { params: {
+                email: value,
+                except: data.formUpdate.admins.id
+            } }).then(function (res) {
+            if (res.data.data === null) {
+                callback();
+            } else {
+                callback(new Error('登录邮箱被占用'));
+            }
+        }).catch(function () {
+            callback(new Error('系统错误'));
+        });
+    };
+
     return {
         name: [{ required: true, type: 'string', message: '店铺名称不能为空', trigger: 'blur' }, { type: 'string', min: 2, max: 20, message: '店铺名称必须在 2 到 20 个字符之间', trigger: 'blur' }],
         domain: [{ required: true, type: 'string', message: '二级域名不能为空', trigger: 'blur' }, { type: 'string', min: 2, max: 10, message: '二级域名必须在 2 到 10 个字符之间', trigger: 'blur' }, { validator: domain, trigger: 'blur' }],
-        status: [{ required: true, type: 'number', message: '店铺状态不能为空', trigger: 'change' }]
+        status: [{ required: true, type: 'number', message: '店铺状态不能为空', trigger: 'change' }],
+        "admins.email": [{ required: true, type: 'email', message: '登录账号不能为空', trigger: 'blur' }, { validator: sellerEmail }],
+        "admins.password": [{ type: 'string', min: 6, max: 20, message: '登录密码必须在 6 到 20 个字符之间', trigger: 'blur' }],
+        "admins.password_confirmation": [{
+            validator: function validator(rule, value, callback, source, options) {
+                if (data.formUpdate.admins.password !== value) {
+                    callback(new Error('两次输入密码不正确！'));
+                } else {
+                    callback();
+                }
+            },
+            trigger: 'blur'
+        }]
     };
 };
 
@@ -2582,6 +2630,97 @@ var render = function() {
               )
             ],
             1
+          ),
+          _vm._v(" "),
+          _c(
+            "Box",
+            { attrs: { title: "管理员" } },
+            [
+              _c(
+                "box-item",
+                { attrs: { span: 8 } },
+                [
+                  _c(
+                    "FormItem",
+                    { attrs: { label: "登录账号", prop: "admin.email" } },
+                    [
+                      _c("Input", {
+                        attrs: { placeholder: "登录账号" },
+                        model: {
+                          value: _vm.formUpdate.admin.email,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formUpdate.admin, "email", $$v)
+                          },
+                          expression: "formUpdate.admin.email"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "box-item",
+                { attrs: { span: 8 } },
+                [
+                  _c(
+                    "FormItem",
+                    { attrs: { label: "登录密码", prop: "admin.password" } },
+                    [
+                      _c("Input", {
+                        attrs: { type: "password", placeholder: "登录密码" },
+                        model: {
+                          value: _vm.formUpdate.admin.password,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formUpdate.admin, "password", $$v)
+                          },
+                          expression: "formUpdate.admin.password"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "box-item",
+                { attrs: { span: 8 } },
+                [
+                  _c(
+                    "FormItem",
+                    {
+                      attrs: {
+                        label: "确认密码",
+                        prop: "admin.password_confirmation"
+                      }
+                    },
+                    [
+                      _c("Input", {
+                        attrs: { type: "password", placeholder: "确认密码" },
+                        model: {
+                          value: _vm.formUpdate.admin.password_confirmation,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.formUpdate.admin,
+                              "password_confirmation",
+                              $$v
+                            )
+                          },
+                          expression: "formUpdate.admin.password_confirmation"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
           )
         ],
         1
@@ -2624,7 +2763,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 281:
+/***/ 276:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

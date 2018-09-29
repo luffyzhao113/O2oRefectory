@@ -11,4 +11,9 @@ class Eloquent extends RepositoriesAbstract implements Interfaces
     {
         $this->model = $model;
     }
+
+    public function update(Model $model, array $values)
+    {
+        return parent::update($model, $values);
+    }
 }
