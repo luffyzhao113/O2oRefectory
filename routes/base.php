@@ -41,14 +41,14 @@ Route::group(['middleware' => 'auth'], function (){
         Route::apiResource('admin', 'AdminController');
 
         Route::get('logs', 'LogsController@index')->name('logs.index');
-
-        Route::apiResource('seller/materials', 'Seller\MaterialsController');
         
-        Route::apiResource('seller', 'SellerController');
+        Route::resource('seller', 'SellerController')->names([
+            'edit' => 'admin.sellers.update'
+        ]);
 
 
     });
-
+                
 });
 
 

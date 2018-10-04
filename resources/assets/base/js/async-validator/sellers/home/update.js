@@ -23,7 +23,7 @@ export const Validator = (data) => {
     let sellerEmail = (rule, value, callback) => {
         $http.get('validator/seller-email', {params: {
                 email: value,
-                except: data.formUpdate.admins.id
+                except: data.formUpdate.admin.id
             }}).then((res) => {
             if(res.data.data === null){
                 callback()
@@ -48,17 +48,17 @@ export const Validator = (data) => {
         status: [
             {required: true, type: 'number', message: '店铺状态不能为空', trigger: 'change'}
         ],
-        "admins.email": [
+        "admin.email": [
             {required: true, type: 'email', message: '登录账号不能为空', trigger: 'blur'},
             {validator: sellerEmail}
         ],
-        "admins.password": [
+        "admin.password": [
             {type: 'string', min: 6, max: 20, message: '登录密码必须在 6 到 20 个字符之间', trigger: 'blur'}
         ],
-        "admins.password_confirmation": [
+        "admin.password_confirmation": [
             {
                 validator(rule, value, callback, source, options) {
-                    if(data.formUpdate.admins.password !== value){
+                    if(data.formUpdate.admin.password !== value){
                         callback(new Error('两次输入密码不正确！'));
                     }else{
                         callback();

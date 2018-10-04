@@ -92,7 +92,24 @@ class SellerController extends Controller
     }
 
     /**
-     * 更新店铺
+     * 更新店铺 get
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function edit($id)
+    {
+        $with = [
+            'admin' => function (HasOne $builder) {
+                $builder->where('role_id', 0)->addSelect(['id', 'seller_id', 'email']);
+            },
+        ];
+
+        return $this->respondWithSuccess(
+            $this->repo->with($with)->find($id)
+        );
+    }
+
+    /**
      * @param UpdateRequest $request
      * @param $id
      * @author luffyzhao@vip.126.com
@@ -126,14 +143,8 @@ class SellerController extends Controller
      */
     public function show($id)
     {
-        $with = [
-            'admin' => function (HasOne $builder) {
-                $builder->where('role_id', 0)->addSelect(['id', 'seller_id', 'email']);
-            },
-        ];
-
         return $this->respondWithSuccess(
-            $this->repo->with($with)->find($id)
+            $this->repo->find($id)
         );
     }
 }

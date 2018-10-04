@@ -1747,7 +1747,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -1801,7 +1801,11 @@ exports.default = {
         return {
             formCreate: {
                 name: '',
-                admin: {}
+                admin: {
+                    email: '',
+                    password: '',
+                    password_confirmation: ''
+                }
             },
             ruleCreate: (0, _create.Validator)($this)
         };
@@ -1911,11 +1915,11 @@ var Validator = exports.Validator = function Validator(data) {
         name: [{ required: true, type: 'string', message: '店铺名称不能为空', trigger: 'blur' }, { type: 'string', min: 2, max: 20, message: '店铺名称必须在 2 到 20 个字符之间', trigger: 'blur' }],
         domain: [{ required: true, type: 'string', message: '二级域名不能为空', trigger: 'blur' }, { type: 'string', min: 2, max: 10, message: '二级域名必须在 2 到 10 个字符之间', trigger: 'blur' }, { validator: domain, trigger: 'blur' }],
         status: [{ required: true, type: 'number', message: '店铺状态不能为空', trigger: 'change' }],
-        "admins.email": [{ required: true, type: 'email', message: '登录账号不能为空', trigger: 'blur' }, { validator: sellerEmail }],
-        "admins.password": [{ required: true, type: 'string', message: '登录密码不能为空', trigger: 'blur' }, { type: 'string', min: 6, max: 20, message: '登录密码必须在 6 到 20 个字符之间', trigger: 'blur' }],
-        "admins.password_confirmation": [{ required: true, type: 'string', message: '确认密码不能为空', trigger: 'blur' }, {
+        "admin.email": [{ required: true, type: 'email', message: '登录账号不能为空', trigger: 'blur' }, { validator: sellerEmail }],
+        "admin.password": [{ required: true, type: 'string', message: '登录密码不能为空', trigger: 'blur' }, { type: 'string', min: 6, max: 20, message: '登录密码必须在 6 到 20 个字符之间', trigger: 'blur' }],
+        "admin.password_confirmation": [{ required: true, type: 'string', message: '确认密码不能为空', trigger: 'blur' }, {
             validator: function validator(rule, value, callback, source, options) {
-                if (data.formCreate.admins.password !== value) {
+                if (data.formCreate.admin.password !== value) {
                     callback(new Error('两次输入密码不正确！'));
                 } else {
                     callback();
@@ -2398,7 +2402,7 @@ exports.default = {
         var _this = this;
 
         this.$nextTick(function () {
-            _this.$http.get("seller/" + _this.componentProps.id).then(function (res) {
+            _this.$http.get("seller/" + _this.componentProps.id + "/edit").then(function (res) {
                 _this.formUpdate = Object.assign(_this.unObserver(_this.formUpdate), res.data.data);
             }).catch(function (err) {
                 _this.formatErrors(err);
@@ -2495,7 +2499,7 @@ var Validator = exports.Validator = function Validator(data) {
     var sellerEmail = function sellerEmail(rule, value, callback) {
         _index.$http.get('validator/seller-email', { params: {
                 email: value,
-                except: data.formUpdate.admins.id
+                except: data.formUpdate.admin.id
             } }).then(function (res) {
             if (res.data.data === null) {
                 callback();
@@ -2511,11 +2515,11 @@ var Validator = exports.Validator = function Validator(data) {
         name: [{ required: true, type: 'string', message: '店铺名称不能为空', trigger: 'blur' }, { type: 'string', min: 2, max: 20, message: '店铺名称必须在 2 到 20 个字符之间', trigger: 'blur' }],
         domain: [{ required: true, type: 'string', message: '二级域名不能为空', trigger: 'blur' }, { type: 'string', min: 2, max: 10, message: '二级域名必须在 2 到 10 个字符之间', trigger: 'blur' }, { validator: domain, trigger: 'blur' }],
         status: [{ required: true, type: 'number', message: '店铺状态不能为空', trigger: 'change' }],
-        "admins.email": [{ required: true, type: 'email', message: '登录账号不能为空', trigger: 'blur' }, { validator: sellerEmail }],
-        "admins.password": [{ type: 'string', min: 6, max: 20, message: '登录密码必须在 6 到 20 个字符之间', trigger: 'blur' }],
-        "admins.password_confirmation": [{
+        "admin.email": [{ required: true, type: 'email', message: '登录账号不能为空', trigger: 'blur' }, { validator: sellerEmail }],
+        "admin.password": [{ type: 'string', min: 6, max: 20, message: '登录密码必须在 6 到 20 个字符之间', trigger: 'blur' }],
+        "admin.password_confirmation": [{
             validator: function validator(rule, value, callback, source, options) {
-                if (data.formUpdate.admins.password !== value) {
+                if (data.formUpdate.admin.password !== value) {
                     callback(new Error('两次输入密码不正确！'));
                 } else {
                     callback();

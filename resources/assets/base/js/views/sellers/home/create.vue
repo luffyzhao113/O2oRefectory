@@ -68,7 +68,11 @@
             return {
                 formCreate: {
                     name: '',
-                    admin: {}
+                    admin: {
+                        email: '',
+                        password: '',
+                        password_confirmation: '',
+                    }
                 },
                 ruleCreate: Validator($this)
             }

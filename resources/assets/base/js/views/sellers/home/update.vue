@@ -75,7 +75,7 @@
         },
         mounted(){
             this.$nextTick(() => {
-                this.$http.get(`seller/${this.componentProps.id}`).then((res) => {
+                this.$http.get(`seller/${this.componentProps.id}/edit`).then((res) => {
                     this.formUpdate = Object.assign(this.unObserver(this.formUpdate), res.data.data)
                 }).catch((err) => {
                     this.formatErrors(err)
