@@ -5,7 +5,7 @@
                 <my-header></my-header>
             </Header>
             <Layout>
-                <Sider hide-trigger>
+                <Sider hide-trigger class="seller-sider">
                     <my-menu></my-menu>
                 </Sider>
                 <Layout>
@@ -35,6 +35,5 @@
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="less">
 </style>

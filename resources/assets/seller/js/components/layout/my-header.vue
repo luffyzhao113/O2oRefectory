@@ -1,7 +1,9 @@
 <template>
     <Row>
         <Col :span="12">
-            <div class="logo"></div>
+            <div class="logo">
+                店铺管理后台
+            </div>
         </Col>
         <Col :span="12" style="text-align: right;">
             <my-header-icon></my-header-icon>
@@ -23,5 +25,12 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="less" scoped>
+    .logo{
+        color: #fff;
+        text-align: center;
+        font-size: 16px;
+        width: 200px;
+        height: 50px;
+    }
 </style>

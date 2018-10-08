@@ -13,6 +13,8 @@ use App\Repositories\Modules\BaseLogs\Provider AS BaseLogs;
 use App\Repositories\Modules\Notification\Provider as Notification;
 use App\Repositories\Modules\Seller\Provider as Seller;
 use App\Repositories\Modules\SellerAdmin\Provider as SellerAdmin;
+use App\Repositories\Modules\SellerPermission\Provider as SellerPermission;
+use App\Repositories\Modules\SellerRole\Provider as SellerRole;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -45,5 +47,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->register(BaseLogs::class);
         $this->app->register(Seller::class);
         $this->app->register(SellerAdmin::class);
+        $this->app->register(SellerPermission::class);
+        $this->app->register(SellerRole::class);
     }
 }

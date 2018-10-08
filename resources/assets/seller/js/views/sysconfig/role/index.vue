@@ -24,10 +24,9 @@
     import lists from "../../../mixins/lists";
     import Create from "./create"
     import Update from "./update"
-    import Permission from "./permission"
 
     export default {
-        components: {MyLists, Create, Update, Permission},
+        components: {MyLists, Create, Update},
         mixins: [lists],
         name: "index",
         data() {
@@ -43,8 +42,6 @@
                     render: (h, {row}) => {
                         return (<div>
                             <i-button size="small" on-click={() => this.showComponent('Update', row)}>修改</i-button>
-                            <i-button size="small" on-click={() => this.showComponent('Permission', row)}>分配权限
-                            </i-button>
                             <poptip
                                 confirm
                                 transfer

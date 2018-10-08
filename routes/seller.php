@@ -3,6 +3,9 @@
  *  商家
  */
 
+
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', 'ViewController@index');
 /*接口*/
 Route::prefix('api')->group(
@@ -26,6 +29,38 @@ Route::prefix('admin')->namespace('Admin')->group(
                     ['middleware' => 'auth:seller'],
                     function () {
                         Route::get('auth', 'AuthController@index');
+                        Route::get('auth/permission', 'AuthController@permission');
+                        Route::put('auth/user', 'AuthController@user');
+                        Route::delete('auth/lock', 'AuthController@lock');
+
+                        Route::group(
+                            [
+                                'middleware' => 'auth:seller'
+                            ],
+                            function () {
+                                Route::resource('permission', 'PermissionController')->except(['show'])->names(
+                                    [
+                                        'create' => 'permission.store',
+                                        'edit' => 'permission.update',
+                                    ]
+                                );
+
+                                Route::resource('role', 'RoleController')->except(['show'])->names(
+                                    [
+                                        'create' => 'permission.store',
+                                        'edit' => 'role.update',
+                                    ]
+                                );
+
+                                Route::get('admin/lists', 'AdminController@lists')->name('admin.index');
+                                Route::resource('admin', 'AdminController')->except(['show'])->names(
+                                    [
+                                        'create' => 'permission.store',
+                                        'edit' => 'role.update',
+                                    ]
+                                );
+                            }
+                        );
                     }
                 );
             }

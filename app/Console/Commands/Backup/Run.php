@@ -50,7 +50,7 @@ class Run extends Command
      * @return array
      * @author luffyzhao@vip.126.com
      */
-    protected function getTables() : array
+    protected function getTables(): array
     {
         return DB::select('show tables');
     }
@@ -60,17 +60,23 @@ class Run extends Command
      * @param array $tables
      * @author luffyzhao@vip.126.com
      */
-    protected function toFiles(array $tables){
-        $config = config('database.connections.'. DB::getDefaultConnection());
+    protected function toFiles(array $tables)
+    {
+        $config = config('database.connections.'.DB::getDefaultConnection());
 
-        foreach ($tables as $table){
-            $tableName = $table->{'Tables_in_' . $config['database']};
+        foreach ($tables as $table) {
+            $tableName = $table->{'Tables_in_'.$config['database']};
+            if ($tableName === 'migrations') {
+                continue;
+            }
             $columns = DB::selectOne('show columns from `'.$tableName.'`');
-            DB::table($tableName)->orderBy($columns->Field)->chunk(100,
-            function (Collection $results, int $page) use ($tableName){
-                $json = $results->toJson();
-                $this->saveFile($tableName, $page, $json);
-            });
+            DB::table($tableName)->orderBy($columns->Field)->chunk(
+                100,
+                function (Collection $results, int $page) use ($tableName) {
+                    $json = $results->toJson();
+                    $this->saveFile($tableName, $page, $json);
+                }
+            );
         }
     }
 
@@ -81,12 +87,13 @@ class Run extends Command
      * @param string $json
      * @author luffyzhao@vip.126.com
      */
-    protected function saveFile($table, int $page, string $json){
-        $dir = database_path('back-up/' . $_SERVER['REQUEST_TIME'] . '/' . $table);
-        if(!is_dir($dir)){
+    protected function saveFile($table, int $page, string $json)
+    {
+        $dir = database_path('back-up/'.$_SERVER['REQUEST_TIME'].'/'.$table);
+        if (!is_dir($dir)) {
             mkdir($dir, 0755, true);
         }
 
-        file_put_contents($dir.'/'.$page . '.json', $json);
+        file_put_contents($dir.'/'.$page.'.json', $json);
     }
 }

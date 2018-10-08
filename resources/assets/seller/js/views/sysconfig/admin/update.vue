@@ -8,7 +8,7 @@
                 <Input v-model="formUpdate.email" placeholder="用户邮箱"></Input>
             </FormItem>
             <FormItem label="用户角色" prop="role_id">
-                <roles-select v-model="formUpdate.role_id"></roles-select>
+                <m-select></m-select>
             </FormItem>
             <FormItem label="用户密码" prop="password">
                 <Input v-model="formUpdate.password" placeholder="用户密码"/>
@@ -31,39 +31,39 @@
 
 <script>
     import {Validator} from "../../../async-validator/sysconfig/admin/update"
-    import RolesSelect from "../../components/roles/select";
     import component from "../../../mixins/component";
     import form from "../../../mixins/form";
     import ComponentModal from "../../../components/modal/component-modal";
+    import MSelect from "../../../components/select/index";
 
     export default {
         name: "update",
         components: {
-            ComponentModal,
-          RolesSelect,
-          },
-        mixins: [component, form],
-        data(){
-          return {
-            formUpdate: {
-              name: '',
-              password: '',
-              password_confirmation: '',
-              status: 1,
-              role_id: '',
-              email: ''
-            },
-            ruleUpdate: Validator(this)
-          }
+            MSelect,
+            ComponentModal
         },
-        mounted(){
-          this.$nextTick(() => {
-            this.$http.get(`admin/${this.data.id}`).then((res) => {
-              this.formUpdate = Object.assign(this.unObserver(this.formUpdate), res.data.data)
-            }).catch((err) => {
-              this.formatErrors(err)
+        mixins: [component, form],
+        data() {
+            return {
+                formUpdate: {
+                    name: '',
+                    password: '',
+                    password_confirmation: '',
+                    status: 1,
+                    role_id: '',
+                    email: ''
+                },
+                ruleUpdate: Validator(this)
+            }
+        },
+        mounted() {
+            this.$nextTick(() => {
+                this.$http.get(`admin/${this.data.id}`).then((res) => {
+                    this.formUpdate = Object.assign(this.unObserver(this.formUpdate), res.data.data)
+                }).catch((err) => {
+                    this.formatErrors(err)
+                })
             })
-          })
         }
     }
 </script>

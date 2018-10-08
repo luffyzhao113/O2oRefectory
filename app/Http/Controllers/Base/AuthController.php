@@ -16,7 +16,6 @@ use App\Http\Requests\Base\Auth\StoreRequest;
 use App\Http\Requests\Base\Auth\UserRequest;
 use App\Notifications\Welcome;
 use App\Repositories\Modules\BaseAdmin\Interfaces;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Repositories\Modules\BaseLogs\Interfaces as BaseLogsInterfaces;
 

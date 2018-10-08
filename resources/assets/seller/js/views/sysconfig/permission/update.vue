@@ -11,7 +11,7 @@
             <FormItem label="上级菜单" prop="parent_id">
                 <group-cascader v-model="formUpdate.parent_id" placeholder="顶级菜单可不选择" :data="parents"></group-cascader>
             </FormItem>
-            <FormItem label="排序" prop="sort" >
+            <FormItem label="排序" prop="sort">
                 <Input v-model="formUpdate.sort" placeholder="排序" :rules="{required: true, message: '排序不能为空'}"></Input>
             </FormItem>
             <FormItem label="菜单图标" prop="icon">
@@ -24,7 +24,8 @@
                 </RadioGroup>
             </FormItem>
             <FormItem label="菜单描述" prop="description" :rules="{max: 200}">
-                <Input v-model="formUpdate.description" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="菜单描述"></Input>
+                <Input v-model="formUpdate.description" type="textarea" :autosize="{minRows: 2,maxRows: 5}"
+                       placeholder="菜单描述"></Input>
             </FormItem>
         </Form>
         <div slot="footer">
@@ -34,45 +35,42 @@
 </template>
 
 <script>
-  import component from "../../../mixins/component";
+    import component from "../../../mixins/component";
 
-  import form from "../../../mixins/form";
-  import ComponentModal from "../../../components/modal/component-modal";
-  import GroupCascader from "../../../components/cascader/index";
+    import form from "../../../mixins/form";
+    import ComponentModal from "../../../components/modal/component-modal";
+    import GroupCascader from "../../../components/cascader/index";
 
-  export default {
-    components: {GroupCascader, ComponentModal},
-    name: "update",
-    mixins:[component, form],
-    data(){
-      return {
-        formUpdate: {
-          islink: 0,
-          name: '',
-          parent_id: 0,
-          icon: '',
-          display_name: '',
-          description: '',
-          sort: 1
+    export default {
+        components: {GroupCascader, ComponentModal},
+        name: "update",
+        mixins: [component, form],
+        data() {
+            return {
+                formUpdate: {
+                    islink: 0,
+                    name: '',
+                    parent_id: 0,
+                    icon: '',
+                    display_name: '',
+                    description: '',
+                    sort: 1
+                },
+                parents: []
+            }
         },
-        parents: []
-      }
-    },
-    mounted(){
-      this.$http.get(`permission`, {
-        params: {islink: 1}
-      }).then((res) => {
-        this.parents = res.data.data
-      }).catch((err) => {
-        this.formatErrors(err)
-      })
-      this.$http.get(`permission/${this.data.id}`).then((res) => {
-        this.formUpdate = res.data.data
-      }).catch((err) => {
-        this.formatErrors(err)
-      })
+        mounted() {
+            this.loading = true;
+            this.$http.get(`permission/${this.data.id}/edit`).then((res) => {
+                this.parents = res.data.data.parents;
+                this.formUpdate = res.data.data.row;
+            }).catch((err) => {
+                this.formatErrors(err)
+            }).finally(() => {
+                this.loading = false;
+            })
+        }
     }
-  }
 </script>
 
 <style scoped>

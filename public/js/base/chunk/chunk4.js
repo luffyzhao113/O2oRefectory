@@ -582,8 +582,10 @@ exports.default = {
           var row = _ref2.row;
 
           return h(
-            "span",
-            null,
+            "tag",
+            {
+              attrs: { color: row.islink ? 'green' : 'orange' }
+            },
             [row.islink ? '菜单' : '权限']
           );
         }

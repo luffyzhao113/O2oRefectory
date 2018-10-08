@@ -49,7 +49,7 @@
           {
             title: '是否菜单',
             render: (h, {row}) =>{
-              return (<span>{row.islink ? '菜单' : '权限'}</span>)
+                return (<tag color={ row.islink ? 'green' : 'orange'}>{row.islink ? '菜单' : '权限'}</tag>)
             }
           },
           {

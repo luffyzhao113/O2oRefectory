@@ -12,7 +12,7 @@ var normalizeComponent = __webpack_require__(3)
 /* script */
 var __vue_script__ = __webpack_require__(117)
 /* template */
-var __vue_template__ = __webpack_require__(128)
+var __vue_template__ = __webpack_require__(123)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -104,7 +104,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _remark = __webpack_require__(123);
+var _remark = __webpack_require__(118);
 
 var _remark2 = _interopRequireDefault(_remark);
 
@@ -123,19 +123,19 @@ exports.default = {
 
 /***/ }),
 
-/***/ 123:
+/***/ 118:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(124)
+  __webpack_require__(119)
 }
 var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(126)
+var __vue_script__ = __webpack_require__(121)
 /* template */
-var __vue_template__ = __webpack_require__(127)
+var __vue_template__ = __webpack_require__(122)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -175,13 +175,13 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 124:
+/***/ 119:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(125);
+var content = __webpack_require__(120);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -202,7 +202,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 125:
+/***/ 120:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -217,7 +217,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 
-/***/ 126:
+/***/ 121:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -242,7 +242,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 127:
+/***/ 122:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -271,7 +271,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 128:
+/***/ 123:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

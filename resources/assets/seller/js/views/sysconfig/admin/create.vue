@@ -8,7 +8,7 @@
                 <Input v-model="formCreate.email" placeholder="用户邮箱"></Input>
             </FormItem>
             <FormItem label="用户角色" prop="role_id">
-                <roles-select v-model="formCreate.role_id"></roles-select>
+                <m-select remote-url="admin/create" v-model="formCreate.role_id" placeholder="请选择用户角色"></m-select>
             </FormItem>
             <FormItem label="用户密码" prop="password">
                 <Input v-model="formCreate.password" placeholder="用户密码"/>
@@ -32,26 +32,27 @@
 <script>
     import PhotoOnce from "../../../components/upload/photo";
     import {Validator} from "../../../async-validator/sysconfig/admin/create"
-    import RolesSelect from "../../components/roles/select";
     import component from "../../../mixins/component";
     import ComponentModal from "../../../components/modal/component-modal";
     import form from "../../../mixins/form";
+    import MSelect from "../../../components/select/index";
 
     export default {
         name: "create",
         components: {
+            MSelect,
             ComponentModal,
-          RolesSelect,
-          PhotoOnce,},
+            PhotoOnce,
+        },
         mixins: [component, form],
-        data () {
+        data() {
             return {
                 formCreate: {
                     name: '',
                     password: '',
                     password_confirmation: '',
                     status: 1,
-                    role_id: '',
+                    role_id: 0,
                     email: ''
                 },
                 ruleCreate: Validator(this)

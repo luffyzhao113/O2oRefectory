@@ -51,7 +51,7 @@ export const Validator = (data) => {
             {validator: sellerEmail}
         ],
         "admin.name": [
-            {required: true, type: 'string', message: '账号姓名不能为空', trigger: 'blur'}
+            {required: true, type: 'string', message: '管理员姓名不能为空', trigger: 'blur'}
         ],
         "admin.password": [
             {required: true, type: 'string', message: '登录密码不能为空', trigger: 'blur'},

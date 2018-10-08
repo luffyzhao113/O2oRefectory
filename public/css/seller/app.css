@@ -34,14 +34,8 @@ body,
   height: 50px;
   line-height: 50px;
   padding: 0px;
-  background-color: #09C;
   -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 3px 2px;
           box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 3px 2px;
-}
-
-.layout > .ivu-layout .ivu-layout-header .logo {
-  width: 200px;
-  height: 50px;
 }
 
 .layout > .ivu-layout .layout-footer-center {

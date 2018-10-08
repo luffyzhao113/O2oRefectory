@@ -30,8 +30,8 @@
                 </box-item>
 
                 <box-item :span="8">
-                    <FormItem label="账号姓名" prop="admin.name">
-                        <Input v-model="formUpdate.admin.name" placeholder="账号姓名"></Input>
+                    <FormItem label="管理员姓名" prop="admin.name">
+                        <Input v-model="formUpdate.admin.name" placeholder="管理员姓名"></Input>
                     </FormItem>
                 </box-item>
 

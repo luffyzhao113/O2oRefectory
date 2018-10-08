@@ -42,7 +42,7 @@ class StoreRequest extends FormRequest
             'status' => '店铺状态',
             'domain' => '二级域名',
             'admin.email' => '登录账号',
-            'admin.name' => '账号姓名',
+            'admin.name' => '管理员姓名',
             'admin.password' => '登录密码',
             'admin.password_confirmation' => '确认密码',
         ];
