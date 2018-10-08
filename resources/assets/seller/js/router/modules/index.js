@@ -16,14 +16,6 @@ export const IndexRouter = [
         }
     },
     {
-        path: 'sysconfig.permission',
-        name: 'sysconfig.permission.index',
-        meta: {title: '权限&菜单'},
-        component: resolve => {
-            require(['../../views/sysconfig/permission/index.vue'], resolve)
-        }
-    },
-    {
         path: 'sysconfig.role',
         name: 'sysconfig.role.index',
         meta: {title: '角色管理'},

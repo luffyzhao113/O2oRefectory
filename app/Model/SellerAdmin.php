@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Observers\Model\SellerAuthObservers;
 use Illuminate\Cache\TaggableStore;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
@@ -19,6 +20,13 @@ class SellerAdmin extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $hidden = ['password'];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::observe(SellerAuthObservers::class);
+    }
 
     /**
      * 自动加密
@@ -62,7 +70,7 @@ class SellerAdmin extends Authenticatable implements JWTSubject
 
         if ($this->attributes['role_id'] === 0) {
             if (Cache::getStore() instanceof TaggableStore) {
-                return Cache::tags('BaseAuth')->remember(
+                return Cache::tags(['SellerAuth', 'SellerAuth:' . $this->getKey()])->remember(
                     $cacheKey,
                     Config::get('cache.ttl', 60),
                     function () {
@@ -74,15 +82,15 @@ class SellerAdmin extends Authenticatable implements JWTSubject
             }
         } else {
             if (Cache::getStore() instanceof TaggableStore) {
-                return Cache::tags('BaseAuth')->remember(
+                return Cache::tags(['SellerAuth', 'SellerAuth:' . $this->getKey()])->remember(
                     $cacheKey,
                     Config::get('cache.ttl', 60),
                     function () {
-                        return $this->role->cachedPermissions();
+                        return $this->role()->first()->cachedPermissions();
                     }
                 );
             }else{
-                return $this->role->cachedPermissions();
+                return $this->role()->first()->cachedPermissions();
             }
         }
     }
@@ -97,4 +105,6 @@ class SellerAdmin extends Authenticatable implements JWTSubject
     {
         return $this->belongsTo(SellerRole::class, 'role_id', 'id');
     }
+
+
 }

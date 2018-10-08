@@ -38,16 +38,9 @@ Route::prefix('admin')->namespace('Admin')->group(
                                 'middleware' => 'auth:seller'
                             ],
                             function () {
-                                Route::resource('permission', 'PermissionController')->except(['show'])->names(
-                                    [
-                                        'create' => 'permission.store',
-                                        'edit' => 'permission.update',
-                                    ]
-                                );
-
                                 Route::resource('role', 'RoleController')->except(['show'])->names(
                                     [
-                                        'create' => 'permission.store',
+                                        'create' => 'role.store',
                                         'edit' => 'role.update',
                                     ]
                                 );
@@ -55,8 +48,8 @@ Route::prefix('admin')->namespace('Admin')->group(
                                 Route::get('admin/lists', 'AdminController@lists')->name('admin.index');
                                 Route::resource('admin', 'AdminController')->except(['show'])->names(
                                     [
-                                        'create' => 'permission.store',
-                                        'edit' => 'role.update',
+                                        'create' => 'admin.store',
+                                        'edit' => 'admin.update',
                                     ]
                                 );
                             }

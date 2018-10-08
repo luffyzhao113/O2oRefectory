@@ -1,6 +1,6 @@
 {
-    "/js/seller/app.js": "/js/seller/app.js",
-    "/css/seller/app.css": "/css/seller/app.css",
-    "/js/seller/vendor.js": "/js/seller/vendor.js",
-    "/js/seller/manifest.js": "/js/seller/manifest.js"
+    "/js/base/app.js": "/js/base/app.js",
+    "/css/base/app.css": "/css/base/app.css",
+    "/js/base/vendor.js": "/js/base/vendor.js",
+    "/js/base/manifest.js": "/js/base/manifest.js"
 }

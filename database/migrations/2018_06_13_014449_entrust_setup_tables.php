@@ -17,7 +17,6 @@ class EntrustSetupTables extends Migration
             $table->increments('id');
             $table->string('name', 50)->unique()->comment('角色标识（用于程序）');
             $table->tinyInteger('status')->default(1)->comment('角色状态 0 关闭 1 开启');
-            $table->tinyInteger('super')->default(0)->comment('是否超级管理员 0 不是 1 是');
             $table->string('description')->nullable()->comment('角色介绍');
             $table->timestamps();
         });

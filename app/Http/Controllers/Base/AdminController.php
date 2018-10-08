@@ -10,11 +10,13 @@ namespace App\Http\Controllers\Base;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Base\Admin\DestroyRequest;
 use App\Http\Requests\Base\Admin\StoreRequest;
 use App\Http\Requests\Base\Admin\UpdateRequest;
 use App\Model\BaseAdmin;
 use App\Repositories\Modules\BaseAdmin\Interfaces;
 use App\Searchs\Modules\Base\Admin\IndexSearch;
+use App\Searchs\Modules\Base\Admin\ListsSearch;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -24,6 +26,21 @@ class AdminController extends Controller
     public function __construct(Interfaces $repo)
     {
         $this->repo = $repo;
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \luffyzhao\laravelTools\Searchs\Exceptions\SearchException
+     */
+    public function lists(Request $request){
+        $search = new ListsSearch($request->all());
+
+        return $this->respondWithSuccess(
+            app(\App\Repositories\Modules\BaseRole\Interfaces::class)->getWhere(
+                $search->toArray()
+            )
+        );
     }
 
     /**
@@ -39,8 +56,8 @@ class AdminController extends Controller
     public function index(Request $request){
         $search = new IndexSearch($request->all());
 
-        $make = ['roles' => function($query){
-            $query->select(['id', 'name', 'super']);
+        $make = ['role' => function($query){
+            $query->select(['id', 'name']);
         }];
         
         return $this->respondWithSuccess(
@@ -53,18 +70,13 @@ class AdminController extends Controller
     }
 
     /**
-     * 所有用户用于select
+     * 创建用户 get
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
-     * @throws \luffyzhao\laravelTools\Searchs\Exceptions\SearchException
      */
-    public function select(Request $request){
-        $search = new IndexSearch($request->only(['status']));
+    public function create(Request $request){
         return $this->respondWithSuccess(
-            $this->repo->getWhere(
-                $search->toArray(),
-                ['id', 'name', 'email']
-            )
+            app(\App\Repositories\Modules\BaseRole\Interfaces::class)->getWhere([])
         );
     }
 
@@ -83,21 +95,6 @@ class AdminController extends Controller
         );
     }
 
-    /**
-     * 获取单个用户信息
-     * @method show
-     * @param Request $request
-     * @param $id
-     *
-     * @return \Illuminate\Http\JsonResponse
-     *
-     * @author luffyzhao@vip.126.com
-     */
-    public function show(Request $request, $id){
-        return $this->respondWithSuccess(
-            $this->repo->find($id)
-        );
-    }
 
     /**
      * 更新用户
@@ -110,9 +107,14 @@ class AdminController extends Controller
      * @author luffyzhao@vip.126.com
      */
     public function update(UpdateRequest $request, $id){
+
+        $admin = $this->repo->find($id);
+        // 验证
+        $request->isSuper($admin);
+
         return $this->respondWithSuccess(
             $this->repo->update(
-                $request->admin(),
+                $admin,
                 $request->only(['name', 'password', 'status', 'role_id', 'email'])
             )
         );
@@ -121,16 +123,19 @@ class AdminController extends Controller
     /**
      * 删除
      * @method destroy
+     * @param DestroyRequest $request
      * @param $id
      *
      * @author luffyzhao@vip.126.com
      */
-    public function destroy($id){
-        $valid = $this->repo->delete(
-            BaseAdmin::find($id)
-        );
-        if ($valid) {
-            $this->respondWithSuccess([], '删除成功');
+    public function destroy(DestroyRequest $request, $id){
+        $admin = $this->repo->find($id);
+
+        // 验证
+        $request->isSuper($admin);
+
+        if ($this->repo->delete($admin)) {
+            $this->respondWithSuccess([]);
         } else {
             $this->respondWithError('删除失败');
         }

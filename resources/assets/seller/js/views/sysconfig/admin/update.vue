@@ -8,7 +8,9 @@
                 <Input v-model="formUpdate.email" placeholder="用户邮箱"></Input>
             </FormItem>
             <FormItem label="用户角色" prop="role_id">
-                <m-select></m-select>
+                <i-select v-model="formUpdate.role_id" transfer>
+                    <i-option v-for="(row, index) in roles" :key="index" :value="row.id" :label="row.name"></i-option>
+                </i-select>
             </FormItem>
             <FormItem label="用户密码" prop="password">
                 <Input v-model="formUpdate.password" placeholder="用户密码"/>
@@ -34,12 +36,10 @@
     import component from "../../../mixins/component";
     import form from "../../../mixins/form";
     import ComponentModal from "../../../components/modal/component-modal";
-    import MSelect from "../../../components/select/index";
 
     export default {
         name: "update",
         components: {
-            MSelect,
             ComponentModal
         },
         mixins: [component, form],
@@ -53,15 +53,20 @@
                     role_id: '',
                     email: ''
                 },
-                ruleUpdate: Validator(this)
+                ruleUpdate: Validator(this),
+                roles:[]
             }
         },
         mounted() {
             this.$nextTick(() => {
-                this.$http.get(`admin/${this.data.id}`).then((res) => {
-                    this.formUpdate = Object.assign(this.unObserver(this.formUpdate), res.data.data)
+                this.loading = true;
+                this.$http.get(`admin/${this.data.id}/edit`).then((res) => {
+                    this.formUpdate = Object.assign({}, this.formUpdate, res.data.data.row)
+                    this.roles = res.data.data.roles
                 }).catch((err) => {
                     this.formatErrors(err)
+                }).finally(() => {
+                    this.loading = false;
                 })
             })
         }

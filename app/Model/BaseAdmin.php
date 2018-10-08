@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Observers\Model\BaseAuthObservers;
 use Illuminate\Cache\TaggableStore;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Cache;
@@ -17,6 +18,13 @@ class BaseAdmin extends Authenticatable implements JWTSubject
     protected $fillable = ['name', 'password', 'status', 'role_id', 'email', 'photo'];
 
     protected $hidden = ['password'];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::observe(BaseAuthObservers::class);
+    }
 
 
     /**
@@ -61,29 +69,44 @@ class BaseAdmin extends Authenticatable implements JWTSubject
      *
      * @author luffyzhao@vip.126.com
      */
-    public function roles()
+    public function role()
     {
         return $this->belongsTo(BaseRole::class,'role_id', 'id');
     }
 
     /**
-     * 在缓存开启状态下缓存用户下的所有角色
-     * @method cachedRoles
-     *
-     * @return \Illuminate\Database\Eloquent\Model
-     *
+     * cachedPermissions
      * @author luffyzhao@vip.126.com
      */
-    public function cachedRole()
+    public function cachedPermissions()
     {
-        $cacheKey = 'BaseAdmin:cachedRole' . $this->getKey();
+        $cacheKey = 'BaseAdmin:cachedPermissions:'.$this->getKey();
 
-        if(Cache::getStore() instanceof TaggableStore) {
-            return Cache::tags('BaseAuth')->remember($cacheKey, Config::get('cache.ttl'), function () {
-                return $this->roles()->first();
-            });
+        if ($this->attributes['role_id'] === 0) {
+            if (Cache::getStore() instanceof TaggableStore) {
+                return Cache::tags(['BaseAuth'])->remember(
+                    $cacheKey,
+                    Config::get('cache.ttl', 60),
+                    function () {
+                        return BasePermission::all();
+                    }
+                );
+            } else {
+                return BasePermission::all();
+            }
+        } else {
+            if (Cache::getStore() instanceof TaggableStore) {
+                return Cache::tags(['BaseAuth'])->remember(
+                    $cacheKey,
+                    Config::get('cache.ttl', 60),
+                    function () {
+                        return $this->role()->first()->cachedPermissions();
+                    }
+                );
+            }else{
+                return $this->role()->first()->cachedPermissions();
+            }
         }
-        else return $this->roles()->first();
     }
 
     /**
@@ -96,11 +119,11 @@ class BaseAdmin extends Authenticatable implements JWTSubject
      */
     public function can($permission, $requireAll = false)
     {
-        $role = $this->cachedRole();
-        if($role && $role->super === 1){
+        if($this->getAttribute('role_id') === 0){
             return true;
         }
-        foreach ($role->cachedPermissions() as $perm) {
+
+        foreach ($this->cachedPermissions() as $perm) {
             if (str_is( $permission, $perm->name) ) {
                 return true;
             }

@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Seller\Admin;
 
+use App\Http\Requests\Seller\Admin\Admin\DestroyRequest;
+use App\Http\Requests\Seller\Admin\Admin\EditRequest;
 use App\Http\Requests\Seller\Admin\Admin\StoreRequest;
+use App\Http\Requests\Seller\Admin\Admin\UpdateRequest;
 use App\Repositories\Modules\SellerAdmin\Interfaces;
 use App\Searchs\Modules\Seller\Admin\Admin\CreateSearch;
+use App\Searchs\Modules\Seller\Admin\Admin\EditSearch;
 use App\Searchs\Modules\Seller\Admin\Admin\IndexSearch;
 use App\Searchs\Modules\Seller\Admin\Admin\ListsSearch;
 use Illuminate\Http\Request;
@@ -88,47 +92,60 @@ class AdminController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param EditRequest $request
+     * @param $domain
+     * @param  int $id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \luffyzhao\laravelTools\Searchs\Exceptions\SearchException
      */
-    public function edit($id)
+    public function edit(EditRequest $request, $domain, $id)
     {
-        //
+        $search = new EditSearch($request->all());
+
+        return $this->respondWithSuccess([
+            'row' => $this->repo->find($id),
+            'roles' => app(\App\Repositories\Modules\SellerRole\Interfaces::class)->getWhere(
+                $search->toArray()
+            )
+        ]);
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 修改
+     * @param UpdateRequest $request
+     * @param $domain
+     * @param $id
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $domain, $id)
     {
-        //
+        $admin = $this->repo->find($id);
+        // 验证
+        $request->existsSeller($admin);
+
+        $this->respondWithSuccess(
+            $this->repo->update($admin, $request->only(['name', 'password', 'status', 'role_id', 'email', 'seller_id']))
+        );
+
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param DestroyRequest $request
+     * @param $domain
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function destroy(DestroyRequest $request, $domain, $id)
     {
-        //
+        $admin = $this->repo->find($id);
+        // 验证
+        $request->isSuper($admin);
+
+        if($this->repo->delete($admin)){
+            return $this->respondWithSuccess([]);
+        }else{
+            return $this->respondWithError('删除失败');
+        }
     }
 }

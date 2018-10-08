@@ -35,7 +35,7 @@ class RoleController extends Controller
         $search = new IndexSearch($request->all());
 
         return $this->respondWithSuccess(
-            $this->repo->scope(['hideSuper'])->withCount(['users'])->paginate(
+            $this->repo->withCount(['users'])->paginate(
                 $search->toArray(),
                 20,
                 ['id', 'name', 'status']

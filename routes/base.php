@@ -22,7 +22,6 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('auth/message/not-read', 'Auth\MessageController@notRead');
     Route::apiResource('auth/message', 'Auth\MessageController');
 
-    Route::get('role/select', 'RoleController@select');
     Route::get('admin/select', 'AdminController@select');
     Route::post('file', 'FileController@store')->name('file.store');
 
@@ -33,12 +32,18 @@ Route::group(['middleware' => 'auth'], function (){
 
     Route::group(['middleware' => ['entrust:base']], function (){
         Route::apiResource('permission', 'PermissionController');
-        Route::apiResource('role', 'RoleController');
 
-        Route::get('role/{role}/permission', 'Role\PermissionController@index')->name('role.permission.index');
-        Route::post('role/{role}/permission', 'Role\PermissionController@store')->name('role.permission.store');
 
-        Route::apiResource('admin', 'AdminController');
+        Route::resource('role', 'RoleController')->except(['show'])->names([
+            'create' => 'role.store',
+            'edit' => 'role.update',
+        ]);
+
+        Route::get('admin/lists', 'AdminController@lists')->name('admin.index');
+        Route::resource('admin', 'AdminController')->except(['show'])->names([
+            'create' => 'admin.store',
+            'edit' => 'admin.update',
+        ]);
 
         Route::get('logs', 'LogsController@index')->name('logs.index');
         

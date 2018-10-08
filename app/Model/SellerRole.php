@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Observers\Model\SellerAuthObservers;
 use Illuminate\Cache\TaggableStore;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
@@ -15,6 +16,13 @@ class SellerRole extends Model
      */
     protected $fillable = ['name', 'status', 'description', 'seller_id'];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::observe(SellerAuthObservers::class);
+    }
+
     /**
      * cachedPermissions
      * @return mixed
@@ -24,11 +32,11 @@ class SellerRole extends Model
         $cacheKey = 'SellerRole:cachedPermissions:' . $this->getKey();
 
         if (Cache::getStore() instanceof TaggableStore) {
-            return Cache::tags('BaseAuth')->remember($cacheKey, Config::get('cache.ttl', 60), function () {
-                return $this->perms();
+            return Cache::tags(['SellerAuth', 'SellerAuth:' . $this->getAttribute('seller_id')])->remember($cacheKey, Config::get('cache.ttl', 60), function () {
+                return $this->perms()->get();
             });
         }else{
-            return $this->perms();
+            return $this->perms()->get();
         }
     }
 

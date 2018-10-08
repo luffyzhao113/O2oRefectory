@@ -9,6 +9,7 @@ use Illuminate\Validation\Rule;
 class UpdateRequest extends FormRequest
 {
     protected $admin;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -16,23 +17,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        $admin = $this->admin();
-        return $admin && $admin->roles->super == 0;
-    }
-
-    /**
-     * 验证的用户
-     * @method admin
-     *
-     * @return mixed
-     *
-     * @author luffyzhao@vip.126.com
-     */
-    public function admin(){
-        if(!$this->admin){
-            $this->admin = BaseAdmin::find($this->route('admin'));
-        }
-        return $this->admin;
+        return true;
     }
 
     /**
@@ -72,5 +57,18 @@ class UpdateRequest extends FormRequest
             'password' => '用户密码',
             'password_confirmation' => '确认密码'
         ];
+    }
+
+    /**
+     * 验证是否超级管理员
+     * @param BaseAdmin $admin
+     * @return bool
+     */
+    public function isSuper(BaseAdmin $admin){
+        if($admin->getAttribute('role_id') !== 0){
+            return true;
+        }
+
+        $this->getValidatorInstance()->errors()->add('role_id', '管理员账号不能修改');
     }
 }

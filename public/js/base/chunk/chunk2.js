@@ -976,13 +976,13 @@ var _create = __webpack_require__(218);
 
 var _create2 = _interopRequireDefault(_create);
 
-var _select = __webpack_require__(135);
-
-var _select2 = _interopRequireDefault(_select);
-
 var _trueOrFalse = __webpack_require__(130);
 
 var _trueOrFalse2 = _interopRequireDefault(_trueOrFalse);
+
+var _index = __webpack_require__(290);
+
+var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1019,8 +1019,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = {
     name: "index",
     components: {
+        MSelect: _index2.default,
         TrueOrFalse: _trueOrFalse2.default,
-        RolesSelect: _select2.default,
         MyLists: _myLists2.default, Create: _create2.default, Update: _update2.default },
     mixins: [_lists2.default],
     data: function data() {
@@ -1041,7 +1041,7 @@ exports.default = {
                     return h(
                         "span",
                         null,
-                        [row.roles.name]
+                        [row.role ? row.role.name : '超级管理员']
                     );
                 }
             }, {
@@ -1066,7 +1066,7 @@ exports.default = {
                         [h(
                             "i-button",
                             {
-                                attrs: { size: "small", disabled: row.roles.super != 0 },
+                                attrs: { size: "small", disabled: !row.role },
                                 on: {
                                     "click": function click() {
                                         return _this.showComponent('Update', row);
@@ -1091,9 +1091,9 @@ exports.default = {
                             [h(
                                 "i-button",
                                 {
-                                    attrs: { size: "small", disabled: row.roles.super != 0 }
+                                    attrs: { size: "small", disabled: !row.role }
                                 },
-                                ["\u5220\u9664"]
+                                ["\u5220\u9664 "]
                             )]
                         )]
                     );
@@ -1771,10 +1771,6 @@ var _photo2 = _interopRequireDefault(_photo);
 
 var _create = __webpack_require__(222);
 
-var _select = __webpack_require__(135);
-
-var _select2 = _interopRequireDefault(_select);
-
 var _component = __webpack_require__(117);
 
 var _component2 = _interopRequireDefault(_component);
@@ -1786,6 +1782,10 @@ var _componentModal2 = _interopRequireDefault(_componentModal);
 var _form = __webpack_require__(120);
 
 var _form2 = _interopRequireDefault(_form);
+
+var _index = __webpack_require__(295);
+
+var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1824,8 +1824,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = {
     name: "create",
     components: {
+        MSelect: _index2.default,
         ComponentModal: _componentModal2.default,
-        RolesSelect: _select2.default,
         PhotoOnce: _photo2.default },
     mixins: [_component2.default, _form2.default],
     data: function data() {
@@ -1935,7 +1935,11 @@ var render = function() {
             "FormItem",
             { attrs: { label: "用户角色", prop: "role_id" } },
             [
-              _c("roles-select", {
+              _c("m-select", {
+                attrs: {
+                  placeholder: "用户角色",
+                  "remote-url": "admin/create"
+                },
                 model: {
                   value: _vm.formCreate.role_id,
                   callback: function($$v) {
@@ -2097,7 +2101,11 @@ var render = function() {
                   }
                 },
                 [
-                  _c("roles-select", {
+                  _c("m-select", {
+                    attrs: {
+                      placeholder: "所属角色",
+                      "remote-url": "admin/lists"
+                    },
                     model: {
                       value: _vm.searchForm.role_id,
                       callback: function($$v) {
@@ -2219,6 +2227,615 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-3f35f82e", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 290:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(291)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(293)
+/* template */
+var __vue_template__ = __webpack_require__(294)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-3827511c"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\base\\js\\components\\select\\index.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3827511c", Component.options)
+  } else {
+    hotAPI.reload("data-v-3827511c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 291:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(292);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("81f1d962", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3827511c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./index.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3827511c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./index.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 292:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 293:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _http = __webpack_require__(20);
+
+var _http2 = _interopRequireDefault(_http);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    name: "m-select",
+    mixins: [_http2.default],
+    props: {
+        value: {
+            type: [Number, String],
+            default: ''
+        },
+        options: {
+            type: Array,
+            default: function _default() {
+                return [];
+            }
+        },
+        multiple: {
+            type: Boolean,
+            default: false
+        },
+        remoteUrl: {
+            type: String,
+            default: ''
+        },
+        filterable: {
+            type: Boolean,
+            default: false
+        },
+        params: {
+            type: Object,
+            default: function _default() {}
+        },
+        remoteKey: {
+            type: String,
+            default: 'title'
+        },
+        placeholder: {
+            type: String,
+            default: '请选择'
+        }
+    },
+    data: function data() {
+        return {
+            publicValue: this.value,
+            publicOptions: this.options,
+            loading: true
+        };
+    },
+
+    computed: {
+        remote: function remote() {
+            return this.remoteUrl !== '';
+        }
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        if (this.remote && !this.filterable) {
+            this.$http.get(this.remoteUrl, {
+                params: this.getParams()
+            }).then(function (res) {
+                _this.publicOptions = res.data.data;
+            }).finally(function () {
+                _this.loading = false;
+            });
+        }
+    },
+
+    methods: {
+        remoteMethod: function remoteMethod(query) {
+            var _this2 = this;
+
+            if (!this.filterable) {
+                return;
+            }
+            if (query === '' && this.remote) {
+                this.publicOptions = [];
+            } else {
+                this.$http.get(this.remoteUrl, {
+                    params: this.getParams(query)
+                }).then(function (res) {
+                    _this2.publicOptions = res.data.data;
+                }).finally(function () {
+                    _this2.loading = false;
+                });
+            }
+        },
+        getParams: function getParams(query) {
+            var data = {};
+            if (query) {
+                data[this.remoteKey] = query;
+            }
+            return Object.assign({}, data, this.params);
+        },
+        onChange: function onChange(val) {
+            this.$emit('input', val);
+            this.$emit('on-change', val);
+        }
+    },
+    watch: {
+        value: function value(val) {
+            this.publicValue = val;
+        },
+        options: function options(val) {
+            this.publicOptions = val;
+        }
+    }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/***/ }),
+
+/***/ 294:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "Select",
+    {
+      attrs: {
+        filterable: _vm.filterable,
+        loading: _vm.loading,
+        remote: _vm.remote,
+        multiple: _vm.multiple,
+        "remote-method": _vm.remoteMethod,
+        clearable: "",
+        transfer: "",
+        placeholder: _vm.placeholder
+      },
+      on: { "on-change": _vm.onChange },
+      model: {
+        value: _vm.publicValue,
+        callback: function($$v) {
+          _vm.publicValue = $$v
+        },
+        expression: "publicValue"
+      }
+    },
+    _vm._l(_vm.publicOptions, function(option, index) {
+      return _c("Option", { key: index, attrs: { value: option.id } }, [
+        _vm._v(_vm._s(option.name))
+      ])
+    })
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3827511c", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 295:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(296)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(298)
+/* template */
+var __vue_template__ = __webpack_require__(300)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-70ef75ae"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\seller\\js\\components\\select\\index.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-70ef75ae", Component.options)
+  } else {
+    hotAPI.reload("data-v-70ef75ae", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 296:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(297);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("f89ec586", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-70ef75ae\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./index.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-70ef75ae\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./index.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 297:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 298:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _http = __webpack_require__(299);
+
+var _http2 = _interopRequireDefault(_http);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    name: "m-select",
+    mixins: [_http2.default],
+    props: {
+        value: {
+            type: [Number, String],
+            default: ''
+        },
+        options: {
+            type: Array,
+            default: function _default() {
+                return [];
+            }
+        },
+        multiple: {
+            type: Boolean,
+            default: false
+        },
+        remoteUrl: {
+            type: String,
+            default: ''
+        },
+        filterable: {
+            type: Boolean,
+            default: false
+        },
+        params: {
+            type: Object,
+            default: function _default() {}
+        },
+        remoteKey: {
+            type: String,
+            default: 'title'
+        },
+        placeholder: {
+            type: String,
+            default: '请选择'
+        }
+    },
+    data: function data() {
+        return {
+            publicValue: this.value,
+            publicOptions: this.options,
+            loading: true
+        };
+    },
+
+    computed: {
+        remote: function remote() {
+            return this.remoteUrl !== '';
+        }
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        if (this.remote && !this.filterable) {
+            this.$http.get(this.remoteUrl, {
+                params: this.getParams()
+            }).then(function (res) {
+                _this.publicOptions = res.data.data;
+            }).finally(function () {
+                _this.loading = false;
+            });
+        }
+    },
+
+    methods: {
+        remoteMethod: function remoteMethod(query) {
+            var _this2 = this;
+
+            if (!this.filterable) {
+                return;
+            }
+            if (query === '' && this.remote) {
+                this.publicOptions = [];
+            } else {
+                this.$http.get(this.remoteUrl, {
+                    params: this.getParams(query)
+                }).then(function (res) {
+                    _this2.publicOptions = res.data.data;
+                }).finally(function () {
+                    _this2.loading = false;
+                });
+            }
+        },
+        getParams: function getParams(query) {
+            var data = {};
+            if (query) {
+                data[this.remoteKey] = query;
+            }
+            return Object.assign({}, data, this.params);
+        },
+        onChange: function onChange(val) {
+            this.$emit('input', val);
+            this.$emit('on-change', val);
+        }
+    },
+    watch: {
+        value: function value(val) {
+            this.publicValue = val;
+        },
+        options: function options(val) {
+            this.publicOptions = val;
+        }
+    }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/***/ }),
+
+/***/ 299:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  data: function data() {
+    return {
+      loading: false
+    };
+  },
+
+  methods: {
+    formatErrors: function formatErrors(visible) {
+      if (visible && visible.response && visible.response.status === 422) {
+        var errors = visible.response.data.errors;
+        for (var i in errors) {
+          this.error(errors[i].join(','));
+        }
+      } else if (visible.response) {
+        this.error(visible.response.data.message);
+      } else {
+        this.error('请求失败！请检查网站配置');
+      }
+    },
+    error: function error(message) {
+      this.$Notice.error({
+        title: '错误',
+        desc: message
+      });
+    },
+    unObserver: function unObserver(data) {
+      return JSON.parse(JSON.stringify(data));
+    }
+  }
+};
+
+/***/ }),
+
+/***/ 300:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "Select",
+    {
+      attrs: {
+        filterable: _vm.filterable,
+        loading: _vm.loading,
+        remote: _vm.remote,
+        multiple: _vm.multiple,
+        "remote-method": _vm.remoteMethod,
+        clearable: "",
+        transfer: "",
+        placeholder: _vm.placeholder
+      },
+      on: { "on-change": _vm.onChange },
+      model: {
+        value: _vm.publicValue,
+        callback: function($$v) {
+          _vm.publicValue = $$v
+        },
+        expression: "publicValue"
+      }
+    },
+    _vm._l(_vm.publicOptions, function(option, index) {
+      return _c("Option", { key: index, attrs: { value: option.id } }, [
+        _vm._v(_vm._s(option.name))
+      ])
+    })
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-70ef75ae", module.exports)
   }
 }
 

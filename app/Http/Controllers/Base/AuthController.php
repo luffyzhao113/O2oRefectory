@@ -95,7 +95,7 @@ class AuthController extends Controller
     public function permission()
     {
         return $this->respondWithSuccess(
-            auth('base')->user()->cachedRole()->cachedPermissions()
+            auth('base')->user()->cachedPermissions()
         );
     }
 

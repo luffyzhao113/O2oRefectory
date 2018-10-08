@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Observers\Model\BaseAuthObservers;
 use Illuminate\Cache\TaggableStore;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -15,47 +16,28 @@ class BaseRole extends Model
      */
     protected $fillable = ['name', 'status', 'description'];
 
-    /**
-     * 不显示or包含超级管理员
-     * @param Builder $query
-     * @return Builder
-     */
-    public function scopeHideSuper(Builder $query)
+    protected static function boot()
     {
-        return $query->where('super', '=', 0);
+        parent::boot();
+
+        static::observe(BaseAuthObservers::class);
     }
 
-
+    
     /**
-     * 缓存角色下所有的权限
-     * @method cachedPermissions
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     *
+     * cachedPermissions
+     * @return mixed
      * @author luffyzhao@vip.126.com
      */
-    public function cachedPermissions()
-    {
-        $cacheKey = 'BaseRole:cachedPermissions:'.$this->getKey();
+    public function cachedPermissions(){
+        $cacheKey = 'BaseRole:cachedPermissions:' . $this->getKey();
 
         if (Cache::getStore() instanceof TaggableStore) {
-            return Cache::tags('BaseAuth')->remember(
-                $cacheKey,
-                Config::get('cache.ttl', 60),
-                function () {
-                    if ($this->getAttribute('super') === 0) {
-                        return $this->perms()->get();
-                    } else {
-                        return BasePermission::all();
-                    }
-                }
-            );
-        } else {
-            if ($this->getAttribute('super') === 0) {
+            return Cache::tags(['BaseAuth'])->remember($cacheKey, Config::get('cache.ttl', 60), function () {
                 return $this->perms()->get();
-            } else {
-                return BasePermission::all();
-            }
+            });
+        }else{
+            return $this->perms()->get();
         }
     }
 

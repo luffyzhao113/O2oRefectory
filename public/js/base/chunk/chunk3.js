@@ -691,7 +691,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -763,17 +763,6 @@ exports.default = {
                                 }
                             },
                             ["\u4FEE\u6539"]
-                        ), h(
-                            "i-button",
-                            {
-                                attrs: { size: "small" },
-                                on: {
-                                    "click": function click() {
-                                        return _this.showComponent('Permission', row);
-                                    }
-                                }
-                            },
-                            ["\u5206\u914D\u6743\u9650"]
                         ), h(
                             "poptip",
                             {
