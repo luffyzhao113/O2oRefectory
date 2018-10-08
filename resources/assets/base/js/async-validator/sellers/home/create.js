@@ -50,6 +50,9 @@ export const Validator = (data) => {
             {required: true, type: 'email', message: '登录账号不能为空', trigger: 'blur'},
             {validator: sellerEmail}
         ],
+        "admin.name": [
+            {required: true, type: 'string', message: '账号姓名不能为空', trigger: 'blur'}
+        ],
         "admin.password": [
             {required: true, type: 'string', message: '登录密码不能为空', trigger: 'blur'},
             {type: 'string', min: 6, max: 20, message: '登录密码必须在 6 到 20 个字符之间', trigger: 'blur'}

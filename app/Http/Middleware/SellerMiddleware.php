@@ -28,8 +28,14 @@ class SellerMiddleware
             }
         );
         if (!$seller) {
-            abort(404, '域名不存在！');
+            abort(404, '店铺不存在！');
         }
+        // 把这个保存起来
+        app()->instance('seller', $seller);
+
+        $request->merge([
+            'seller_id' => $seller['id'],
+        ]);
 
         return $next($request);
     }

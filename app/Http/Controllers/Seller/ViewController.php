@@ -14,8 +14,4 @@ class ViewController
     public function index(){
         return view('seller/index');
     }
-
-    public function admin(){
-        return view('seller/admin');
-    }
 }

@@ -1747,7 +1747,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -1862,6 +1862,12 @@ exports.default = {
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /***/ }),
 
@@ -1916,6 +1922,7 @@ var Validator = exports.Validator = function Validator(data) {
         domain: [{ required: true, type: 'string', message: '二级域名不能为空', trigger: 'blur' }, { type: 'string', min: 2, max: 10, message: '二级域名必须在 2 到 10 个字符之间', trigger: 'blur' }, { validator: domain, trigger: 'blur' }],
         status: [{ required: true, type: 'number', message: '店铺状态不能为空', trigger: 'change' }],
         "admin.email": [{ required: true, type: 'email', message: '登录账号不能为空', trigger: 'blur' }, { validator: sellerEmail }],
+        "admin.name": [{ required: true, type: 'string', message: '账号姓名不能为空', trigger: 'blur' }],
         "admin.password": [{ required: true, type: 'string', message: '登录密码不能为空', trigger: 'blur' }, { type: 'string', min: 6, max: 20, message: '登录密码必须在 6 到 20 个字符之间', trigger: 'blur' }],
         "admin.password_confirmation": [{ required: true, type: 'string', message: '确认密码不能为空', trigger: 'blur' }, {
             validator: function validator(rule, value, callback, source, options) {
@@ -2159,6 +2166,31 @@ var render = function() {
                 [
                   _c(
                     "FormItem",
+                    { attrs: { label: "账号姓名", prop: "admin.name" } },
+                    [
+                      _c("Input", {
+                        attrs: { placeholder: "账号姓名" },
+                        model: {
+                          value: _vm.formCreate.admin.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formCreate.admin, "name", $$v)
+                          },
+                          expression: "formCreate.admin.name"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "box-item",
+                { attrs: { span: 8 } },
+                [
+                  _c(
+                    "FormItem",
                     { attrs: { label: "登录密码", prop: "admin.password" } },
                     [
                       _c("Input", {
@@ -2339,7 +2371,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -2460,6 +2492,12 @@ exports.default = {
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /***/ }),
 
@@ -2516,6 +2554,7 @@ var Validator = exports.Validator = function Validator(data) {
         domain: [{ required: true, type: 'string', message: '二级域名不能为空', trigger: 'blur' }, { type: 'string', min: 2, max: 10, message: '二级域名必须在 2 到 10 个字符之间', trigger: 'blur' }, { validator: domain, trigger: 'blur' }],
         status: [{ required: true, type: 'number', message: '店铺状态不能为空', trigger: 'change' }],
         "admin.email": [{ required: true, type: 'email', message: '登录账号不能为空', trigger: 'blur' }, { validator: sellerEmail }],
+        "admin.name": [{ required: true, type: 'string', message: '账号姓名不能为空', trigger: 'blur' }],
         "admin.password": [{ type: 'string', min: 6, max: 20, message: '登录密码必须在 6 到 20 个字符之间', trigger: 'blur' }],
         "admin.password_confirmation": [{
             validator: function validator(rule, value, callback, source, options) {
@@ -2656,6 +2695,31 @@ var render = function() {
                             _vm.$set(_vm.formUpdate.admin, "email", $$v)
                           },
                           expression: "formUpdate.admin.email"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "box-item",
+                { attrs: { span: 8 } },
+                [
+                  _c(
+                    "FormItem",
+                    { attrs: { label: "账号姓名", prop: "admin.name" } },
+                    [
+                      _c("Input", {
+                        attrs: { placeholder: "账号姓名" },
+                        model: {
+                          value: _vm.formUpdate.admin.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formUpdate.admin, "name", $$v)
+                          },
+                          expression: "formUpdate.admin.name"
                         }
                       })
                     ],

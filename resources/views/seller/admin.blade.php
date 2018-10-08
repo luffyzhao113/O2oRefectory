@@ -1,15 +1,17 @@
 <!doctype html>
-<html lang="zh">
+<html lang="{{ app()->getLocale() }}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>餐厅后台管理系统页面</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="{{ asset('/css/seller/iview.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('/css/seller/app.css') }}">
+    <title>店铺后台管理系统</title>
 </head>
 <body>
-<div>
-    餐厅后台管理系统页面
-</div>
+<div id="app"></div>
+<script type="text/javascript" src="{{ asset('/js/seller/manifest.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/seller/vendor.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/seller/app.js') }}"></script>
 </body>
 </html>

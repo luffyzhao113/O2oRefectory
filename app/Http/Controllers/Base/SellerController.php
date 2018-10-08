@@ -100,7 +100,7 @@ class SellerController extends Controller
     {
         $with = [
             'admin' => function (HasOne $builder) {
-                $builder->where('role_id', 0)->addSelect(['id', 'seller_id', 'email']);
+                $builder->where('role_id', 0)->addSelect(['id', 'seller_id', 'email', 'name']);
             },
         ];
 
