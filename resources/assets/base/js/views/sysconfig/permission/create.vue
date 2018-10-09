@@ -24,7 +24,8 @@
                 </RadioGroup>
             </FormItem>
             <FormItem label="菜单描述" prop="description" :rules="{max: 200}">
-                <Input v-model="formCreate.description" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="菜单描述"></Input>
+                <Input v-model="formCreate.description" type="textarea" :autosize="{minRows: 2,maxRows: 5}"
+                       placeholder="菜单描述"></Input>
             </FormItem>
         </Form>
         <div slot="footer">
@@ -34,40 +35,41 @@
 </template>
 
 <script>
-  import component from "../../../mixins/component";
-  import form from "../../../mixins/form";
-  import ComponentModal from "../../../components/modal/component-modal";
-  import GroupCascader from "../../../components/cascader/index";
+    import component from "../../../mixins/component";
+    import form from "../../../mixins/form";
+    import ComponentModal from "../../../components/modal/component-modal";
+    import GroupCascader from "../../../components/cascader/index";
 
-  export default {
-    components: {
-        GroupCascader,
-        ComponentModal
-       },
-    name: "create",
-    mixins:[component, form],
-    data(){
-      return {
-        formCreate: {
-          islink: 0,
-          name: '',
-          parent_id: 0,
-          icon: '',
-          display_name: '',
-          description: '',
-          sort: 1
+    export default {
+        components: {
+            GroupCascader,
+            ComponentModal
         },
-        parents: []
-      }
-    },
-    mounted(){
-      this.$http.get(`permission`, {
-        params: {islink: 1}
-      }).then((res) => {
-        this.parents = res.data.data
-      })
+        name: "create",
+        mixins: [component, form],
+        data() {
+            return {
+                formCreate: {
+                    islink: 0,
+                    name: '',
+                    parent_id: 0,
+                    icon: '',
+                    display_name: '',
+                    description: '',
+                    sort: 1
+                },
+                parents: []
+            }
+        },
+        mounted() {
+            this.loading = true
+            this.$http.get(`permission/create`).then((res) => {
+                this.parents = res.data.data
+            }).finally(() => {
+                this.loading = false
+            })
+        }
     }
-  }
 </script>
 
 <style scoped>

@@ -29,10 +29,11 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'between:2,10'],
-            'email' => ['required', 'string', 'email', 'between:3,100', Rule::unique('base_admins')->ignore(auth('base')->user()->id)],
+            'name' => ['nullable', 'string', 'between:2,10'],
+            'email' => ['nullable', 'string', 'email', 'between:3,100', Rule::unique('base_admins')->ignore(auth('base')->user()->id)],
             'password' => ['nullable', 'between:6,20', 'confirmed'],
             'password_confirmation' => ['nullable', 'between:6,20'],
+            'photo' => ['string', 'nullable']
         ];
     }
 
@@ -49,7 +50,8 @@ class UserRequest extends FormRequest
             'name' => '用户姓名',
             'email' => '登录邮箱',
             'password' => '用户密码',
-            'password_confirmation' => '确认密码'
+            'password_confirmation' => '确认密码',
+            'photo' => '头像'
         ];
     }
 }

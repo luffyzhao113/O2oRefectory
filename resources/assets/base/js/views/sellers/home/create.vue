@@ -1,6 +1,6 @@
 <template>
-    <component-modal title="添加店铺" :loading="loading" :width="780">
-        <Form ref="formCreate" :model="formCreate" :label-width="80" :rules="ruleCreate">
+    <component-modal title="添加店铺" :loading="loading" :width="900">
+        <Form ref="formCreate" :model="formCreate" :label-width="90" :rules="ruleCreate">
             <Box title="基本信息">
                 <box-item :span="8">
                     <FormItem label="店铺名称" prop="name" >

@@ -9,7 +9,6 @@ use Illuminate\Contracts\Translation\Translator;
 use App\Repositories\Modules\BaseAdmin\Provider AS BaseAdmin;
 use App\Repositories\Modules\BasePermission\Provider AS BasePermission;
 use App\Repositories\Modules\BaseRole\Provider AS BaseRole;
-use App\Repositories\Modules\BaseLogs\Provider AS BaseLogs;
 use App\Repositories\Modules\Notification\Provider as Notification;
 use App\Repositories\Modules\Seller\Provider as Seller;
 use App\Repositories\Modules\SellerAdmin\Provider as SellerAdmin;
@@ -44,7 +43,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->register(BaseAdmin::class);
         $this->app->register(BasePermission::class);
         $this->app->register(BaseRole::class);
-        $this->app->register(BaseLogs::class);
         $this->app->register(Seller::class);
         $this->app->register(SellerAdmin::class);
         $this->app->register(SellerPermission::class);

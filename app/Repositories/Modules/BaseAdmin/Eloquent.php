@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Modules\BaseAdmin;
 
+use App\Plugins\Files\Upload;
 use luffyzhao\laravelTools\Repositories\Facades\RepositoriesAbstract;
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,9 +26,17 @@ class Eloquent extends RepositoriesAbstract implements Interfaces
      */
     function update(Model $model, array $values, array $attributes = [])
     {
-        if(!(isset($values['password']) && $values['password'])){
+        if (!(isset($values['password']) && $values['password'])) {
             unset($values['password']);
         }
+
+        if (isset($values['photo'])) {
+            $upload = new Upload();
+            if ($upload->isBase64($values['photo'])) {
+                $values['photo'] = $upload->updateBase64($values['photo']);
+            }
+        }
+
         return parent::update($model, $values, $attributes);
     }
 }

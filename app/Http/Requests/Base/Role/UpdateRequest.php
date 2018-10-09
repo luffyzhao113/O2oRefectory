@@ -19,22 +19,9 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        $role = $this->role();
-        return $role && $role->super === 0;
+        return true;
     }
 
-    /**
-     * role 数据模型
-     * @method model
-     *
-     * @author luffyzhao@vip.126.com
-     */
-    public function role(){
-        if(!$this->role){
-            $this->role = BaseRole::where('id', $this->route('role'))->withCount(['users'])->first();
-        }
-        return $this->role;
-    }
     /**
      * 验证规则
      * @method rules
@@ -49,6 +36,8 @@ class UpdateRequest extends FormRequest
             'name' => ['required', 'string', 'between:2,50', Rule::unique('base_roles')->ignore($this->route('role'))],
             'status' => ['required', 'numeric', 'in:0,1'],
             'description' => ['nullable', 'string', 'max:200'],
+            'permissions' => ['nullable', 'array'],
+            'permissions.*' => ['integer'],
         ];
     }
 
@@ -66,6 +55,7 @@ class UpdateRequest extends FormRequest
             'name' => '角色名称',
             'status' => '角色状态',
             'description' => '角色说明',
+            'permissions.array' => '权限格式不正确！',
         ];
     }
 }

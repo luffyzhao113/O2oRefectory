@@ -13,31 +13,23 @@
             </DropdownMenu>
         </Dropdown>
         <span class="ivu-avatar ivu-avatar-circle ivu-avatar-default ivu-avatar-image">
-            <photo v-model="user.photo" :size="32" @on-upload="uploadAvatar"></photo>
+            <base64 v-model="user.photo" @on-change="change"></base64>
         </span>
     </div>
 </template>
 
 <script>
-    import Photo from "../upload/photo";
     import http from "../../mixins/http";
+    import Base64 from "../upload/base64";
 
     export default {
         name: "my-header-ownspace",
+        components: {Base64},
         mixins: [http],
         computed: {
             user() {
                 return this.$store.state.Auth.data
             }
-        },
-        mounted() {
-            this.$nextTick(function () {
-                if (!this.$store.state.Auth.data.id) {
-                    this.$http.get(`auth`).then((res) => {
-                        this.$store.commit('setAuthData', res.data.data);
-                    })
-                }
-            })
         },
         methods: {
             tagDropdown(name) {
@@ -46,23 +38,14 @@
                         name: 'common.profile'
                     })
                 } else {
-                    this.$http.delete(`auth`)
                     this.$cache.clear()
-                    this.$router.push({
-                        name: 'common.login'
-                    })
                     window.location.reload()
                 }
             },
-            uploadAvatar(photo){
-                this.$http.put(`auth/photo`, {
-                  photo: this.user.photo
-                }).catch((res) => {
-                  this.formatErrors(res)
-                })
+            change(base){
+                this.$store.dispatch('updateProfile');
             }
-        },
-        components: {Photo}
+        }
     }
 </script>
 

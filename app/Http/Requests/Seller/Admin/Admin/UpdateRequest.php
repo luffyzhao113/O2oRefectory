@@ -60,6 +60,7 @@ class UpdateRequest extends FormRequest
     /**
      * @param SellerAdmin $admin
      * @return bool
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function existsSeller(SellerAdmin $admin)
     {
@@ -67,6 +68,19 @@ class UpdateRequest extends FormRequest
             return true;
         }
 
-        $this->getValidatorInstance()->errors()->add('seller_id', '用户不存在！');
+        $this->failed('seller_id', '用户不存在！');
+    }
+
+    /**
+     * failed
+     * @param $key
+     * @param $message
+     * @author luffyzhao@vip.126.com
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function failed($key, $message){
+        $validator =  $this->getValidatorInstance();
+        $validator->errors()->add($key, $message);
+        $this->failedValidation($validator);
     }
 }

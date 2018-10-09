@@ -27,8 +27,14 @@ class AuthController extends Controller
      */
     public function index()
     {
+        $user = auth('base')->user();
+
         return $this->respondWithSuccess(
-            auth('base')->user()
+            [
+                'auth' => $user,
+                'perms' => $user->cachedPermissions(),
+                'messageTotal' => $user->notifications()->whereNull('read_at')->count(),
+            ]
         );
     }
 
@@ -62,7 +68,7 @@ class AuthController extends Controller
     }
 
     /**
-     * 更新
+     * 刷新token
      * @return \Illuminate\Http\JsonResponse
      */
     public function update()
@@ -85,21 +91,6 @@ class AuthController extends Controller
     }
 
     /**
-     * 用户菜单&权限
-     * @method permission
-     *
-     * @return \Illuminate\Http\JsonResponse
-     *
-     * @author luffyzhao@vip.126.com
-     */
-    public function permission()
-    {
-        return $this->respondWithSuccess(
-            auth('base')->user()->cachedPermissions()
-        );
-    }
-
-    /**
      * 更新用户
      * @method user
      * @param UserRequest $request
@@ -114,27 +105,7 @@ class AuthController extends Controller
         return $this->respondWithSuccess(
             $repo->update(
                 auth('base')->user(),
-                $request->only(['name', 'password', 'email'])
-            )
-        );
-    }
-
-    /**
-     * 上传头像
-     * @method photo
-     * @param PhotoRequest $request
-     * @param Interfaces $repo
-     *
-     * @return \Illuminate\Http\JsonResponse
-     *
-     * @author luffyzhao@vip.126.com
-     */
-    public function photo(PhotoRequest $request, Interfaces $repo)
-    {
-        return $this->respondWithSuccess(
-            $repo->update(
-                auth('base')->user(),
-                $request->only(['photo'])
+                $request->only(['name', 'password', 'email', 'photo'])
             )
         );
     }
@@ -168,9 +139,11 @@ class AuthController extends Controller
      */
     public function logs(BaseLogsInterfaces $repo)
     {
-        $make = ['admin' => function($query){
-            $query->select(['id', 'name']);
-        }];
+        $make = [
+            'admin' => function ($query) {
+                $query->select(['id', 'name']);
+            },
+        ];
 
         return $this->respondWithSuccess(
             $repo->make($make)->limit(

@@ -66,7 +66,7 @@ class Run extends Command
 
         foreach ($tables as $table) {
             $tableName = $table->{'Tables_in_'.$config['database']};
-            if ($tableName === 'migrations') {
+            if ($tableName === 'migrations' || $tableName === 'base_logs') {
                 continue;
             }
             $columns = DB::selectOne('show columns from `'.$tableName.'`');

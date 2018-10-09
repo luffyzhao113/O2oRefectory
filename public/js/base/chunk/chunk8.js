@@ -1,14 +1,14 @@
 webpackJsonp([8],{
 
-/***/ 113:
+/***/ 110:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(277)
+var __vue_script__ = __webpack_require__(265)
 /* template */
-var __vue_template__ = __webpack_require__(278)
+var __vue_template__ = __webpack_require__(266)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -25,7 +25,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\base\\js\\views\\common\\Login.vue"
+Component.options.__file = "resources\\assets\\base\\js\\views\\common\\Lock.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -34,9 +34,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2f909352", Component.options)
+    hotAPI.createRecord("data-v-02f79e52", Component.options)
   } else {
-    hotAPI.reload("data-v-2f909352", Component.options)
+    hotAPI.reload("data-v-02f79e52", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48,19 +48,19 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 137:
+/***/ 135:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(138)
+  __webpack_require__(136)
 }
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(140)
+var __vue_script__ = __webpack_require__(138)
 /* template */
-var __vue_template__ = __webpack_require__(141)
+var __vue_template__ = __webpack_require__(139)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -100,17 +100,17 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 138:
+/***/ 136:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(139);
+var content = __webpack_require__(137);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("5345e314", content, false, {});
+var update = __webpack_require__(3)("5345e314", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -127,10 +127,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 139:
+/***/ 137:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(2)(false);
 // imports
 
 
@@ -142,7 +142,7 @@ exports.push([module.i, "\n.login {\n  width: 100%;\n  height: 100%;\n  backgrou
 
 /***/ }),
 
-/***/ 140:
+/***/ 138:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -180,7 +180,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 141:
+/***/ 139:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -230,17 +230,17 @@ if (false) {
 
 /***/ }),
 
-/***/ 277:
+/***/ 265:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
-var _loginLock = __webpack_require__(137);
+var _loginLock = __webpack_require__(135);
 
 var _loginLock2 = _interopRequireDefault(_loginLock);
 
@@ -270,49 +270,39 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 exports.default = {
-    data: function data() {
-        return {
-            form: {
-                email: '',
-                password: ''
-            }
-        };
-    },
+  components: { LoginLock: _loginLock2.default },
+  mixins: [_http2.default],
+  data: function data() {
+    return {
+      form: {
+        password: ''
+      }
+    };
+  },
 
-    mixins: [_http2.default],
-    components: {
-        LoginLock: _loginLock2.default
+  methods: {
+    unlock: function unlock(name) {
+      var _this = this;
 
-    },
-    methods: {
-        login: function login(name) {
-            var _this = this;
-
-            this.$refs[name].validate(function (valid) {
-                if (valid) {
-                    _this.$http.post("auth", _this.form).then(function (res) {
-                        _this.$cache.set('token', res.data.data.token);
-                        _this.$router.replace({ name: 'common.home' });
-                    }).catch(function (res) {
-                        _this.formatErrors(res);
-                    });
-                }
-            });
+      this.$refs[name].validate(function (valid) {
+        if (valid) {
+          _this.$http.delete("auth/lock", { params: _this.form }).then(function () {
+            _this.$cache.set('locking', 0);
+            _this.$router.go(-1);
+          }).catch(function (res) {
+            _this.formatErrors(res);
+          });
         }
+      });
     }
+  }
 };
 
 /***/ }),
 
-/***/ 278:
+/***/ 266:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -327,7 +317,7 @@ var render = function() {
         { attrs: { slot: "title" }, slot: "title" },
         [
           _c("Icon", { attrs: { type: "log-in" } }),
-          _vm._v("\n        欢迎登录\n    ")
+          _vm._v("\n        登录锁定\n    ")
         ],
         1
       ),
@@ -336,50 +326,6 @@ var render = function() {
         "Form",
         { ref: "form", attrs: { slot: "form", model: _vm.form }, slot: "form" },
         [
-          _c(
-            "FormItem",
-            {
-              attrs: {
-                prop: "email",
-                rules: {
-                  required: true,
-                  message: "邮箱格式不正确！",
-                  type: "email",
-                  min: 6,
-                  max: 20,
-                  trigger: "blur"
-                }
-              }
-            },
-            [
-              _c(
-                "Input",
-                {
-                  attrs: {
-                    type: "text",
-                    autocomplete: "off",
-                    placeholder: "E-mail"
-                  },
-                  model: {
-                    value: _vm.form.email,
-                    callback: function($$v) {
-                      _vm.$set(_vm.form, "email", $$v)
-                    },
-                    expression: "form.email"
-                  }
-                },
-                [
-                  _c("Icon", {
-                    attrs: { slot: "prepend", type: "ios-mail-outline" },
-                    slot: "prepend"
-                  })
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
           _c(
             "FormItem",
             {
@@ -418,7 +364,7 @@ var render = function() {
                 },
                 [
                   _c("Icon", {
-                    attrs: { slot: "prepend", type: "ios-lock-outline" },
+                    attrs: { slot: "prepend", type: "ios-locked-outline" },
                     slot: "prepend"
                   })
                 ],
@@ -437,11 +383,11 @@ var render = function() {
                   attrs: { type: "primary", long: "" },
                   on: {
                     click: function($event) {
-                      _vm.login("form")
+                      _vm.unlock("form")
                     }
                   }
                 },
-                [_vm._v("登录")]
+                [_vm._v("解锁")]
               )
             ],
             1
@@ -459,7 +405,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2f909352", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-02f79e52", module.exports)
   }
 }
 

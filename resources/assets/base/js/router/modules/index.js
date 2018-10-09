@@ -40,14 +40,6 @@ export const IndexRouter = [
     }
   },
   {
-    path: 'sysconfig.logs',
-    name: 'sysconfig.logs.index',
-    meta: {title: '日志管理'},
-    component: resolve => {
-      require(['../../views/sysconfig/logs/index.vue'], resolve)
-    }
-  },
-  {
     path: 'common.message',
     name: 'common.message',
     meta: {title: '消息管理'},

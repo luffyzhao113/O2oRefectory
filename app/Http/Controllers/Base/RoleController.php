@@ -44,23 +44,16 @@ class RoleController extends Controller
     }
 
     /**
-     * 全部的角色用于select
-     * @method select
-     * @param Request $request
-     *
+     * create
      * @return \Illuminate\Http\JsonResponse
-     *
      * @author luffyzhao@vip.126.com
-     * @throws \luffyzhao\laravelTools\Searchs\Exceptions\SearchException
      */
-    public function select(Request $request)
+    public function create()
     {
-        $search = new IndexSearch($request->all());
-
         return $this->respondWithSuccess(
-            $this->repo->scope(['hideSuper'])->getWhere(
-                $search->toArray(),
-                ['id', 'name', 'status']
+            app(\App\Repositories\Modules\BasePermission\Interfaces::class)->getWhere(
+                [],
+                ['id', 'parent_id', 'name', 'icon', 'islink', 'display_name as title', 'sort']
             )
         );
     }
@@ -77,23 +70,27 @@ class RoleController extends Controller
     public function store(StoreRequest $request)
     {
         return $this->respondWithSuccess(
-            $this->repo->create($request->only(['name', 'status', 'description']))
+            $this->repo->create($request->only(['name', 'status', 'description', 'permissions']))
         );
     }
 
     /**
-     * 获取单个角色
-     * @method show
-     * @param Request $request
+     * edit
      * @param $id
-     *
      * @return \Illuminate\Http\JsonResponse
-     *
      * @author luffyzhao@vip.126.com
      */
-    public function show(Request $request, $id)
+    public function edit($id)
     {
-        return $this->respondWithSuccess($this->repo->find($id, ['id', 'name', 'status', 'description']));
+        return $this->respondWithSuccess(
+            [
+                'row' => $this->repo->with(['perms'])->find($id, ['id', 'name', 'status', 'description']),
+                'permissions' => app(\App\Repositories\Modules\BasePermission\Interfaces::class)->getWhere(
+                    [],
+                    ['id', 'parent_id', 'name', 'icon', 'islink', 'display_name as title', 'sort']
+                ),
+            ]
+        );
     }
 
     /**
@@ -110,8 +107,8 @@ class RoleController extends Controller
     {
         return $this->respondWithSuccess(
             $this->repo->update(
-                $request->role(),
-                $request->only(['name', 'status', 'description'])
+                $this->repo->find($id),
+                $request->only(['name', 'status', 'description', 'permissions'])
             )
         );
     }
@@ -126,11 +123,11 @@ class RoleController extends Controller
      */
     public function destroy(DestroyRequest $request, $id)
     {
-        $valid = $this->repo->delete(
-            $request->role()
-        );
+        $role = $this->repo->find($id);
+        // 验证
+        $request->hasUser($role);
 
-        if ($valid) {
+        if ($this->repo->delete($role)) {
             $this->respondWithSuccess('删除成功');
         } else {
             $this->respondWithError('删除失败');

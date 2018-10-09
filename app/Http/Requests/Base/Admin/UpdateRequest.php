@@ -63,12 +63,26 @@ class UpdateRequest extends FormRequest
      * 验证是否超级管理员
      * @param BaseAdmin $admin
      * @return bool
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function isSuper(BaseAdmin $admin){
         if($admin->getAttribute('role_id') !== 0){
             return true;
         }
 
-        $this->getValidatorInstance()->errors()->add('role_id', '管理员账号不能修改');
+        $this->failed('role_id', '管理员账号不能修改');
+    }
+
+    /**
+     * failed
+     * @param $key
+     * @param $message
+     * @author luffyzhao@vip.126.com
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function failed($key, $message){
+        $validator =  $this->getValidatorInstance();
+        $validator->errors()->add($key, $message);
+        $this->failedValidation($validator);
     }
 }

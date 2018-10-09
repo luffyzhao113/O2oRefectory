@@ -29,7 +29,6 @@ Route::prefix('admin')->namespace('Admin')->group(
                     ['middleware' => 'auth:seller'],
                     function () {
                         Route::get('auth', 'AuthController@index');
-                        Route::get('auth/permission', 'AuthController@permission');
                         Route::put('auth/user', 'AuthController@user');
                         Route::delete('auth/lock', 'AuthController@lock');
 

@@ -24,10 +24,9 @@
     import lists from "../../../mixins/lists";
     import Create from "./create"
     import Update from "./update"
-    import Permission from "./permission"
 
     export default {
-        components: {MyLists, Create, Update, Permission},
+        components: {MyLists, Create, Update},
         mixins: [lists],
         name: "index",
         data() {

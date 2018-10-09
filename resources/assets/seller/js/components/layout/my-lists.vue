@@ -8,8 +8,9 @@
                     <slot name="button"></slot>
                 </p>
                 <Table :columns="tableCol" :data="value.data" size="small" ref="table" :row-class-name="rowClassName"
-                :loading="loading"></Table>
-                <Page :total="value.page.total" size="small" :current="value.page.current" :page-size="value.page.page_size" show-total @on-change="change"></Page>
+                       :loading="loading"></Table>
+                <Page :total="value.page.total" size="small" :current="value.page.current"
+                      :page-size="value.page.page_size" show-total @on-change="change"></Page>
             </Card>
         </div>
     </div>
@@ -21,11 +22,15 @@
         props: {
             value: {
                 type: Object,
-                default: () => {return {data:[], page:{total:100, current: 1, page_size: 20}}}
+                default: () => {
+                    return {data: [], page: {total: 100, current: 1, page_size: 20}}
+                }
             },
             columns: {
                 type: Array,
-                default: () => {return []}
+                default: () => {
+                    return []
+                }
             },
             loading: {
                 type: Boolean,
@@ -41,28 +46,50 @@
                     },
                     width: 75
                 }],
-                rightCol:[]
+                rightCol: []
             }
         },
         computed: {
-            tableCol(){
+            tableCol() {
                 return this.leftCol.concat(this.columns, this.rightCol)
             }
         },
         methods: {
-            change(v){
+            change(v) {
                 this.$emit('change', v);
             },
-            rowClassName(row, index){
+            rowClassName(row, index) {
 
             }
         }
     }
 </script>
 
-<style scoped>
-    .ivu-table .table-info-row td{
-        background-color: #2db7f5;
-        color: #fff;
+<style lang="less">
+    .box-flex-list {
+        position: relative;
+        .ivu-card-head {
+            .ivu-btn {
+                float: right;
+            }
+            p {
+                height: 24px;
+                line-height: 24px;
+            }
+        }
+        .ivu-table {
+            .table-info-row {
+                td {
+                    background-color: #2db7f5;
+                    color: #fff;
+                }
+            }
+        }
+        .ivu-page {
+            text-align: right;
+        }
+        .ivu-table-wrapper {
+            margin-bottom: 15px;
+        }
     }
 </style>

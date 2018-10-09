@@ -57,7 +57,7 @@
         methods: {
             search(page = 1) {
                 this.loading = true;
-                this.$http.get(`auth/message`, {params: this.request(page)})
+                this.$http.get(`message`, {params: this.request(page)})
                     .then((res) => {
                         this.assignmentData(res.data.data);
                     }).catch((res) => {

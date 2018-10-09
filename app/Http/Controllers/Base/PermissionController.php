@@ -29,17 +29,27 @@ class PermissionController extends Controller
      * @return \Illuminate\Http\JsonResponse
      *
      * @author luffyzhao@vip.126.com
-     * @throws \luffyzhao\laravelTools\Searchs\Exceptions\SearchException
      */
     public function index(Request $request)
     {
-        $search = new IndexSearch(
-            $request->only(['islink'])
-        );
-
         return $this->respondWithSuccess(
             $this->repo->getWhere(
-                $search->toArray(),
+                [],
+                ['id', 'parent_id', 'name', 'icon', 'islink', 'display_name as title', 'sort']
+            )
+        );
+    }
+
+    /**
+     * create
+     * @return \Illuminate\Http\JsonResponse
+     * @author luffyzhao@vip.126.com
+     */
+    public function create()
+    {
+        return $this->respondWithSuccess(
+            $this->repo->getWhere(
+                [['islink', '=', 1]],
                 ['id', 'parent_id', 'name', 'icon', 'islink', 'display_name as title', 'sort']
             )
         );
@@ -57,24 +67,32 @@ class PermissionController extends Controller
     public function store(StoreRequest $request)
     {
         return $this->respondWithSuccess(
-            $this->repo->create($request->only(['parent_id', 'name', 'icon', 'islink', 'display_name', 'description', 'sort']))
+            $this->repo->create(
+                $request->only(['parent_id', 'name', 'icon', 'islink', 'display_name', 'description', 'sort'])
+            )
         );
     }
 
     /**
-     * 获取单个权限
-     * @method show
-     * @param Request $request
+     * 更新 get
+     * edit
      * @param $id
-     *
      * @return \Illuminate\Http\JsonResponse
-     *
      * @author luffyzhao@vip.126.com
      */
-    public function show(Request $request, $id)
+    public function edit($id)
     {
         return $this->respondWithSuccess(
-            $this->repo->find($id, ['id', 'parent_id', 'name', 'icon', 'islink', 'display_name', 'description', 'sort'])
+            [
+                'row' => $this->repo->find(
+                    $id,
+                    ['parent_id', 'name', 'icon', 'islink', 'display_name', 'description', 'sort']
+                ),
+                'parents' => $this->repo->getWhere(
+                    [['islink', '=', 1]],
+                    ['id', 'parent_id', 'name', 'icon', 'islink', 'display_name as title', 'sort']
+                ),
+            ]
         );
     }
 
@@ -91,8 +109,8 @@ class PermissionController extends Controller
     public function update(UpdateRequest $request, $id)
     {
         return $this->respondWithSuccess(
-            $this->repo->updateOrCreate(
-                ['id' => $id],
+            $this->repo->update(
+                $this->repo->find($id),
                 $request->only(['parent_id', 'name', 'icon', 'islink', 'display_name', 'description', 'sort'])
             )
         );
@@ -108,12 +126,8 @@ class PermissionController extends Controller
      */
     public function destroy(DestroyRequest $request, $id)
     {
-        $valid = $this->repo->delete(
-            BasePermission::find($id)
-        );
-
-        if ($valid) {
-            $this->respondWithSuccess('删除成功');
+        if ($this->repo->delete($this->repo->find($id))) {
+            $this->respondWithSuccess([], '删除成功');
         } else {
             $this->respondWithError('删除失败');
         }

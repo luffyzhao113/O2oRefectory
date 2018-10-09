@@ -53,21 +53,11 @@ class AuthController extends Controller
      */
     public function index()
     {
-        return $this->respondWithSuccess(
-            auth('seller')->user()
-        );
-    }
-
-    /**
-     * 登录用户权限
-     * permission
-     * @return \Illuminate\Http\JsonResponse
-     * @author luffyzhao@vip.126.com
-     */
-    public function permission(){
-        return $this->respondWithSuccess(
-            auth('seller')->user()->cachedPermissions()
-        );
+        $user = auth('seller')->user();
+        return $this->respondWithSuccess([
+            'auth' => $user,
+            'perms' => $user->cachedPermissions()
+        ]);
     }
 
     /**
@@ -85,7 +75,7 @@ class AuthController extends Controller
         return $this->respondWithSuccess(
             $repo->update(
                 auth('seller')->user(),
-                $request->only(['name', 'password', 'email'])
+                $request->only(['name', 'password', 'email', 'photo'])
             )
         );
     }

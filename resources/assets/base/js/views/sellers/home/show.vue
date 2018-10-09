@@ -1,5 +1,5 @@
 <template>
-    <component-modal title="查看店铺" :width="750" :loading="loading">
+    <component-modal title="查看店铺" :width="900" :loading="loading">
         <box title="店铺详情">
             <detail title="店铺名称">{{seller.name}}</detail>
             <detail title="店铺状态">

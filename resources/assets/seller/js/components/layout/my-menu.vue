@@ -50,11 +50,6 @@
             menuLists(){
                 return this.toTree(JSON.parse(JSON.stringify(this.menus)))
             },
-        },
-        mounted(){
-          this.$http.get(`auth/permission`).then((res) => {
-            this.$store.commit('setAuthPerms', res.data.data)
-          })
         }
     }
 </script>

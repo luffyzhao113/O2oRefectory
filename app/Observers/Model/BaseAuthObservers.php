@@ -9,6 +9,9 @@
 namespace App\Observers\Model;
 
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
+
 class BaseAuthObservers
 {
     /**

@@ -1,3 +1,5 @@
+import AjaxPlugin from "../../plugins/ajax";
+
 export default {
     state: {
         data: {},
@@ -21,5 +23,12 @@ export default {
         setAuthPerms(state, data){
             state.permissions = data
         },
+    },
+    actions: {
+        updateProfile({state}){
+            AjaxPlugin.$http.put(`auth/user`, state.data).then((res) => {
+                state.data = res.data.data
+            })
+        }
     }
 }

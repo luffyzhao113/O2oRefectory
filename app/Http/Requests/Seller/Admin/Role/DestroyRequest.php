@@ -33,6 +33,7 @@ class DestroyRequest extends FormRequest
      * @param SellerRole $role
      * @author luffyzhao@vip.126.com
      * @return bool
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function hasUser(SellerRole $role){
        $usersCount = $role->getAttribute('users_count');
@@ -45,6 +46,19 @@ class DestroyRequest extends FormRequest
             return true;
         }
 
-        $this->getValidatorInstance()->errors()->add('user', '角色下还有用户不能删除');
+        $this->failed('user', '角色下还有用户不能删除');
+    }
+
+    /**
+     * failed
+     * @param $key
+     * @param $message
+     * @author luffyzhao@vip.126.com
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function failed($key, $message){
+        $validator =  $this->getValidatorInstance();
+        $validator->errors()->add($key, $message);
+        $this->failedValidation($validator);
     }
 }

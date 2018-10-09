@@ -10,50 +10,55 @@ Route::get('/', 'ViewController@index');
 
 Route::post('auth', 'AuthController@store')->name('login');
 
-Route::group(['middleware' => 'auth'], function (){
-    Route::get('auth', 'AuthController@index');
-    Route::get('auth/permission', 'AuthController@permission');
-    Route::put('auth', 'AuthController@update')->name('auth.update');
-    Route::put('auth/user', 'AuthController@user')->name('auth.user');
-    Route::put('auth/photo', 'AuthController@photo')->name('auth.photo');
-    Route::delete('auth', 'AuthController@destroy')->name('auth.destroy');
-    Route::delete('auth/lock', 'AuthController@lock')->name('auth.lock');
-    Route::get('auth/logs', 'AuthController@logs');
-    Route::get('auth/message/not-read', 'Auth\MessageController@notRead');
-    Route::apiResource('auth/message', 'Auth\MessageController');
+Route::group(
+    ['middleware' => 'auth'],
+    function () {
+        Route::get('auth', 'AuthController@index');
+        Route::put('auth/user', 'AuthController@user')->name('auth.user');
+        Route::delete('auth/lock', 'AuthController@lock')->name('auth.lock');
+        // 登录用户相关消息
+        Route::get('message/not-read', 'MessageController@notRead');
+        Route::apiResource('message', 'MessageController')->except(['show', 'store', 'destroy']);
 
-    Route::get('admin/select', 'AdminController@select');
-    Route::post('file', 'FileController@store')->name('file.store');
+        Route::get('validator/seller', 'ValidatorController@seller');
+        Route::get('validator/seller-email', 'ValidatorController@sellerEmail');
 
-    Route::get('seller/select', 'SellerController@select');
+        Route::group(
+            ['middleware' => ['entrust:base']],
+            function () {
+                // 权限&菜单
+                Route::resource('permission', 'PermissionController')->except(['show'])->names(
+                    [
+                        'create' => 'permission.store',
+                        'edit' => 'permission.update',
+                    ]
+                );;
+                // 角色管理
+                Route::resource('role', 'RoleController')->except(['show'])->names(
+                    [
+                        'create' => 'role.store',
+                        'edit' => 'role.update',
+                    ]
+                );
+                // 用户管理
+                Route::get('admin/lists', 'AdminController@lists')->name('admin.index');
+                Route::resource('admin', 'AdminController')->except(['show'])->names(
+                    [
+                        'create' => 'admin.store',
+                        'edit' => 'admin.update',
+                    ]
+                );
+                // 店铺管理
+                Route::resource('seller', 'SellerController')->names(
+                    [
+                        'edit' => 'admin.sellers.update',
+                    ]
+                );
 
-    Route::get('validator/seller', 'ValidatorController@seller');
-    Route::get('validator/seller-email', 'ValidatorController@sellerEmail');
+            }
+        );
 
-    Route::group(['middleware' => ['entrust:base']], function (){
-        Route::apiResource('permission', 'PermissionController');
-
-
-        Route::resource('role', 'RoleController')->except(['show'])->names([
-            'create' => 'role.store',
-            'edit' => 'role.update',
-        ]);
-
-        Route::get('admin/lists', 'AdminController@lists')->name('admin.index');
-        Route::resource('admin', 'AdminController')->except(['show'])->names([
-            'create' => 'admin.store',
-            'edit' => 'admin.update',
-        ]);
-
-        Route::get('logs', 'LogsController@index')->name('logs.index');
-        
-        Route::resource('seller', 'SellerController')->names([
-            'edit' => 'admin.sellers.update'
-        ]);
-
-
-    });
-                
-});
+    }
+);
 
 

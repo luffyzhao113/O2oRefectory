@@ -8,7 +8,10 @@
                 <Input v-model="formUpdate.email" placeholder="用户邮箱"></Input>
             </FormItem>
             <FormItem label="用户角色" prop="role_id">
-                <roles-select v-model="formUpdate.role_id"></roles-select>
+                <i-select v-model="formUpdate.role_id">
+                    <i-option v-for="(item, index) in roles" :key="index" :value="item.id"
+                              :label="item.name"></i-option>
+                </i-select>
             </FormItem>
             <FormItem label="用户密码" prop="password">
                 <Input v-model="formUpdate.password" placeholder="用户密码"/>
@@ -24,14 +27,13 @@
             </FormItem>
         </Form>
         <div slot="footer">
-            <Button @click="updateSubmit('formUpdate', `admin/${componentProps.id}`)">创建</Button>
+            <Button @click="updateSubmit('formUpdate', `admin/${componentProps.id}`)">修改</Button>
         </div>
     </component-modal>
 </template>
 
 <script>
     import {Validator} from "../../../async-validator/sysconfig/admin/update"
-    import RolesSelect from "../../components/roles/select";
     import component from "../../../mixins/component";
     import form from "../../../mixins/form";
     import ComponentModal from "../../../components/modal/component-modal";
@@ -39,31 +41,32 @@
     export default {
         name: "update",
         components: {
-            ComponentModal,
-          RolesSelect,
-          },
-        mixins: [component, form],
-        data(){
-          return {
-            formUpdate: {
-              name: '',
-              password: '',
-              password_confirmation: '',
-              status: 1,
-              role_id: '',
-              email: ''
-            },
-            ruleUpdate: Validator(this)
-          }
+            ComponentModal
         },
-        mounted(){
-          this.$nextTick(() => {
-            this.$http.get(`admin/${this.componentProps.id}`).then((res) => {
-              this.formUpdate = Object.assign(this.unObserver(this.formUpdate), res.data.data)
-            }).catch((err) => {
-              this.formatErrors(err)
+        mixins: [component, form],
+        data() {
+            return {
+                formUpdate: {
+                    name: '',
+                    password: '',
+                    password_confirmation: '',
+                    status: 1,
+                    role_id: '',
+                    email: ''
+                },
+                ruleUpdate: Validator(this),
+                roles: []
+            }
+        },
+        mounted() {
+            this.$nextTick(() => {
+                this.$http.get(`admin/${this.componentProps.id}/edit`).then((res) => {
+                    this.formUpdate = Object.assign({}, this.formUpdate, res.data.data.row)
+                    this.roles = res.data.data.roles
+                }).catch((err) => {
+                    this.formatErrors(err)
+                })
             })
-          })
         }
     }
 </script>

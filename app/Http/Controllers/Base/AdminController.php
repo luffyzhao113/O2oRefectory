@@ -13,10 +13,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Base\Admin\DestroyRequest;
 use App\Http\Requests\Base\Admin\StoreRequest;
 use App\Http\Requests\Base\Admin\UpdateRequest;
-use App\Model\BaseAdmin;
 use App\Repositories\Modules\BaseAdmin\Interfaces;
 use App\Searchs\Modules\Base\Admin\IndexSearch;
-use App\Searchs\Modules\Base\Admin\ListsSearch;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -34,12 +32,9 @@ class AdminController extends Controller
      * @throws \luffyzhao\laravelTools\Searchs\Exceptions\SearchException
      */
     public function lists(Request $request){
-        $search = new ListsSearch($request->all());
 
         return $this->respondWithSuccess(
-            app(\App\Repositories\Modules\BaseRole\Interfaces::class)->getWhere(
-                $search->toArray()
-            )
+            app(\App\Repositories\Modules\BaseRole\Interfaces::class)->getWhere([])
         );
     }
 
@@ -95,6 +90,21 @@ class AdminController extends Controller
         );
     }
 
+    /**
+     * 修改用户 get
+     * edit
+     * @param Request $request
+     * @param $domain
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * @author luffyzhao@vip.126.com
+     */
+    public function edit(Request $request, $id){
+        return $this->respondWithSuccess([
+            'roles' =>     app(\App\Repositories\Modules\BaseRole\Interfaces::class)->getWhere([]),
+            'row' => $this->repo->find($id)
+        ]);
+    }
 
     /**
      * 更新用户

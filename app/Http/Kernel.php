@@ -35,7 +35,6 @@ class Kernel extends HttpKernel
         ],
 
         'base' => [
-            'base.logs',
             'throttle:200,1',
             'bindings',
         ],
@@ -63,7 +62,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'entrust' => \App\Http\Middleware\EntrustMiddleware::class,
-        'base.logs' => \App\Http\Middleware\BaseLogsMiddleware::class
+        'entrust' => \App\Http\Middleware\EntrustMiddleware::class
     ];
 }

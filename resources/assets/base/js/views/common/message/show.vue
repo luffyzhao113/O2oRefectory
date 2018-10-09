@@ -1,7 +1,7 @@
 <template>
     <component-modal title="查看通知">
-        <h3>{{data.data.title}}</h3>
-        {{data.data.content}}
+        <h3>{{componentProps.data.title}}</h3>
+        {{componentProps.data.content}}
     </component-modal>
 </template>
 
@@ -14,8 +14,8 @@
     name: "update",
     mixins: [component],
     mounted(){
-      if(!this.data.read_at) {
-        this.$http.put(`auth/message/${this.data.id}`).then((res) => {
+      if(!this.componentProps.read_at) {
+        this.$http.put(`message/${this.componentProps.id}`).then((res) => {
           this.$store.commit('decrement')
         })
       }

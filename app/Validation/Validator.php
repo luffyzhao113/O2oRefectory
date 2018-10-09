@@ -39,9 +39,26 @@ class Validator extends Base
      *
      * @author luffyzhao@vip.126.com
      */
-    public function ValidateHasData($attribute, $value, $parameters){
+    public function ValidateHasData($attribute, $value, $parameters)
+    {
         $table = $parameters[0] ?? '';
         $column = $parameters[1] ?? 'parent_id';
+
         return DB::table($table)->where($column, '=', $value)->value('id') === null ? true : false;
+    }
+
+    /**
+     * 验证base64格式
+     * ValidateBase64
+     * @param $attribute
+     * @param $value
+     * @param $parameters
+     * @author luffyzhao@vip.126.com
+     * @return bool
+     */
+    public function ValidateBase64($attribute, $value, $parameters)
+    {
+        $base = explode(',', $value);
+        return (bool) preg_match('/data:[a-z]+\/[a-z]+;base64/', $base[0]);
     }
 }

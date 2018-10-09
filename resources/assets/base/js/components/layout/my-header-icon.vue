@@ -96,7 +96,6 @@
                 this.$emit('on-change', !this.fullScreen)
             })
             this.$emit('input', isFullscreen)
-            this.$store.dispatch('getMessageNotReadTotal')
         },
         components: {}
     }

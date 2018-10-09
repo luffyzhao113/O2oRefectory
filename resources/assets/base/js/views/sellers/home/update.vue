@@ -1,6 +1,6 @@
 <template>
-    <component-modal title="修改店铺" :width="780">
-        <Form ref="formUpdate" :model="formUpdate" :label-width="80" :rules="ruleUpdate">
+    <component-modal title="修改店铺" :width="900">
+        <Form ref="formUpdate" :model="formUpdate" :label-width="90" :rules="ruleUpdate">
             <Box title="基本信息">
                 <box-item :span="8">
                     <FormItem label="店铺名称" prop="name" >

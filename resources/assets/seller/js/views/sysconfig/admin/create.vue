@@ -30,7 +30,6 @@
 </template>
 
 <script>
-    import PhotoOnce from "../../../components/upload/photo";
     import {Validator} from "../../../async-validator/sysconfig/admin/create"
     import component from "../../../mixins/component";
     import ComponentModal from "../../../components/modal/component-modal";
@@ -41,8 +40,7 @@
         name: "create",
         components: {
             MSelect,
-            ComponentModal,
-            PhotoOnce,
+            ComponentModal
         },
         mixins: [component, form],
         data() {

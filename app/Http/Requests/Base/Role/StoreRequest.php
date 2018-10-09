@@ -34,6 +34,8 @@ class StoreRequest extends FormRequest
             'name' => ['required', 'string', 'between:2,50', Rule::unique('base_roles')],
             'status' => ['required', 'numeric', 'in:0,1'],
             'description' => ['nullable', 'string', 'max:200'],
+            'permissions' => ['nullable', 'array'],
+            'permissions.*' => ['integer'],
         ];
     }
 
@@ -51,6 +53,7 @@ class StoreRequest extends FormRequest
             'name' => '角色名称',
             'status' => '角色状态',
             'description' => '角色说明',
+            'permissions.array' => '格式不正确！',
         ];
     }
 }

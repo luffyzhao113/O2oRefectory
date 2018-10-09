@@ -32,12 +32,26 @@ class DestroyRequest extends FormRequest
     /**
      * @param SellerAdmin $admin
      * @return bool
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function isSuper(SellerAdmin $admin){
         if($admin->getAttribute('role_id') !== 0 && $admin->getAttribute('seller_id') === $this->input('seller_id')){
             return true;
         }
 
-        $this->getValidatorInstance()->errors()->add('role_id', '管理员帐号不能在这里修改');
+        $this->failed('role_id', '管理员帐号不能在这里修改');
+    }
+
+    /**
+     * failed
+     * @param $key
+     * @param $message
+     * @author luffyzhao@vip.126.com
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function failed($key, $message){
+        $validator =  $this->getValidatorInstance();
+        $validator->errors()->add($key, $message);
+        $this->failedValidation($validator);
     }
 }

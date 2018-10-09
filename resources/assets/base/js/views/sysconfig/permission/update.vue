@@ -59,15 +59,9 @@
       }
     },
     mounted(){
-      this.$http.get(`permission`, {
-        params: {islink: 1}
-      }).then((res) => {
-        this.parents = res.data.data
-      }).catch((err) => {
-        this.formatErrors(err)
-      })
-      this.$http.get(`permission/${this.componentProps.id}`).then((res) => {
-        this.formUpdate = res.data.data
+      this.$http.get(`permission/${this.componentProps.id}/edit`).then((res) => {
+        this.formUpdate = Object.assign({}, this.formUpdate, res.data.data.row)
+        this.parents = res.data.data.parents
       }).catch((err) => {
         this.formatErrors(err)
       })

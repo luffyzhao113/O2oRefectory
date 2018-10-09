@@ -1,18 +1,18 @@
 webpackJsonp([1],{
 
-/***/ 112:
+/***/ 107:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(243)
+  __webpack_require__(229)
 }
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(245)
+var __vue_script__ = __webpack_require__(231)
 /* template */
-var __vue_template__ = __webpack_require__(276)
+var __vue_template__ = __webpack_require__(258)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -52,7 +52,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 117:
+/***/ 112:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82,19 +82,19 @@ exports.default = {
 
 /***/ }),
 
-/***/ 118:
+/***/ 113:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(121)
+  __webpack_require__(116)
 }
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(123)
+var __vue_script__ = __webpack_require__(118)
 /* template */
-var __vue_template__ = __webpack_require__(124)
+var __vue_template__ = __webpack_require__(119)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -134,7 +134,67 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 119:
+/***/ 114:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _http = __webpack_require__(20);
+
+var _http2 = _interopRequireDefault(_http);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  mixins: [_http2.default],
+  methods: {
+    updateSubmit: function updateSubmit(name, url) {
+      var _this = this;
+
+      this.$refs[name].validate(function (valid) {
+        if (valid) {
+          _this.loading = true;
+          _this.$http.put(url, _this.unObserver(_this._data[name])).then(function (res) {
+            _this.$Message.success('Success!');
+            _this.change(false);
+          }).catch(function (res) {
+            _this.formatErrors(res);
+          }).finally(function () {
+            _this.loading = false;
+          });
+        } else {
+          _this.$Message.error('验证不通过!');
+        }
+      });
+    },
+    createSubmit: function createSubmit(name, url) {
+      var _this2 = this;
+
+      this.$refs[name].validate(function (valid) {
+        if (valid) {
+          _this2.loading = true;
+          _this2.$http.post(url, _this2._data[name]).then(function (res) {
+            _this2.$Message.success('Success!');
+            _this2.change(false);
+          }).catch(function (res) {
+            _this2.formatErrors(res);
+          }).finally(function () {
+            _this2.loading = false;
+          });
+        }
+      });
+    }
+  }
+};
+
+/***/ }),
+
+/***/ 115:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -211,77 +271,17 @@ exports.default = {
 
 /***/ }),
 
-/***/ 120:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _http = __webpack_require__(20);
-
-var _http2 = _interopRequireDefault(_http);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  mixins: [_http2.default],
-  methods: {
-    updateSubmit: function updateSubmit(name, url) {
-      var _this = this;
-
-      this.$refs[name].validate(function (valid) {
-        if (valid) {
-          _this.loading = true;
-          _this.$http.put(url, _this.unObserver(_this._data[name])).then(function (res) {
-            _this.$Message.success('Success!');
-            _this.change(false);
-          }).catch(function (res) {
-            _this.formatErrors(res);
-          }).finally(function () {
-            _this.loading = false;
-          });
-        } else {
-          _this.$Message.error('验证不通过!');
-        }
-      });
-    },
-    createSubmit: function createSubmit(name, url) {
-      var _this2 = this;
-
-      this.$refs[name].validate(function (valid) {
-        if (valid) {
-          _this2.loading = true;
-          _this2.$http.post(url, _this2._data[name]).then(function (res) {
-            _this2.$Message.success('Success!');
-            _this2.change(false);
-          }).catch(function (res) {
-            _this2.formatErrors(res);
-          }).finally(function () {
-            _this2.loading = false;
-          });
-        }
-      });
-    }
-  }
-};
-
-/***/ }),
-
-/***/ 121:
+/***/ 116:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(122);
+var content = __webpack_require__(117);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("64136959", content, false, {});
+var update = __webpack_require__(3)("64136959", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -298,10 +298,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 122:
+/***/ 117:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(2)(false);
 // imports
 
 
@@ -313,7 +313,7 @@ exports.push([module.i, "\n.modal-body[data-v-9fca2e18] {\n    max-height: 500px
 
 /***/ }),
 
-/***/ 123:
+/***/ 118:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -361,7 +361,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 124:
+/***/ 119:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -407,25 +407,25 @@ if (false) {
 
 /***/ }),
 
-/***/ 125:
+/***/ 120:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(126)
+  __webpack_require__(121)
 }
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(128)
+var __vue_script__ = __webpack_require__(123)
 /* template */
-var __vue_template__ = __webpack_require__(129)
+var __vue_template__ = __webpack_require__(124)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-6e193d6c"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -459,23 +459,23 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 126:
+/***/ 121:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(127);
+var content = __webpack_require__(122);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("6ff17020", content, false, {});
+var update = __webpack_require__(3)("c67b1df6", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6e193d6c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./my-lists.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6e193d6c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./my-lists.vue");
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6e193d6c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/less-loader/dist/cjs.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./my-lists.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6e193d6c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/less-loader/dist/cjs.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./my-lists.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -486,22 +486,22 @@ if(false) {
 
 /***/ }),
 
-/***/ 127:
+/***/ 122:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(2)(false);
 // imports
 
 
 // module
-exports.push([module.i, "\n.ivu-table .table-info-row td[data-v-6e193d6c]{\n    background-color: #2db7f5;\n    color: #fff;\n}\n", ""]);
+exports.push([module.i, "\n.box-flex-list {\n  position: relative;\n}\n.box-flex-list .ivu-card-head .ivu-btn {\n  float: right;\n}\n.box-flex-list .ivu-card-head p {\n  height: 24px;\n  line-height: 24px;\n}\n.box-flex-list .ivu-table .table-info-row td {\n  background-color: #2db7f5;\n  color: #fff;\n}\n.box-flex-list .ivu-page {\n  text-align: right;\n}\n.box-flex-list .ivu-table-wrapper {\n  margin-bottom: 15px;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 128:
+/***/ 123:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -510,6 +510,7 @@ exports.push([module.i, "\n.ivu-table .table-info-row td[data-v-6e193d6c]{\n    
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+//
 //
 //
 //
@@ -582,7 +583,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 129:
+/***/ 124:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -656,19 +657,19 @@ if (false) {
 
 /***/ }),
 
-/***/ 130:
+/***/ 125:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(131)
+  __webpack_require__(127)
 }
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(133)
+var __vue_script__ = __webpack_require__(129)
 /* template */
-var __vue_template__ = __webpack_require__(134)
+var __vue_template__ = __webpack_require__(130)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -708,17 +709,69 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 131:
+/***/ 126:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(131)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(133)
+/* template */
+var __vue_template__ = __webpack_require__(134)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-5c0aa147"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\base\\js\\components\\box\\index.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5c0aa147", Component.options)
+  } else {
+    hotAPI.reload("data-v-5c0aa147", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 127:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(132);
+var content = __webpack_require__(128);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("7ef23d25", content, false, {});
+var update = __webpack_require__(3)("7ef23d25", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -735,10 +788,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 132:
+/***/ 128:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(2)(false);
 // imports
 
 
@@ -750,7 +803,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 /***/ }),
 
-/***/ 133:
+/***/ 129:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -809,7 +862,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 134:
+/***/ 130:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -856,71 +909,122 @@ if (false) {
 
 /***/ }),
 
-/***/ 136:
+/***/ 131:
 /***/ (function(module, exports, __webpack_require__) {
 
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(250)
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(132);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("8e96eae4", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5c0aa147\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./index.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5c0aa147\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./index.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
 }
-var normalizeComponent = __webpack_require__(3)
-/* script */
-var __vue_script__ = __webpack_require__(252)
-/* template */
-var __vue_template__ = __webpack_require__(253)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-5c0aa147"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\base\\js\\components\\box\\index.vue"
 
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5c0aa147", Component.options)
-  } else {
-    hotAPI.reload("data-v-5c0aa147", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
+/***/ }),
 
-module.exports = Component.exports
+/***/ 132:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.box[data-v-5c0aa147] {\n    margin-bottom: 10px;\n    border: 1px solid #dddee1;\n    border-radius: 5px;\n}\n.box[data-v-5c0aa147]:last-child {\n    margin-bottom: 0px;\n}\n.box-header[data-v-5c0aa147] {\n    padding: 8px 48px 8px 16px;\n    color: #495060;\n    font-size: 12px;\n    line-height: 16px;\n    border-bottom: 1px solid #dddee1;\n}\n.box-detail[data-v-5c0aa147] {\n    padding: 10px;\n}\n", ""]);
+
+// exports
 
 
 /***/ }),
 
-/***/ 143:
+/***/ 133:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+    name: "box",
+    props: {
+        title: {
+            type: String,
+            default: '标题'
+        }
+    }
+};
+
+/***/ }),
+
+/***/ 134:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "box" },
+    [
+      _c("div", { staticClass: "box-header" }, [_vm._v(_vm._s(_vm.title))]),
+      _vm._v(" "),
+      _c("Row", { staticClass: "box-detail" }, [_vm._t("default")], 2)
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5c0aa147", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 141:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(265)
+  __webpack_require__(247)
 }
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(267)
+var __vue_script__ = __webpack_require__(249)
 /* template */
-var __vue_template__ = __webpack_require__(268)
+var __vue_template__ = __webpack_require__(250)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -960,17 +1064,17 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 243:
+/***/ 229:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(244);
+var content = __webpack_require__(230);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("37988ae4", content, false, {});
+var update = __webpack_require__(3)("37988ae4", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -987,10 +1091,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 244:
+/***/ 230:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(2)(false);
 // imports
 
 
@@ -1002,7 +1106,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 /***/ }),
 
-/***/ 245:
+/***/ 231:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1012,27 +1116,27 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _myLists = __webpack_require__(125);
+var _myLists = __webpack_require__(120);
 
 var _myLists2 = _interopRequireDefault(_myLists);
 
-var _lists = __webpack_require__(119);
+var _lists = __webpack_require__(115);
 
 var _lists2 = _interopRequireDefault(_lists);
 
-var _trueOrFalse = __webpack_require__(130);
+var _trueOrFalse = __webpack_require__(125);
 
 var _trueOrFalse2 = _interopRequireDefault(_trueOrFalse);
 
-var _show = __webpack_require__(246);
+var _show = __webpack_require__(232);
 
 var _show2 = _interopRequireDefault(_show);
 
-var _create = __webpack_require__(260);
+var _create = __webpack_require__(242);
 
 var _create2 = _interopRequireDefault(_create);
 
-var _update = __webpack_require__(270);
+var _update = __webpack_require__(252);
 
 var _update2 = _interopRequireDefault(_update);
 
@@ -1164,19 +1268,19 @@ exports.default = {
 
 /***/ }),
 
-/***/ 246:
+/***/ 232:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(247)
+  __webpack_require__(233)
 }
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(249)
+var __vue_script__ = __webpack_require__(235)
 /* template */
-var __vue_template__ = __webpack_require__(259)
+var __vue_template__ = __webpack_require__(241)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1216,17 +1320,17 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 247:
+/***/ 233:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(248);
+var content = __webpack_require__(234);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("6e59735d", content, false, {});
+var update = __webpack_require__(3)("6e59735d", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -1243,10 +1347,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 248:
+/***/ 234:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(2)(false);
 // imports
 
 
@@ -1258,7 +1362,7 @@ exports.push([module.i, "\n.tr[data-v-739aa308] {\n    text-align: right;\n}\n",
 
 /***/ }),
 
-/***/ 249:
+/***/ 235:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1268,11 +1372,11 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _componentModal = __webpack_require__(118);
+var _componentModal = __webpack_require__(113);
 
 var _componentModal2 = _interopRequireDefault(_componentModal);
 
-var _component = __webpack_require__(117);
+var _component = __webpack_require__(112);
 
 var _component2 = _interopRequireDefault(_component);
 
@@ -1280,11 +1384,11 @@ var _http = __webpack_require__(20);
 
 var _http2 = _interopRequireDefault(_http);
 
-var _index = __webpack_require__(136);
+var _index = __webpack_require__(126);
 
 var _index2 = _interopRequireDefault(_index);
 
-var _index3 = __webpack_require__(254);
+var _index3 = __webpack_require__(236);
 
 var _index4 = _interopRequireDefault(_index3);
 
@@ -1358,122 +1462,19 @@ exports.default = {
 
 /***/ }),
 
-/***/ 250:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(251);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("8e96eae4", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5c0aa147\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./index.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5c0aa147\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./index.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-
-/***/ 251:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.box[data-v-5c0aa147] {\n    margin-bottom: 10px;\n    border: 1px solid #dddee1;\n    border-radius: 5px;\n}\n.box[data-v-5c0aa147]:last-child {\n    margin-bottom: 0px;\n}\n.box-header[data-v-5c0aa147] {\n    padding: 8px 48px 8px 16px;\n    color: #495060;\n    font-size: 12px;\n    line-height: 16px;\n    border-bottom: 1px solid #dddee1;\n}\n.box-detail[data-v-5c0aa147] {\n    padding: 10px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ 252:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-exports.default = {
-    name: "box",
-    props: {
-        title: {
-            type: String,
-            default: '标题'
-        }
-    }
-};
-
-/***/ }),
-
-/***/ 253:
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "box" },
-    [
-      _c("div", { staticClass: "box-header" }, [_vm._v(_vm._s(_vm.title))]),
-      _vm._v(" "),
-      _c("Row", { staticClass: "box-detail" }, [_vm._t("default")], 2)
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5c0aa147", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ 254:
+/***/ 236:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(255)
+  __webpack_require__(237)
 }
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(257)
+var __vue_script__ = __webpack_require__(239)
 /* template */
-var __vue_template__ = __webpack_require__(258)
+var __vue_template__ = __webpack_require__(240)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1513,17 +1514,17 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 255:
+/***/ 237:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(256);
+var content = __webpack_require__(238);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("220c88b4", content, false, {});
+var update = __webpack_require__(3)("220c88b4", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -1540,10 +1541,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 256:
+/***/ 238:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(2)(false);
 // imports
 
 
@@ -1555,7 +1556,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""])
 
 /***/ }),
 
-/***/ 257:
+/***/ 239:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1587,7 +1588,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 258:
+/***/ 240:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1613,7 +1614,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 259:
+/***/ 241:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1622,7 +1623,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "component-modal",
-    { attrs: { title: "查看店铺", width: 750, loading: _vm.loading } },
+    { attrs: { title: "查看店铺", width: 900, loading: _vm.loading } },
     [
       _c(
         "box",
@@ -1660,19 +1661,19 @@ if (false) {
 
 /***/ }),
 
-/***/ 260:
+/***/ 242:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(261)
+  __webpack_require__(243)
 }
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(263)
+var __vue_script__ = __webpack_require__(245)
 /* template */
-var __vue_template__ = __webpack_require__(269)
+var __vue_template__ = __webpack_require__(251)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1712,17 +1713,17 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 261:
+/***/ 243:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(262);
+var content = __webpack_require__(244);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("0d0679ee", content, false, {});
+var update = __webpack_require__(3)("0d0679ee", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -1739,10 +1740,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 262:
+/***/ 244:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(2)(false);
 // imports
 
 
@@ -1754,7 +1755,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 /***/ }),
 
-/***/ 263:
+/***/ 245:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1764,29 +1765,29 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _componentModal = __webpack_require__(118);
+var _componentModal = __webpack_require__(113);
 
 var _componentModal2 = _interopRequireDefault(_componentModal);
 
-var _create = __webpack_require__(264);
+var _create = __webpack_require__(246);
 
-var _index = __webpack_require__(136);
+var _index = __webpack_require__(126);
 
 var _index2 = _interopRequireDefault(_index);
 
-var _boxItem = __webpack_require__(143);
+var _boxItem = __webpack_require__(141);
 
 var _boxItem2 = _interopRequireDefault(_boxItem);
 
-var _form = __webpack_require__(120);
+var _form = __webpack_require__(114);
 
 var _form2 = _interopRequireDefault(_form);
 
-var _trueOrFalse = __webpack_require__(130);
+var _trueOrFalse = __webpack_require__(125);
 
 var _trueOrFalse2 = _interopRequireDefault(_trueOrFalse);
 
-var _component = __webpack_require__(117);
+var _component = __webpack_require__(112);
 
 var _component2 = _interopRequireDefault(_component);
 
@@ -1871,7 +1872,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 264:
+/***/ 246:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1882,7 +1883,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Validator = undefined;
 
-var _index = __webpack_require__(10);
+var _index = __webpack_require__(6);
 
 var Validator = exports.Validator = function Validator(data) {
     var domain = function domain(rule, value, callback) {
@@ -1939,17 +1940,17 @@ var Validator = exports.Validator = function Validator(data) {
 
 /***/ }),
 
-/***/ 265:
+/***/ 247:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(266);
+var content = __webpack_require__(248);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("0dbe4c5e", content, false, {});
+var update = __webpack_require__(3)("0dbe4c5e", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -1966,10 +1967,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 266:
+/***/ 248:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(2)(false);
 // imports
 
 
@@ -1981,7 +1982,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 
-/***/ 267:
+/***/ 249:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2006,7 +2007,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 268:
+/***/ 250:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -2027,7 +2028,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 269:
+/***/ 251:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -2036,7 +2037,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "component-modal",
-    { attrs: { title: "添加店铺", loading: _vm.loading, width: 780 } },
+    { attrs: { title: "添加店铺", loading: _vm.loading, width: 900 } },
     [
       _c(
         "Form",
@@ -2044,7 +2045,7 @@ var render = function() {
           ref: "formCreate",
           attrs: {
             model: _vm.formCreate,
-            "label-width": 80,
+            "label-width": 90,
             rules: _vm.ruleCreate
           }
         },
@@ -2284,19 +2285,19 @@ if (false) {
 
 /***/ }),
 
-/***/ 270:
+/***/ 252:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(271)
+  __webpack_require__(253)
 }
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(273)
+var __vue_script__ = __webpack_require__(255)
 /* template */
-var __vue_template__ = __webpack_require__(275)
+var __vue_template__ = __webpack_require__(257)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -2336,17 +2337,17 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 271:
+/***/ 253:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(272);
+var content = __webpack_require__(254);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("15c89bc8", content, false, {});
+var update = __webpack_require__(3)("15c89bc8", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -2363,10 +2364,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 272:
+/***/ 254:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(2)(false);
 // imports
 
 
@@ -2378,7 +2379,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 /***/ }),
 
-/***/ 273:
+/***/ 255:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2388,29 +2389,29 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _componentModal = __webpack_require__(118);
+var _componentModal = __webpack_require__(113);
 
 var _componentModal2 = _interopRequireDefault(_componentModal);
 
-var _component = __webpack_require__(117);
+var _component = __webpack_require__(112);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _form = __webpack_require__(120);
+var _form = __webpack_require__(114);
 
 var _form2 = _interopRequireDefault(_form);
 
-var _update = __webpack_require__(274);
+var _update = __webpack_require__(256);
 
-var _index = __webpack_require__(136);
+var _index = __webpack_require__(126);
 
 var _index2 = _interopRequireDefault(_index);
 
-var _boxItem = __webpack_require__(143);
+var _boxItem = __webpack_require__(141);
 
 var _boxItem2 = _interopRequireDefault(_boxItem);
 
-var _trueOrFalse = __webpack_require__(130);
+var _trueOrFalse = __webpack_require__(125);
 
 var _trueOrFalse2 = _interopRequireDefault(_trueOrFalse);
 
@@ -2501,7 +2502,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 274:
+/***/ 256:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2512,7 +2513,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Validator = undefined;
 
-var _index = __webpack_require__(10);
+var _index = __webpack_require__(6);
 
 var Validator = exports.Validator = function Validator(data) {
     var domain = function domain(rule, value, callback) {
@@ -2571,7 +2572,7 @@ var Validator = exports.Validator = function Validator(data) {
 
 /***/ }),
 
-/***/ 275:
+/***/ 257:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -2580,7 +2581,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "component-modal",
-    { attrs: { title: "修改店铺", width: 780 } },
+    { attrs: { title: "修改店铺", width: 900 } },
     [
       _c(
         "Form",
@@ -2588,7 +2589,7 @@ var render = function() {
           ref: "formUpdate",
           attrs: {
             model: _vm.formUpdate,
-            "label-width": 80,
+            "label-width": 90,
             rules: _vm.ruleUpdate
           }
         },
@@ -2831,7 +2832,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 276:
+/***/ 258:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
