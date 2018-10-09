@@ -55,6 +55,13 @@ Route::group(
                     ]
                 );
 
+                Route::resource('seller_perms', 'Seller\PermissionController')->except(['show'])->names(
+                    [
+                        'create' => 'seller_perms.store',
+                        'edit' => 'seller_perms.update',
+                    ]
+                );
+
             }
         );
 

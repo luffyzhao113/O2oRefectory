@@ -10,8 +10,16 @@ html, body {
     }
 }
 
+
+
 .layout-content-main {
     .ivu-card {
         margin-bottom: 15px;
+        .ivu-card-head p{
+            height: 24px;
+            .ivu-btn{
+                float: right;
+            }
+        }
     }
 }
