@@ -30,6 +30,8 @@ class CreateBaseCategorysTable extends Migration
                 $table->increments('id');
                 $table->string('name', 20)->comment('属性名');
                 $table->unsignedInteger('category_id')->comment('分类ID');
+
+                $table->index('category_id');
             }
         );
 
@@ -39,6 +41,8 @@ class CreateBaseCategorysTable extends Migration
                 $table->increments('id');
                 $table->string('name', 20)->comment('属性值');
                 $table->unsignedInteger('attribute_id')->comment('属性ID');
+
+                $table->index('attribute_id');
             }
         );
     }
