@@ -42,7 +42,7 @@ class AuthController extends Controller
 
         return $this->respondWithSuccess(
             [
-                'token' => $token->get(),
+                'token' => $token,
             ]
         );
     }
