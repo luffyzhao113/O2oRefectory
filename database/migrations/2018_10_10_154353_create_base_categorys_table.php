@@ -14,12 +14,13 @@ class CreateBaseCategorysTable extends Migration
     public function up()
     {
         Schema::create(
-            'base_categorys',
+            'base_categories',
             function (Blueprint $table) {
                 $table->increments('id');
                 $table->unsignedInteger('parent_id')->comment("父id");
                 $table->string('name', 50)->comment('分类名称');
                 $table->smallInteger('sort')->default(255)->comment('排序');
+                $table->tinyInteger('level')->default(1)->comment('分类层级');
                 $table->timestamps();
             }
         );
@@ -54,7 +55,7 @@ class CreateBaseCategorysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('base_categorys');
+        Schema::dropIfExists('base_categories');
         Schema::dropIfExists('base_attributes');
         Schema::dropIfExists('base_attribute_values');
     }

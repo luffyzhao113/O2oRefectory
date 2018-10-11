@@ -1,5 +1,6 @@
 <template>
-    <Cascader :data="formatData" v-model="formatValue" :change-on-select="true" trigger="hover" :placeholder="placeholder"></Cascader>
+    <Cascader :data="formatData" v-model="formatValue" :change-on-select="true" trigger="hover"
+              :placeholder="placeholder" transfer></Cascader>
 </template>
 
 <script>

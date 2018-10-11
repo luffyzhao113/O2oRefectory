@@ -62,5 +62,21 @@ export const IndexRouter = [
         component: resolve => {
             require(['../../views/sellers/permission/index.vue'], resolve)
         }
+    },
+    {
+        path: 'category.home',
+        name: 'category.home',
+        meta: {title: '类目列表'},
+        component: resolve => {
+            require(['../../views/category/home/index.vue'], resolve)
+        }
+    },
+    {
+        path: 'category.attribute',
+        name: 'category.attribute',
+        meta: {title: '类目属性'},
+        component: resolve => {
+            require(['../../views/category/attribute/index.vue'], resolve)
+        }
     }
 ]

@@ -62,6 +62,20 @@ Route::group(
                     ]
                 );
 
+                Route::resource('category', 'CategoryController')->except(['show'])->names(
+                    [
+                        'create' => 'category.store',
+                        'edit' => 'category.update',
+                    ]
+                );
+
+                Route::resource('attribute', 'AttributeController')->except(['show'])->names(
+                    [
+                        'create' => 'attribute.store',
+                        'edit' => 'attribute.update',
+                    ]
+                );
+
             }
         );
 

@@ -2,7 +2,7 @@
     <component-modal title="创建用户" :loading="loading">
         <Form ref="formCreate" :model="formCreate" :label-width="80" :rules="ruleCreate">
             <FormItem label="用户姓名" prop="name">
-                <Input v-model="formCreate.name" placeholder="用户邮箱"></Input>
+                <Input v-model="formCreate.name" placeholder="用户姓名"></Input>
             </FormItem>
             <FormItem label="用户邮箱" prop="email">
                 <Input v-model="formCreate.email" placeholder="用户邮箱"></Input>

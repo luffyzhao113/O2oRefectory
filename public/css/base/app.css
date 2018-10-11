@@ -1,1 +1,23 @@
-body,html{height:100%;width:100%;position:relative}.ivu-table-cell-tooltip .ivu-tooltip-rel{vertical-align:top}.layout-content-main .ivu-card{margin-bottom:15px}.layout-content-main .ivu-card .ivu-card-head p{height:24px}.layout-content-main .ivu-card .ivu-card-head p .ivu-btn{float:right}
+html,
+body {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.ivu-table-cell-tooltip .ivu-tooltip-rel {
+  vertical-align: top;
+}
+
+.layout-content-main .ivu-card {
+  margin-bottom: 15px;
+}
+
+.layout-content-main .ivu-card .ivu-card-head p {
+  height: 24px;
+}
+
+.layout-content-main .ivu-card .ivu-card-head p .ivu-btn {
+  float: right;
+}
+

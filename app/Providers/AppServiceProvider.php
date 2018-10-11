@@ -14,6 +14,8 @@ use App\Repositories\Modules\Seller\Provider as Seller;
 use App\Repositories\Modules\SellerAdmin\Provider as SellerAdmin;
 use App\Repositories\Modules\SellerPermission\Provider as SellerPermission;
 use App\Repositories\Modules\SellerRole\Provider as SellerRole;
+use App\Repositories\Modules\BaseCategory\Provider as BaseCategory;
+use App\Repositories\Modules\BaseAttribute\Provider as BaseAttribute;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -47,5 +49,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->register(SellerAdmin::class);
         $this->app->register(SellerPermission::class);
         $this->app->register(SellerRole::class);
+        $this->app->register(BaseCategory::class);
+        $this->app->register(BaseAttribute::class);
     }
 }
