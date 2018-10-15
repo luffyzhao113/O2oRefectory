@@ -3,10 +3,10 @@
         <slot></slot>
         <div class="box-flex-list">
             <Card dis-hover>
-                <p slot="title">
+                <div slot="title">
                     <slot name="title"><span>列表</span></slot>
-                    <slot name="button"></slot>
-                </p>
+                    <div class="right"><slot name="button"></slot></div>
+                </div>
                 <Table :columns="tableCol" :data="value.data" size="small" ref="table" :row-class-name="rowClassName"
                        :loading="loading"></Table>
                 <Page :total="value.page.total" size="small" :current="value.page.current"
@@ -69,10 +69,10 @@
     .box-flex-list {
         position: relative;
         .ivu-card-head {
-            .ivu-btn {
+            .right {
                 float: right;
             }
-            p {
+            .title {
                 height: 24px;
                 line-height: 24px;
             }

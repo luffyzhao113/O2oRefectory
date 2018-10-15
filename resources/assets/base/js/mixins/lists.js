@@ -17,12 +17,12 @@ export default {
         }
     },
     mounted() {
-        this.search()
+        this.$nextTick(() => {
+            this.search()
+        });
     },
     methods: {
-        search(page = 1) {
-
-        },
+        search(page = 1) {},
         assignmentData(data) {
             this.data.data = data.data;
             this.data.page.total = data.total

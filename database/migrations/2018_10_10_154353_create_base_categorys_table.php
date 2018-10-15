@@ -29,21 +29,11 @@ class CreateBaseCategorysTable extends Migration
             'base_attributes',
             function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('name', 20)->comment('属性名');
                 $table->unsignedInteger('category_id')->comment('分类ID');
-
+                $table->string('name', 20)->comment('属性名');
+                $table->string('values', 200)->comment('属性值,数组');
+                $table->timestamps();
                 $table->index('category_id');
-            }
-        );
-
-        Schema::create(
-            'base_attribute_values',
-            function (Blueprint $table) {
-                $table->increments('id');
-                $table->string('name', 20)->comment('属性值');
-                $table->unsignedInteger('attribute_id')->comment('属性ID');
-
-                $table->index('attribute_id');
             }
         );
     }
@@ -57,6 +47,5 @@ class CreateBaseCategorysTable extends Migration
     {
         Schema::dropIfExists('base_categories');
         Schema::dropIfExists('base_attributes');
-        Schema::dropIfExists('base_attribute_values');
     }
 }

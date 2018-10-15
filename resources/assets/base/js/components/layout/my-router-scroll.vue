@@ -14,7 +14,7 @@
                 </Dropdown>
             </div>
             <div class="layout-router-scroll-body">
-                <Tag type="dot" v-for="(item, index) in openPageList" :key="index" :color="currentPage === item.name ? 'primary':'default'" :closable="item.name !== 'home'" :name="index" @on-close="tagClose" @click.native="menuRouter(item.name)">{{ item.meta.title }}</Tag>
+                <Tag type="dot" v-for="(item, index) in openPageList" :key="index" :color="currentPage === item.name ? 'primary':'default'" :closable="item.name !== 'home'" :name="index" @on-close="tagClose" @click.native="menuRouter(item)">{{ item.meta.title }}</Tag>
             </div>
         </div>
     </div>
@@ -44,10 +44,8 @@
                     vm: this
                 })
             },
-            menuRouter (name) {
-                this.$router.push({
-                    name
-                })
+            menuRouter (router) {
+                this.$router.push(router)
             }
         },
     }

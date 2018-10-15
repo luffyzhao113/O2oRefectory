@@ -1,4 +1,4 @@
-webpackJsonp([14],[
+webpackJsonp([15],[
 /* 0 */,
 /* 1 */
 /***/ (function(module, exports) {
@@ -1492,10 +1492,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.router = undefined;
 
-var _vue = __webpack_require__(4);
-
-var _vue2 = _interopRequireDefault(_vue);
-
 var _vueRouter = __webpack_require__(9);
 
 var _vueRouter2 = _interopRequireDefault(_vueRouter);
@@ -1956,7 +1952,7 @@ exports.default = store;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -1965,101 +1961,115 @@ var _cache = __webpack_require__(5);
 
 var _cache2 = _interopRequireDefault(_cache);
 
+var _router = __webpack_require__(19);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = {
-  state: {
-    currentPage: 'common.home',
-    notCachePages: ['common.login', 'common.error-404', 'common.error-403', 'common.error-500', 'common.lock'],
-    openPageList: [{
-      meta: { title: '首页' },
-      path: '/admin/home',
-      name: 'common.home'
-    }],
-    body: {
-      width: document.body.clientWidth,
-      height: document.body.clientHeight
-    },
-    layoutContent: {
-      height: 0
-    }
-  },
-  mutations: {
-    init: function init(state) {
-      state.openPageList = _cache2.default.$cache.get('openPageList') || state.openPageList;
-      state.currentPage = _cache2.default.$cache.get('currentPage') || state.currentPage;
-      state.body.width = document.body.clientWidth;
-      state.body.height = document.body.clientHeight;
-      state.layoutContent.height = state.body.height - 42 - 60;
-      window.addEventListener('resize', function () {
-        state.body.width = document.body.clientWidth;
-        state.body.height = document.body.clientHeight;
-        state.layoutContent.height = state.body.height - 42 - 60;
-      });
-    },
-    openPage: function openPage(state, router) {
-      var exist = state.notCachePages.find(function (val) {
-        return val === router.name;
-      });
-      if (!exist) {
-        if (state.openPageList.findIndex(function (n) {
-          return n.name === router.name;
-        }) === -1) {
-          state.openPageList.push({
-            meta: router.meta,
-            path: router.path,
-            name: router.name
-          });
-          _cache2.default.$cache.set('openPageList', state.openPageList);
+    state: {
+        currentPage: 'common.home',
+        notCachePages: ['common.login', 'common.error-404', 'common.error-403', 'common.error-500', 'common.lock'],
+        openPageList: [{
+            meta: { title: '首页' },
+            path: '/admin/home',
+            name: 'common.home'
+        }],
+        body: {
+            width: document.body.clientWidth,
+            height: document.body.clientHeight
+        },
+        layoutContent: {
+            height: 0
         }
-        state.currentPage = router.name;
-        _cache2.default.$cache.set('currentPage', state.currentPage);
-      }
     },
-    closePage: function closePage(state, data) {
-      var closePage = state.openPageList[data.index];
-      if ((typeof closePage === 'undefined' ? 'undefined' : _typeof(closePage)) === 'object') {
-        if (closePage.name === state.currentPage) {
-          state.currentPage = state.openPageList[data.index - 1].name;
-          _cache2.default.$cache.set('currentPage', state.currentPage);
-          data.vm.$router.push(state.openPageList[data.index - 1]);
-        }
-        state.openPageList.splice(data.index, 1);
-        _cache2.default.$cache.set('openPageList', state.openPageList);
-      }
-    },
-    closePages: function closePages(state, data) {
-      if (data.name === 'closeAll') {
-        state.openPageList.splice(1);
-        _cache2.default.$cache.set('openPageList', state.openPageList);
-        if (state.currentPage !== state.openPageList[0].name) {
-          state.currentPage = state.openPageList[0].name;
-          _cache2.default.$cache.set('currentPage', state.currentPage);
-          data.vm.$router.push(state.openPageList[0]);
-        }
-      } else {
-        var index = state.openPageList.findIndex(function (n) {
-          return n.name === state.currentPage;
-        });
-        var arr = [];
+    mutations: {
+        init: function init(state) {
+            state.openPageList = _cache2.default.$cache.get('openPageList') || state.openPageList;
+            state.currentPage = _cache2.default.$cache.get('currentPage') || state.currentPage;
+            state.body.width = document.body.clientWidth;
+            state.body.height = document.body.clientHeight;
+            state.layoutContent.height = state.body.height - 42 - 60;
+            window.addEventListener('resize', function () {
+                state.body.width = document.body.clientWidth;
+                state.body.height = document.body.clientHeight;
+                state.layoutContent.height = state.body.height - 42 - 60;
+            });
+        },
+        openPage: function openPage(state, router) {
+            var exist = state.notCachePages.find(function (val) {
+                return val === router.name;
+            });
+            if (!exist) {
+                if (state.openPageList.findIndex(function (n) {
+                    return n.name === router.name;
+                }) === -1) {
+                    state.openPageList.push({
+                        meta: router.meta,
+                        path: router.path,
+                        name: router.name,
+                        query: router.query
+                    });
+                    _cache2.default.$cache.set('openPageList', state.openPageList);
+                }
+                state.currentPage = router.name;
+                _cache2.default.$cache.set('currentPage', state.currentPage);
+            }
+        },
+        closePage: function closePage(state, data) {
+            var closePage = state.openPageList[data.index];
+            if ((typeof closePage === 'undefined' ? 'undefined' : _typeof(closePage)) === 'object') {
+                if (closePage.name === state.currentPage) {
+                    state.currentPage = state.openPageList[data.index - 1].name;
+                    _cache2.default.$cache.set('currentPage', state.currentPage);
+                    _router.router.push(state.openPageList[data.index - 1]);
+                }
+                state.openPageList.splice(data.index, 1);
+                _cache2.default.$cache.set('openPageList', state.openPageList);
+            }
+        },
+        closePages: function closePages(state, data) {
+            if (data.name === 'closeAll') {
+                state.openPageList.splice(1);
+                _cache2.default.$cache.set('openPageList', state.openPageList);
+                if (state.currentPage !== state.openPageList[0].name) {
+                    state.currentPage = state.openPageList[0].name;
+                    _cache2.default.$cache.set('currentPage', state.currentPage);
+                    _router.router.push(state.openPageList[0]);
+                }
+            } else {
+                var index = state.openPageList.findIndex(function (n) {
+                    return n.name === state.currentPage;
+                });
+                var arr = [];
 
-        arr.push(state.openPageList[0]);
-        if (index !== 0) {
-          arr.push(state.openPageList[index]);
+                arr.push(state.openPageList[0]);
+                if (index !== 0) {
+                    arr.push(state.openPageList[index]);
+                }
+                state.openPageList = arr;
+                _cache2.default.$cache.set('openPageList', state.openPageList);
+            }
+        },
+        savePageCache: function savePageCache(state, cache) {
+            _cache2.default.$cache.set(state.currentPage + '_formSaveDraft', cache);
         }
-        state.openPageList = arr;
-        _cache2.default.$cache.set('openPageList', state.openPageList);
-      }
     },
-    savePageCache: function savePageCache(state, cache) {
-      _cache2.default.$cache.set(state.currentPage + '_formSaveDraft', cache);
+    actions: {
+        getSavePageCache: function getSavePageCache(state) {
+            return _cache2.default.$cache.get(state.state.currentPage + '_formSaveDraft');
+        },
+        closeCurrent: function closeCurrent(_ref) {
+            var state = _ref.state,
+                commit = _ref.commit;
+
+            var index = state.openPageList.findIndex(function (n) {
+                return n.name === state.currentPage;
+            });
+            if (index !== -1) {
+                commit('closePage', { index: index });
+            }
+        }
     }
-  },
-  actions: {
-    getSavePageCache: function getSavePageCache(state) {
-      return _cache2.default.$cache.get(state.state.currentPage + '_formSaveDraft');
-    }
-  }
 };
 
 exports.default = app;
@@ -2160,70 +2170,70 @@ var IndexRouter = exports.IndexRouter = [{
     name: 'common.home',
     meta: { title: '首页' },
     component: function component(resolve) {
-        __webpack_require__.e/* require */(24).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(101)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+        __webpack_require__.e/* require */(9).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(101)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
     }
 }, {
     path: 'profile',
     name: 'common.profile',
     meta: { title: '个人中心' },
     component: function component(resolve) {
-        __webpack_require__.e/* require */(25).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(102)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+        __webpack_require__.e/* require */(12).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(102)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
     }
 }, {
     path: 'sysconfig.permission',
     name: 'sysconfig.permission.index',
     meta: { title: '权限&菜单' },
     component: function component(resolve) {
-        __webpack_require__.e/* require */(19).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(103)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+        __webpack_require__.e/* require */(3).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(103)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
     }
 }, {
     path: 'sysconfig.role',
     name: 'sysconfig.role.index',
     meta: { title: '角色管理' },
     component: function component(resolve) {
-        __webpack_require__.e/* require */(22).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(104)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+        __webpack_require__.e/* require */(6).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(104)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
     }
 }, {
     path: 'sysconfig.admin',
     name: 'sysconfig.admin.index',
     meta: { title: '用户管理' },
     component: function component(resolve) {
-        __webpack_require__.e/* require */(18).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(105)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+        __webpack_require__.e/* require */(2).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(105)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
     }
 }, {
     path: 'common.message',
     name: 'common.message',
     meta: { title: '消息管理' },
     component: function component(resolve) {
-        __webpack_require__.e/* require */(23).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(106)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+        __webpack_require__.e/* require */(7).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(106)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
     }
 }, {
     path: 'admin.sellers',
     name: 'admin.sellers',
     meta: { title: '店铺列表' },
     component: function component(resolve) {
-        __webpack_require__.e/* require */(17).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(107)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+        __webpack_require__.e/* require */(1).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(107)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
     }
 }, {
     path: 'sellers.permission',
     name: 'sellers.permission',
     meta: { title: '商铺权限&菜单' },
     component: function component(resolve) {
-        __webpack_require__.e/* require */(20).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(108)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+        __webpack_require__.e/* require */(4).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(108)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
     }
 }, {
     path: 'category.home',
     name: 'category.home',
     meta: { title: '类目列表' },
     component: function component(resolve) {
-        __webpack_require__.e/* require */(21).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(109)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+        __webpack_require__.e/* require */(5).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(109)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
     }
 }, {
     path: 'category.attribute',
     name: 'category.attribute',
     meta: { title: '类目属性' },
     component: function component(resolve) {
-        __webpack_require__.e/* require */(26).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(308)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+        __webpack_require__.e/* require */(8).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(110)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
     }
 }];
 
@@ -2239,7 +2249,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 var commonRouter = exports.commonRouter = [{
   path: 'login', name: 'common.login', meta: { title: 'Login - 登录' }, component: function component(resolve) {
-    __webpack_require__.e/* require */(8).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(110)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+    __webpack_require__.e/* require */(10).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(111)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
   }
 }, {
   path: '403', name: 'common.403', meta: { title: '403-权限不足' }, component: function component(resolve) {
@@ -2247,11 +2257,11 @@ var commonRouter = exports.commonRouter = [{
   }
 }, {
   path: '500', name: 'common.500', meta: { title: '500-服务端错误' }, component: function component(resolve) {
-    __webpack_require__.e/* require */(12).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(111)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+    __webpack_require__.e/* require */(13).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(112)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
   }
 }, {
   path: 'lock', name: 'common.lock', meta: { title: 'Lock - 锁定' }, component: function component(resolve) {
-    __webpack_require__.e/* require */(9).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(112)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+    __webpack_require__.e/* require */(11).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(113)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
   }
 }, {
   path: '403', name: 'common.403-权限不足', meta: { title: '403-权限不足' }, component: function component(resolve) {
@@ -2259,7 +2269,7 @@ var commonRouter = exports.commonRouter = [{
   }
 }, {
   path: '*', name: 'common.error-404', meta: { title: '404-页面不存在' }, component: function component(resolve) {
-    __webpack_require__.e/* require */(13).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(113)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+    __webpack_require__.e/* require */(14).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(114)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
   }
 }];
 
@@ -2399,6 +2409,8 @@ exports.default = {
         });
     }
 }; //
+//
+//
 //
 //
 //
@@ -3501,10 +3513,8 @@ exports.default = {
                 vm: this
             });
         },
-        menuRouter: function menuRouter(name) {
-            this.$router.push({
-                name: name
-            });
+        menuRouter: function menuRouter(router) {
+            this.$router.push(router);
         }
     }
 };
@@ -3577,7 +3587,7 @@ var render = function() {
               on: { "on-close": _vm.tagClose },
               nativeOn: {
                 click: function($event) {
-                  _vm.menuRouter(item.name)
+                  _vm.menuRouter(item)
                 }
               }
             },
@@ -3898,7 +3908,7 @@ var render = function() {
                   _c(
                     "div",
                     { staticClass: "layout-content-main" },
-                    [_c("router-view")],
+                    [_c("transition", [_c("router-view")], 1)],
                     1
                   )
                 ],

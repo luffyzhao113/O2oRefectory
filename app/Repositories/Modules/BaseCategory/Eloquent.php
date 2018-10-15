@@ -11,4 +11,19 @@ class Eloquent extends RepositoriesAbstract implements Interfaces
     {
         $this->model = $model;
     }
+
+    /**
+     * delete
+     * @param Model $model
+     * @return bool|mixed
+     * @throws \Exception
+     * @author luffyzhao@vip.126.com
+     */
+    public function delete(Model $model)
+    {
+        parent::delete($model);
+        $model->attributes()->delete();
+
+        return true;
+    }
 }

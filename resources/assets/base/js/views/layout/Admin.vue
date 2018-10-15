@@ -11,7 +11,9 @@
                 <Content class="layout-content">
                     <my-router-scroll></my-router-scroll>
                     <div class="layout-content-main">
-                        <router-view></router-view>
+                        <transition>
+                            <router-view></router-view>
+                        </transition>
                     </div>
                 </Content>
                 <Footer class="layout-footer-center">2011-2016 © luffyzhao@vip.126.com</Footer>

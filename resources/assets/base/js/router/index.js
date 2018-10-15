@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import VueRouter from 'vue-router'
 import {IndexRouter} from './modules/index'
 import {commonRouter} from './modules/common'

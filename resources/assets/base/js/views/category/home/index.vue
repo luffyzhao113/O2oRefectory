@@ -41,7 +41,7 @@
                     render: (h, {row}) => {
                         return (<button-group>
                             <i-button size="small" on-click={() => this.showComponent('Update', row)}>修改</i-button>
-                            <i-button size="small" disabled={(this.child(row.id).length > 0)} on-click={() => this.attributes(row)}>分类属性</i-button>
+                            <i-button size="small" on-click={() => this.attributes(row)}>分类属性</i-button>
                             <i-button disabled={(this.child(row.id).length > 0)}
                                       size="small"
                                       on-click={() => this.destroyItem(row, `category/${row.id}`)}>删除
@@ -52,9 +52,6 @@
                 lists: [],
                 loading: false
             }
-        },
-        mounted() {
-            this.search()
         },
         methods: {
             search() {
