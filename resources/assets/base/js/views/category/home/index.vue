@@ -33,6 +33,15 @@
                     render: (h, {row}) => {
                         return <span class="table-col-title">{row.name}</span>
                     }
+                },{
+                    title: '属性',
+                    render: (h, {row}) => {
+                        let value = '';
+                        row.attributes.forEach((val, key) => {
+                            value += key === 0 ? (val.name) : (',' + val.name)
+                        });
+                        return (<div>{value}</div>)
+                    }
                 }, {
                     title: '排序',
                     key: 'sort'

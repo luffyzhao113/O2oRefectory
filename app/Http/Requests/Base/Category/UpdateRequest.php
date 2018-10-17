@@ -54,13 +54,13 @@ class UpdateRequest extends FormRequest
             if ($category->childs()->count() === 0) {
                 if ($category->getAttribute('id') === $this->input('parent_id')) {
                     $this->failed('parent_id', '所属类目不能是类目本身。');
-                }else{
+                } else {
                     return true;
                 }
+            } else {
+                $this->failed('parent_id', '类目下还有其他类目，不能更改所属上级。');
             }
         }
-
-        $this->failed('parent_id', '类目下还有其他类目，不能更改所属上级。');
     }
 
     /**

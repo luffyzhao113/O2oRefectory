@@ -1,6 +1,6 @@
 <template>
     <div class="box">
-        <div class="box-header">{{title}}</div>
+        <div class="box-header"><slot name="title">{{title}}</slot></div>
         <Row class="box-detail">
             <slot></slot>
         </Row>

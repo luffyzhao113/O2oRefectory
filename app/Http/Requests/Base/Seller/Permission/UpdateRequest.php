@@ -31,7 +31,12 @@ class UpdateRequest extends FormRequest
     {
         return [
             'parent_id' => ['required', 'integer'],
-            'name' => ['required', 'string', 'between:2,50', Rule::unique('seller_permissions')->ignore($this->route('permission'))],
+            'name' => [
+                'required',
+                'string',
+                'between:2,50',
+                Rule::unique('seller_permissions', 'name')->ignore($this->route('seller_perm')),
+            ],
             'icon' => ['string', 'nullable', 'max:200', 'required_if:islink,1'],
             'display_name' => ['required', 'string', 'between:2,50'],
             'description' => ['nullable', 'string', 'max:200'],
@@ -56,7 +61,7 @@ class UpdateRequest extends FormRequest
             'islink' => '是否菜单',
             'display_name' => '权限名称',
             'description' => '权限说明',
-            'sort' => '排序'
+            'sort' => '排序',
         ];
     }
 
@@ -71,7 +76,7 @@ class UpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'icon.required_if' => '当菜单&权限为菜单时，菜单图标不能为空'
+            'icon.required_if' => '当菜单&权限为菜单时，菜单图标不能为空',
         ];
     }
 
@@ -82,12 +87,15 @@ class UpdateRequest extends FormRequest
      *
      * @author luffyzhao@vip.126.com
      */
-    public function withValidator(Validator $validator){
-        $validator->after(function ($validator) {
-            if (!$this->linkForParent()) {
-                $validator->errors()->add('islink', '菜单还有下级不能修改成权限');
+    public function withValidator(Validator $validator)
+    {
+        $validator->after(
+            function ($validator) {
+                if (!$this->linkForParent()) {
+                    $validator->errors()->add('islink', '菜单还有下级不能修改成权限');
+                }
             }
-        });
+        );
     }
 
     /**
@@ -98,12 +106,15 @@ class UpdateRequest extends FormRequest
      *
      * @author luffyzhao@vip.126.com
      */
-    protected function linkForParent(){
+    protected function linkForParent()
+    {
         $islink = $this->input('islink');
-        if($islink == 0){
+        if ($islink == 0) {
             $perm = $this->route('permission');
+
             return DB::table('seller_permissions')->where('parent_id', $perm)->count() === 0;
         }
+
         return true;
     }
 }

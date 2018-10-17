@@ -34,7 +34,7 @@ Route::prefix('admin')->namespace('Admin')->group(
 
                         Route::group(
                             [
-                                'middleware' => 'auth:seller'
+                                'middleware' => 'auth:seller',
                             ],
                             function () {
                                 Route::resource('role', 'RoleController')->except(['show'])->names(

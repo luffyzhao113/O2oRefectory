@@ -30,5 +30,19 @@ export const IndexRouter = [
         component: resolve => {
             require(['../../views/sysconfig/admin/index.vue'], resolve)
         }
-    },
+    }, {
+        path: 'goods.model',
+        name: 'goods.model',
+        meta: {title: '商品属性'},
+        component: resolve => {
+            require(['../../views/goods/model/index.vue'], resolve)
+        }
+    }, {
+        path: 'goods.goods',
+        name: 'goods.goods',
+        meta: {title: '商品列表'},
+        component: resolve => {
+            require(['../../views/goods/goods/index.vue'], resolve)
+        }
+    }
 ]

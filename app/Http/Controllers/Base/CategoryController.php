@@ -26,7 +26,7 @@ class CategoryController extends Controller
     public function index()
     {
         return $this->respondWithSuccess(
-            $this->repo->with(['attributes:id,name'])->get(
+            $this->repo->with(['attributes:id,category_id,name'])->get(
                 ['id', 'parent_id', 'name', 'sort']
             )
         );

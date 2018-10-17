@@ -914,7 +914,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -988,12 +988,27 @@ exports.default = {
                     );
                 }
             }, {
+                title: '属性',
+                render: function render(h, _ref2) {
+                    var row = _ref2.row;
+
+                    var value = '';
+                    row.attributes.forEach(function (val, key) {
+                        value += key === 0 ? val.name : ',' + val.name;
+                    });
+                    return h(
+                        'div',
+                        null,
+                        [value]
+                    );
+                }
+            }, {
                 title: '排序',
                 key: 'sort'
             }, {
                 title: '操作',
-                render: function render(h, _ref2) {
-                    var row = _ref2.row;
+                render: function render(h, _ref3) {
+                    var row = _ref3.row;
 
                     return h(
                         'button-group',
