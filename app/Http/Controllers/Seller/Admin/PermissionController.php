@@ -79,13 +79,13 @@ class PermissionController extends Controller
 
     /**
      * edit
-     * @param $domain 域名
+     * @param $sellerId 域名
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      * @throws \luffyzhao\laravelTools\Searchs\Exceptions\SearchException
      * @author luffyzhao@vip.126.com
      */
-    public function edit($domain, $id)
+    public function edit($sellerId, $id)
     {
         $search = new EditSearch();
 
@@ -105,12 +105,12 @@ class PermissionController extends Controller
     /**
      * update
      * @param UpdateRequest $request
-     * @param $domain
+     * @param $sellerId
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      * @author luffyzhao@vip.126.com
      */
-    public function update(UpdateRequest $request, $domain, $id)
+    public function update(UpdateRequest $request, $sellerId, $id)
     {
         return $this->respondWithSuccess(
             $this->repo->updateOrCreate(
@@ -123,11 +123,11 @@ class PermissionController extends Controller
     /**
      * 删除
      * destroy
-     * @param $domain
+     * @param $sellerId
      * @param $id
      * @author luffyzhao@vip.126.com
      */
-    public function destroy(DestroyRequest $request, $domain, $id)
+    public function destroy(DestroyRequest $request, $sellerId, $id)
     {
         $valid = $this->repo->delete(
             $this->repo->find($id)

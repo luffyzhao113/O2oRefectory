@@ -95,12 +95,12 @@ class AdminController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param EditRequest $request
-     * @param $domain
+     * @param $seller_id
      * @param  int $id
      * @return \Illuminate\Http\JsonResponse
      * @throws \luffyzhao\laravelTools\Searchs\Exceptions\SearchException
      */
-    public function edit(EditRequest $request, $domain, $id)
+    public function edit(EditRequest $request, $seller_id, $id)
     {
         $search = new EditSearch($request->all());
 
@@ -115,10 +115,11 @@ class AdminController extends Controller
     /**
      * 修改
      * @param UpdateRequest $request
-     * @param $domain
+     * @param $sellerId
      * @param $id
+     * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(UpdateRequest $request, $domain, $id)
+    public function update(UpdateRequest $request, $sellerId, $id)
     {
         $admin = $this->repo->find($id);
         // 验证
@@ -132,11 +133,12 @@ class AdminController extends Controller
 
     /**
      * @param DestroyRequest $request
-     * @param $domain
+     * @param $sellerId
      * @param $id
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
-    public function destroy(DestroyRequest $request, $domain, $id)
+    public function destroy(DestroyRequest $request, $sellerId, $id)
     {
         $admin = $this->repo->find($id);
         // 验证

@@ -120,6 +120,7 @@ class RoleController extends Controller
      * @param $id
      *
      * @author luffyzhao@vip.126.com
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function destroy(DestroyRequest $request, $id)
     {

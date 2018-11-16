@@ -44,5 +44,12 @@ export const IndexRouter = [
         component: resolve => {
             require(['../../views/goods/goods/index.vue'], resolve)
         }
+    }, {
+        path: 'goods.recycle.index',
+        name: 'goods.recycle.index',
+        meta: {title: '回收站'},
+        component: resolve => {
+            require(['../../views/goods/recycle/index.vue'], resolve)
+        }
     }
 ]

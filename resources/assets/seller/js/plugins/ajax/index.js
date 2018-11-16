@@ -3,7 +3,7 @@ import wxCache from '../cache/index'
 import {router} from "../../../js/router";
 
 const instance = axios.create({
-    baseURL: '/admin/api/',
+    baseURL: 'admin/api/',
     timeout: 10000
 });
 

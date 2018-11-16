@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+
 use Illuminate\Support\ServiceProvider;
 use Validator as BaseValidator;
 use App\Validation\Validator;
@@ -16,6 +17,8 @@ use App\Repositories\Modules\SellerPermission\Provider as SellerPermission;
 use App\Repositories\Modules\SellerRole\Provider as SellerRole;
 use App\Repositories\Modules\BaseCategory\Provider as BaseCategory;
 use App\Repositories\Modules\BaseAttribute\Provider as BaseAttribute;
+use App\Repositories\Modules\SellerModel\Provider as SellerModel;
+use App\Repositories\Modules\SellerGoods\Provider as SellerGoods;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -51,5 +54,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->register(SellerRole::class);
         $this->app->register(BaseCategory::class);
         $this->app->register(BaseAttribute::class);
+        $this->app->register(SellerModel::class);
+        $this->app->register(SellerGoods::class);
     }
 }

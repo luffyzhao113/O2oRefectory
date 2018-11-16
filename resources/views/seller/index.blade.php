@@ -11,5 +11,8 @@
     <div>
         餐厅H5点餐页面
     </div>
+    <script type="text/javascript">
+        const SELLER_ID = {{ request()->input('seller_id') }};
+    </script>
 </body>
 </html>

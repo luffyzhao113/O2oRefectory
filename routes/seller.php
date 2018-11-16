@@ -24,6 +24,8 @@ Route::prefix('admin')->namespace('Admin')->group(
         Route::prefix('api')->group(
             function () {
                 Route::post('auth', 'AuthController@store')->name('login');
+                Route::get('ueditor', 'UeditorController@index');
+                Route::post('ueditor', 'UeditorController@uploader');
 
                 Route::group(
                     ['middleware' => 'auth:seller'],
@@ -49,6 +51,22 @@ Route::prefix('admin')->namespace('Admin')->group(
                                     [
                                         'create' => 'admin.store',
                                         'edit' => 'admin.update',
+                                    ]
+                                );
+
+                                Route::resource('model', 'ModelController')->except(['show', 'create'])->names(
+                                    [
+                                        'edit' => 'model.update',
+                                    ]
+                                );
+
+
+                                Route::get('goods/recycle', 'GoodsController@recycle')->name('goods.recycle');
+                                Route::put('goods/{goods}/restore', 'GoodsController@restore')->name('goods.restore');
+                                Route::resource('goods', 'GoodsController')->except(['show'])->names(
+                                    [
+                                        'create' => 'goods.store',
+                                        'edit' => 'goods.update',
                                     ]
                                 );
                             }

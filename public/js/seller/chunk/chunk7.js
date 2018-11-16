@@ -6,9 +6,9 @@ webpackJsonp([7],{
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(233)
+var __vue_script__ = __webpack_require__(261)
 /* template */
-var __vue_template__ = __webpack_require__(234)
+var __vue_template__ = __webpack_require__(262)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -25,7 +25,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\seller\\js\\views\\common\\Lock.vue"
+Component.options.__file = "resources\\assets\\seller\\js\\views\\common\\Login.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -34,9 +34,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-28d9cf38", Component.options)
+    hotAPI.createRecord("data-v-5a645b80", Component.options)
   } else {
-    hotAPI.reload("data-v-28d9cf38", Component.options)
+    hotAPI.reload("data-v-5a645b80", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48,19 +48,19 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 128:
+/***/ 140:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(129)
+  __webpack_require__(141)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(131)
+var __vue_script__ = __webpack_require__(143)
 /* template */
-var __vue_template__ = __webpack_require__(132)
+var __vue_template__ = __webpack_require__(144)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -100,13 +100,13 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 129:
+/***/ 141:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(130);
+var content = __webpack_require__(142);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -127,7 +127,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 130:
+/***/ 142:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -135,14 +135,14 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.login {\n  width: 100%;\n  height: 100%;\n  background-image: url(\"/images/base/bg.jpg\");\n  background-size: cover;\n  background-position: 50%;\n  position: relative;\n}\n.login .login-con {\n    position: absolute;\n    right: 160px;\n    top: 50%;\n    -webkit-transform: translateY(-60%);\n    transform: translateY(-60%);\n    width: 300px;\n}\n.login .login-con .form-con {\n      padding: 10px 0 0;\n}\n.login .login-con .login-tip {\n      font-size: 10px;\n      text-align: center;\n      color: #c3c3c3;\n}\n", ""]);
+exports.push([module.i, "\n.login {\n  width: 100%;\n  height: 100%;\n  background-image: url(\"/images/seller/bg.jpg\");\n  background-size: cover;\n  background-position: 50%;\n  position: relative;\n}\n.login .login-con {\n    position: absolute;\n    right: 160px;\n    top: 50%;\n    -webkit-transform: translateY(-60%);\n    transform: translateY(-60%);\n    width: 300px;\n}\n.login .login-con .form-con {\n      padding: 10px 0 0;\n}\n.login .login-con .login-tip {\n      font-size: 10px;\n      text-align: center;\n      color: #c3c3c3;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 131:
+/***/ 143:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -180,7 +180,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 132:
+/***/ 144:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -230,17 +230,17 @@ if (false) {
 
 /***/ }),
 
-/***/ 233:
+/***/ 261:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
-var _loginLock = __webpack_require__(128);
+var _loginLock = __webpack_require__(140);
 
 var _loginLock2 = _interopRequireDefault(_loginLock);
 
@@ -270,39 +270,49 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 exports.default = {
-  components: { LoginLock: _loginLock2.default },
-  mixins: [_http2.default],
-  data: function data() {
-    return {
-      form: {
-        password: ''
-      }
-    };
-  },
+    data: function data() {
+        return {
+            form: {
+                email: '',
+                password: ''
+            }
+        };
+    },
 
-  methods: {
-    unlock: function unlock(name) {
-      var _this = this;
+    mixins: [_http2.default],
+    components: {
+        LoginLock: _loginLock2.default
 
-      this.$refs[name].validate(function (valid) {
-        if (valid) {
-          _this.$http.delete("auth/lock", { params: _this.form }).then(function () {
-            _this.$cache.set('locking', 0);
-            _this.$router.go(-1);
-          }).catch(function (res) {
-            _this.formatErrors(res);
-          });
+    },
+    methods: {
+        login: function login(name) {
+            var _this = this;
+
+            this.$refs[name].validate(function (valid) {
+                if (valid) {
+                    _this.$http.post("auth", _this.form).then(function (res) {
+                        _this.$cache.set('seller-token', res.data.data.token);
+                        _this.$router.replace({ name: 'common.home' });
+                    }).catch(function (res) {
+                        _this.formatErrors(res);
+                    });
+                }
+            });
         }
-      });
     }
-  }
 };
 
 /***/ }),
 
-/***/ 234:
+/***/ 262:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -317,7 +327,7 @@ var render = function() {
         { attrs: { slot: "title" }, slot: "title" },
         [
           _c("Icon", { attrs: { type: "log-in" } }),
-          _vm._v("\n        登录锁定\n    ")
+          _vm._v("\n        欢迎登录\n    ")
         ],
         1
       ),
@@ -326,6 +336,50 @@ var render = function() {
         "Form",
         { ref: "form", attrs: { slot: "form", model: _vm.form }, slot: "form" },
         [
+          _c(
+            "FormItem",
+            {
+              attrs: {
+                prop: "email",
+                rules: {
+                  required: true,
+                  message: "邮箱格式不正确！",
+                  type: "email",
+                  min: 6,
+                  max: 20,
+                  trigger: "blur"
+                }
+              }
+            },
+            [
+              _c(
+                "Input",
+                {
+                  attrs: {
+                    type: "text",
+                    autocomplete: "off",
+                    placeholder: "E-mail"
+                  },
+                  model: {
+                    value: _vm.form.email,
+                    callback: function($$v) {
+                      _vm.$set(_vm.form, "email", $$v)
+                    },
+                    expression: "form.email"
+                  }
+                },
+                [
+                  _c("Icon", {
+                    attrs: { slot: "prepend", type: "ios-mail-outline" },
+                    slot: "prepend"
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
           _c(
             "FormItem",
             {
@@ -364,7 +418,7 @@ var render = function() {
                 },
                 [
                   _c("Icon", {
-                    attrs: { slot: "prepend", type: "ios-locked-outline" },
+                    attrs: { slot: "prepend", type: "ios-lock-outline" },
                     slot: "prepend"
                   })
                 ],
@@ -383,11 +437,11 @@ var render = function() {
                   attrs: { type: "primary", long: "" },
                   on: {
                     click: function($event) {
-                      _vm.unlock("form")
+                      _vm.login("form")
                     }
                   }
                 },
-                [_vm._v("解锁")]
+                [_vm._v("登录")]
               )
             ],
             1
@@ -405,7 +459,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-28d9cf38", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-5a645b80", module.exports)
   }
 }
 

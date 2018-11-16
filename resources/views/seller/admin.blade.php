@@ -9,7 +9,10 @@
     <title>店铺后台管理系统</title>
 </head>
 <body>
-<div id="app"></div>
+<div id="app">
+<script type="text/javascript">
+    const SELLER_ID = {{ request()->input('seller_id') }};
+</script>
 <script type="text/javascript" src="{{ asset('/js/seller/manifest.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/js/seller/vendor.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/js/seller/app.js') }}"></script>

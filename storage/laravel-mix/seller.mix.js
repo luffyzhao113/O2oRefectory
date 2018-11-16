@@ -34,3 +34,5 @@ mix.copyDirectory('node_modules/iview/dist/styles/', 'public/css/seller');
 
 /* images */
 mix.copyDirectory('resources/assets/seller/images', 'public/images/seller');
+
+mix.copyDirectory('resources/assets/seller/js/libs/ueditor', 'public/ueditor');

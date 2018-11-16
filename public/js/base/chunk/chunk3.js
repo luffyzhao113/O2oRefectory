@@ -523,7 +523,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -566,6 +566,10 @@ exports.default = {
     placeholder: {
       type: String,
       default: ''
+    },
+    changeOnSelect: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {
@@ -643,7 +647,7 @@ var render = function() {
   return _c("Cascader", {
     attrs: {
       data: _vm.formatData,
-      "change-on-select": true,
+      "change-on-select": _vm.changeOnSelect,
       trigger: "hover",
       placeholder: _vm.placeholder,
       transfer: ""

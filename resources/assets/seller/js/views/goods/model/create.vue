@@ -9,7 +9,7 @@
                 </Col>
                 <Col span="16">
                     <FormItem label="模型说明">
-                        <Input type="textarea" placeholder="模型说明"></Input>
+                        <Input type="textarea" v-model="formCreate.description" placeholder="模型说明"></Input>
                     </FormItem>
                 </Col>
                 <Col span="24">

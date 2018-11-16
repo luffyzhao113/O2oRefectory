@@ -1,56 +1,52 @@
 <template>
-    <component-modal title="修改商品属性&规格" :loading="loading">
-        <Form ref="formUpdate" :model="formUpdate" :label-width="90" :rules="ruleUpdate">
+    <component-modal title="添加模型" :loading="loading" :width="900" class="seller-model">
+        <Form ref="formUpdate" :model="formUpdate" :label-width="100" :rules="ruleUpdate">
             <Row>
+                <Col span="12">
+                    <FormItem label="模型名称" prop="name">
+                        <Input v-model="formUpdate.name" placeholder="模型名称"></Input>
+                    </FormItem>
+                </Col>
                 <Col span="16">
-                    <FormItem label="名称" prop="name">
-                        <Input v-model="formUpdate.name" placeholder="名称"></Input>
+                    <FormItem label="模型说明">
+                        <Input type="textarea" v-model="formUpdate.description" placeholder="模型说明"></Input>
                     </FormItem>
+                </Col>
+                <Col span="24">
+                    <FormItem label="模型规格" prop="specs">
+                        <FormTags v-model="formUpdate.specs" placeholder="规格"></FormTags>
+                    </FormItem>
+                </Col>
+                <Col offset="3" span="21">
+                    <box title="关联属性">
+                        <template v-for="(item, index) in formUpdate.attributes">
+                            <box-item :span="1" class="delete">
+                                <Icon :size="18" color="red" type="md-close-circle" @click="handleRemove"/>
+                            </box-item>
+                            <box-item :span="5">
+                                <FormItem label="名称" :label-width="55" class="form-item" :prop="'attributes.' +
+                                index + '.name'" :rules="{required: true, message: '关联属性必须填写', trigger: 'blur'}">
+                                    <Input placeholder="名称" v-model="item.name" size="small"></Input>
+                                </FormItem>
+                            </box-item>
+                            <box-item :span="18">
+                                <FormItem label="值" :label-width="55" class="form-item" :prop="'attributes.' + index
+                                + '.values'"
+                                          :rules="{required: true, type: 'array', message: '关联值必须填写', trigger: 'blur'}">
+                                    <FormTags placeholder="值" v-model="item.values"></FormTags>
+                                </FormItem>
+                            </box-item>
+                        </template>
+
+                        <box-item offset="1" span="6">
+                            <Button long type="dashed" size="small" @click="handleAdd">添加属性</Button>
+                        </box-item>
+                    </box>
                 </Col>
             </Row>
-            <Row>
-                <Col span="10">
-                    <FormItem label="类型" prop="type">
-                        <i-select v-model="formUpdate.type" transfer @on-change="typeChange">
-                            <i-option :value="1">属性</i-option>
-                            <i-option :value="2">规格</i-option>
-                        </i-select>
-                    </FormItem>
-                </Col>
-
-                <Col span="10" v-if="formUpdate.type === 1">
-                    <FormItem label="输入框类型" prop="input">
-                        <i-select v-model="formUpdate.input" transfer @on-change="inputChange">
-                            <i-option value="text">文本框</i-option>
-                            <i-option value="select">选择框</i-option>
-                        </i-select>
-                    </FormItem>
-                </Col>
-            </Row>
-
-            <FormItem v-if="formUpdate.input === 'select'" v-for="(item, index) in formUpdate.values" :key="index"
-                      label="属性&规格值"
-                      :prop="'values.' + index + '.name'" :rules="{required: true,message:'属性&规格值必须填写'}">
-                <Row>
-                    <Col span="18">
-                        <Input v-model="item.name" placeholder="属性&规格值"></Input>
-                    </Col>
-                    <Col span="4" offset="1">
-                        <Button @click="handleRemove(index)">删除</Button>
-                    </Col>
-                </Row>
-            </FormItem>
-
-            <FormItem v-if="formUpdate.input === 'select'">
-                <Row>
-                    <Col span="12">
-                        <Button type="dashed" long @click="handleAdd" icon="md-add">添加值</Button>
-                    </Col>
-                </Row>
-            </FormItem>
         </Form>
         <div slot="footer">
-            <Button @click="updateSubmit('formUpdate', `attribute/${data.id}`)">修改</Button>
+            <Button @click="updateSubmit('formUpdate', `model/${data.id}`)">更新</Button>
         </div>
     </component-modal>
 </template>
@@ -59,56 +55,65 @@
     import ComponentModal from "../../../components/modal/component-modal";
     import component from "../../../mixins/component";
     import form from "../../../mixins/form";
-    import {Validator} from "../../../async-validator/goods/goods/update";
+    import {Validator} from "../../../async-validator/goods/model/update";
+    import Box from "../../../components/box/index";
+    import BoxItem from "../../../components/box/box-item";
+    import FormTags from "../../../components/form/tags";
 
     export default {
-        name: "update",
-        components: {ComponentModal},
+        name: "create",
+        components: {FormTags, BoxItem, Box, ComponentModal},
         mixins: [component, form],
         data() {
             return {
                 formUpdate: {
-                    values: [{
-                        name: ''
+                    attributes: [{
+                        name: '',
+                        values: []
                     }],
-                    type: 1,
-                    input: 'select'
+                    specs: []
                 },
                 ruleUpdate: Validator(this)
             }
         },
-        mounted() {
-            this.$nextTick(() => {
-                this.loading = true;
-                this.$http.get(`attribute/${this.data.id}/edit`).then((res) => {
-                    this.formUpdate = Object.assign({}, this.formUpdate, res.data.data)
-                }).catch((err) => {
-                    this.formatErrors(err)
-                }).finally(() => {
-                    this.loading = false;
-                })
+        mounted(){
+            this.loading = true
+            this.$http.get(`model/${this.data.id}/edit`).then((res) => {
+                this.formUpdate = Object.assign({}, this.formUpdate, res.data.data)
+            }).catch((err) => {
+                this.formatErrors(err)
+            }).finally(() => {
+                this.loading = false;
             })
         },
         methods: {
             handleAdd() {
-                this.formUpdate.values.push({
-                    name: ''
-                });
+                this.formUpdate.attributes.push({
+                    name: '',
+                    values: []
+                })
             },
             handleRemove(index) {
-                this.formUpdate.values.splice(index, 1);
-            },
-            typeChange(val) {
-                this.formUpdate.input = 'select'
-            },
-            inputChange(val) {
-                if (val === 'text')
-                    this.formUpdate.values = [{name: ''}]
+                this.formUpdate.attributes.splice(index, 1);
             }
         }
     }
 </script>
 
-<style scoped>
-
+<style lang="less">
+    .seller-model {
+        .form-item {
+            margin-bottom: 19px
+        }
+        .delete {
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer
+        }
+        .form-item {
+            .ivu-form-item-error-tip {
+                padding-top: 0;
+            }
+        }
+    }
 </style>

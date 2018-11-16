@@ -27,7 +27,6 @@ class StoreRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'min:2', 'max:20'],
             'status' => ['required', 'in:0,1'],
-            'domain' => ['required', 'string', Rule::unique('sellers')],
             'admin.email' => ['required', 'string', 'email', Rule::unique('seller_admins', 'email')],
             'admin.name' => ['required', 'string', 'min:2', 'max:10'],
             'admin.password' => ['required', 'string', 'min:6', 'max:20', 'confirmed'],
@@ -40,7 +39,6 @@ class StoreRequest extends FormRequest
         return [
             'name' => '店铺名称',
             'status' => '店铺状态',
-            'domain' => '二级域名',
             'admin.email' => '登录账号',
             'admin.name' => '管理员姓名',
             'admin.password' => '登录密码',

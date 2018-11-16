@@ -40,11 +40,16 @@
                     key: 'name'
                 },  {
                     title: '操作',
+                    width: 150,
                     render: (h, {row}) => {
                         return (<button-group>
                             <i-button size="small" on-click={() => this.showComponent('Update', row)}>修改</i-button>
-                            <poptip confirm transfer title="确定要删除吗？"
-                                    on-on-ok={() => this.destroyItem(row, `model/${row.id}`)}>
+                            <poptip
+                                confirm
+                                transfer
+                                title="确定要删除吗？"
+                                on-on-ok={() => this.destroyItem(row, `model/${row.id}`)}
+                            >
                                 <i-button size="small">删除</i-button>
                             </poptip>
                         </button-group>);
@@ -54,6 +59,7 @@
         },
         methods: {
             search(page = 1) {
+                this.loading = true
                 this.$http.get(`model`, {params: this.request(page)}).then((res) => {
                     this.assignmentData(res.data.data);
                 }).catch((res) => {

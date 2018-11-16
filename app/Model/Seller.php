@@ -11,7 +11,7 @@ class Seller extends Model
     /**
      * @var array 
      */
-    protected $fillable = ['name', 'status', 'domain'];
+    protected $fillable = ['name', 'status'];
 
 
     protected static function boot()

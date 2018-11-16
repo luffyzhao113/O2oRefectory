@@ -8,9 +8,6 @@
                 <FormItem prop="name" label="店铺名称">
                     <Input type="text" v-model="searchForm.name"></Input>
                 </FormItem>
-                <FormItem prop="domain" label="二级域名">
-                    <Input type="text" v-model="searchForm.domain"></Input>
-                </FormItem>
                 <FormItem prop="status" label="店铺状态">
                     <true-or-false v-model="searchForm.status" true-value="开通" false-value="关闭"></true-or-false>
                 </FormItem>
@@ -47,9 +44,6 @@
                 columns: [{
                     title: '商店名称',
                     key: 'name'
-                }, {
-                    title: '商店二级域名',
-                    key: 'domain'
                 }, {
                     title: '状态',
                     render: (h, {row}) => {

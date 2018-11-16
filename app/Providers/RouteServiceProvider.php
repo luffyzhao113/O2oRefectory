@@ -83,7 +83,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapBaseRoutes()
     {
-        Route::domain('base.'.config('seller.server_alias'))
+        Route::prefix('base')
             ->middleware('base')
             ->namespace($this->namespace.'\Base')
             ->group(base_path('routes/base.php'));
@@ -95,7 +95,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapSellerRoutes()
     {
-        Route::domain('{domain}.'.config('seller.server_alias'))
+        Route::prefix('seller/{seller_id}')
             ->middleware('seller')
             ->namespace($this->namespace.'\Seller')
             ->group(base_path('routes/seller.php'));

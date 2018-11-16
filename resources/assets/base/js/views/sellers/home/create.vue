@@ -8,11 +8,6 @@
                     </FormItem>
                 </box-item>
 
-                <box-item :span="8">
-                    <FormItem label="二级域名" prop="domain" >
-                        <Input v-model="formCreate.domain" placeholder="二级域名"></Input>
-                    </FormItem>
-                </box-item>
 
                 <box-item :span="8">
                     <FormItem label="店铺状态" prop="status" >

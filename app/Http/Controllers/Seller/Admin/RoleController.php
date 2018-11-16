@@ -74,12 +74,12 @@ class RoleController extends Controller
 
     /**
      * edit
-     * @param $domain
+     * @param $sellerId
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      * @author luffyzhao@vip.126.com
      */
-    public function edit($domain, $id)
+    public function edit($sellerId, $id)
     {
         return $this->respondWithSuccess(
             [
@@ -95,12 +95,12 @@ class RoleController extends Controller
     /**
      * update
      * @param UpdateRequest $request
-     * @param $domain
+     * @param $sellerId
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      * @author luffyzhao@vip.126.com
      */
-    public function update(UpdateRequest $request, $domain, $id)
+    public function update(UpdateRequest $request, $sellerId, $id)
     {
         return $this->respondWithSuccess(
             $this->repo->update(
@@ -113,11 +113,12 @@ class RoleController extends Controller
     /**
      * destroy
      * @param DestroyRequest $request
-     * @param $domain
+     * @param $sellerId
      * @param $id
      * @author luffyzhao@vip.126.com
+     * @throws \Illuminate\Validation\ValidationException
      */
-    public function destroy(DestroyRequest $request, $domain, $id)
+    public function destroy(DestroyRequest $request, $sellerId, $id)
     {
         $role = $this->repo->find($id);
         $request->hasUser($role);

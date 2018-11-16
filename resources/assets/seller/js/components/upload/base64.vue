@@ -1,22 +1,24 @@
 <template>
     <div class="base64">
-        <label class="photo" :for="uuid">
-            <template>
-                <img :src="publicValue">
-            </template>
-        </label>
         <div class="input">
             <input type="file" :id="uuid" @change="change"></input>
         </div>
+        <label class="photo" :for="uuid">
+            <template>
+                <img v-if="publicValue" :src="publicValue" />
+                <img v-else src="/images/seller/default.png" />
+            </template>
+        </label>
     </div>
 </template>
 
 <script>
     import uuid from "../../mixins/uuid";
+    import Emitter from 'iview/src/mixins/emitter'
 
     export default {
         name: "base64",
-        mixins: [uuid],
+        mixins: [uuid, Emitter],
         props: {
             value: {
                 type: String,
@@ -31,6 +33,9 @@
         methods: {
             change({target}) {
                 let file = target.files[0];
+                if(file === undefined){
+                    return false;
+                }
                 if (!/image\/\w+/.test(file.type)) {
                     this.$Message.error({
                         content: '请确保文件为图像类型'
@@ -42,6 +47,7 @@
                 reader.onload = ({target}) => {
                     this.$emit('input',target.result)
                     this.$emit('on-change',target.result)
+                    this.dispatch('FormItem', 'on-form-change', target.result);
                 }
                 reader.onerror = () => {
                     this.$Message.error({
@@ -65,17 +71,28 @@
         height: 100%;
         width: 100%;
         line-height: normal;
+        position: relative;
         .photo {
+            cursor: pointer;
             height: 100%;
             width: 100%;
+            vertical-align: middle;
+            display: inline-block;
+            position: relative;
             img{
                 max-width: 100%;
                 max-height: 100%;
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
             }
         }
         .input{
             width: 0;
             height: 0;
+            position: absolute;
             input[type="file"] {
                 opacity: 0;
                 width: 0;

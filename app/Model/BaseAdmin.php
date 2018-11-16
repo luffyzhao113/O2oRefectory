@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use App\Observers\Model\BaseAuthObservers;
+use App\Plugins\Ueditor\Uploader;
 use Illuminate\Cache\TaggableStore;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Cache;
@@ -37,6 +38,22 @@ class BaseAdmin extends Authenticatable implements JWTSubject
     protected function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    /**
+     * @param $value
+     */
+    protected function setPhotoAttribute($value){
+        if(Uploader::isBase64($value)){
+            $config = array(
+                "pathFormat" => str_replace("{domain}", $this->getAttribute('id'), config('ueditor.scrawlPathFormat')),
+                "maxSize" => config('ueditor.scrawlMaxSize'),
+                "allowFiles" => config('ueditor.scrawlAllowFiles'),
+                "oriName" => "scrawl.png",
+            );
+            $up = new Uploader(Uploader::getBase64Content($value), $config, 'base64');
+            $this->attributes['photo'] = $up->getFileInfo()['url'];
+        }
     }
 
     // Rest omitted for brevity

@@ -18,7 +18,9 @@
                 <template v-for="(value, index) in item.children">
                     <MenuItem v-if="!value.children" :name="value.name">{{value.display_name}}</MenuItem>
                     <MenuGroup v-if="value.children" :title="value.display_name">
-                        <MenuItem v-for="(val, i) in value.children" :key="i" :name="val.name">{{val.display_name}}</MenuItem>
+                        <MenuItem v-for="(val, i) in value.children" :key="i" :name="val.name">
+                            <div class="children">{{val.display_name}}</div>
+                        </MenuItem>
                     </MenuGroup>
                 </template>
             </Submenu>
@@ -55,5 +57,7 @@
 </script>
 
 <style scoped>
-
+    .children{
+        padding-left: 15px;
+    }
 </style>

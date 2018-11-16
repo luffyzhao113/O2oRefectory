@@ -31,14 +31,14 @@ class SellerController extends Controller
     public function index(Request $request)
     {
         $search = new IndexSearch(
-            $request->only(['status', 'name', 'domain'])
+            $request->only(['status', 'name'])
         );
 
         return $this->respondWithSuccess(
             $this->repo->paginate(
                 $search->toArray(),
                 20,
-                ['id', 'name', 'status', 'domain']
+                ['id', 'name', 'status']
             )
         );
     }
@@ -81,7 +81,6 @@ class SellerController extends Controller
                             [
                                 'name',
                                 'status',
-                                'domain',
                                 'admin',
                             ]
                         )
@@ -126,7 +125,6 @@ class SellerController extends Controller
                             [
                                 'name',
                                 'status',
-                                'domain',
                                 'admin',
                             ]
                         )

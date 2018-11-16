@@ -29,7 +29,7 @@
 .login {
   width: 100%;
   height: 100%;
-  background-image: url("/images/base/bg.jpg");
+  background-image: url("/images/seller/bg.jpg");
   background-size: cover;
   background-position: 50%;
   position: relative;

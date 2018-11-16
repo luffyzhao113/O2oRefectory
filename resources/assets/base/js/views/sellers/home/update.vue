@@ -9,12 +9,6 @@
                 </box-item>
 
                 <box-item :span="8">
-                    <FormItem label="二级域名" prop="domain" >
-                        <Input v-model="formUpdate.domain" placeholder="二级域名"></Input>
-                    </FormItem>
-                </box-item>
-
-                <box-item :span="8">
                     <FormItem label="店铺状态" prop="status" >
                         <true-or-false  v-model="formUpdate.status" true-value="开启" false-value="关闭"></true-or-false>
                     </FormItem>

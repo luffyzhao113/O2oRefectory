@@ -6,7 +6,6 @@
                 <span v-if="seller.status === 0">关闭</span>
                 <span v-else>开启</span>
             </detail>
-            <detail title="店铺二级域名">{{seller.domain}}</detail>
         </box>
     </component-modal>
 </template>

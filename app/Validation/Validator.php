@@ -61,4 +61,5 @@ class Validator extends Base
         $base = explode(',', $value);
         return (bool) preg_match('/data:[a-z]+\/[a-z]+;base64/', $base[0]);
     }
+    
 }

@@ -8,6 +8,6 @@ return [
 
     // 缓存相关
     'cache' => [
-        'domain_prefix' => 'o2orefectory:domains:'
+        'seller_prefix' => 'o2orefectory:seller:'
     ]
 ];

@@ -2,9 +2,12 @@
 
 namespace App\Repositories\Modules\SellerGoods;
 
+use Illuminate\Database\Eloquent\Model;
 use luffyzhao\laravelTools\Repositories\Facades\RepositoryInterface;
 
 interface Interfaces extends RepositoryInterface
 {
-    // code...
+    public function restore(Model $model);
+    
+    public function onlyTrashed();
 }

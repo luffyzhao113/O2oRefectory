@@ -18,13 +18,13 @@ class SellerMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $domain = $request->route('domain');
-        $key = config('seller.cache.domain_prefix').$domain;
+        $sellerId = $request->route('seller_id');
+        $key = config('seller.cache.seller_prefix').$sellerId;
 
         $seller = Cache::rememberForever(
             $key,
-            function () use ($domain) {
-                return Seller::where('domain', '=', $domain)->first();
+            function () use ($sellerId) {
+                return Seller::find($sellerId);
             }
         );
         if (!$seller) {

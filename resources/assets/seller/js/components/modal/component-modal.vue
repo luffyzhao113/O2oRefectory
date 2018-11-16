@@ -38,7 +38,7 @@
 
 <style scoped>
     .modal-body {
-        max-height: 500px;
+        max-height: 550px;
         overflow-y: auto;
     }
 </style>
