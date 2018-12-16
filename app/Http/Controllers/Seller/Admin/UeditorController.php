@@ -60,7 +60,7 @@ class UeditorController extends Controller
             /* 上传图片 */
             case 'uploadimage':
                 $config = array(
-                    "pathFormat" => str_replace("{domain}", $sellerId, config('ueditor.imagePathFormat')),
+                    "pathFormat" => str_replace("{seller_id}", $sellerId, config('ueditor.imagePathFormat')),
                     "maxSize" => config('ueditor.imageMaxSize'),
                     "allowFiles" => config('ueditor.imageAllowFiles'),
                 );
@@ -69,7 +69,7 @@ class UeditorController extends Controller
             /* 上传涂鸦 */
             case 'uploadscrawl':
                 $config = array(
-                    "pathFormat" => str_replace("{domain}", $sellerId, config('ueditor.scrawlPathFormat')),
+                    "pathFormat" => str_replace("{seller_id}", $sellerId, config('ueditor.scrawlPathFormat')),
                     "maxSize" => config('ueditor.scrawlMaxSize'),
                     "allowFiles" => config('ueditor.scrawlAllowFiles'),
                     "oriName" => "scrawl.png",
@@ -80,7 +80,7 @@ class UeditorController extends Controller
             /* 上传视频 */
             case 'uploadvideo':
                 $config = array(
-                    "pathFormat" => str_replace("{domain}", $sellerId, config('ueditor.videoPathFormat')),
+                    "pathFormat" => str_replace("{seller_id}", $sellerId, config('ueditor.videoPathFormat')),
                     "maxSize" => config('ueditor.videoMaxSize'),
                     "allowFiles" => config('ueditor.videoAllowFiles'),
                 );
@@ -90,7 +90,7 @@ class UeditorController extends Controller
             case 'uploadfile':
             default:
                 $config = array(
-                    "pathFormat" => str_replace("{domain}", $sellerId, config('ueditor.filePathFormat')),
+                    "pathFormat" => str_replace("{seller_id}", $sellerId, config('ueditor.filePathFormat')),
                     "maxSize" => config('ueditor.fileMaxSize'),
                     "allowFiles" => config('ueditor.fileAllowFiles'),
                 );
@@ -115,12 +115,12 @@ class UeditorController extends Controller
             case 'listimage':
                 $allowFiles = substr(str_replace(".", "|", join("", config('ueditor.imageManagerAllowFiles'))), 1);
                 $listSize = config('ueditor.imageManagerListSize');
-                $path = str_replace("{domain}", $sellerId, config('ueditor.imageManagerListPath'));
+                $path = str_replace("{seller_id}", $sellerId, config('ueditor.imageManagerListPath'));
                 break;
             default:
                 $allowFiles = substr(str_replace(".", "|", join("", config('ueditor.fileManagerAllowFiles'))), 1);
                 $listSize = config('ueditor.fileManagerListSize');
-                $path = str_replace("{domain}", $sellerId, config('ueditor.fileManagerListPath'));
+                $path = str_replace("{seller_id}", $sellerId, config('ueditor.fileManagerListPath'));
         }
 
         /* 获取参数 */
@@ -163,7 +163,7 @@ class UeditorController extends Controller
     {
         /* 上传配置 */
         $config = array(
-            "pathFormat" => str_replace("{domain}", $sellerId, config('ueditor.catcherPathFormat')),
+            "pathFormat" => str_replace("{seller_id}", $sellerId, config('ueditor.catcherPathFormat')),
             "maxSize" => config('ueditor.catcherMaxSize'),
             "allowFiles" => config('ueditor.catcherAllowFiles'),
             "oriName" => "remote.png",

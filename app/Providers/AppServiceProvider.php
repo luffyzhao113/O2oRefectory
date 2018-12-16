@@ -19,6 +19,7 @@ use App\Repositories\Modules\BaseCategory\Provider as BaseCategory;
 use App\Repositories\Modules\BaseAttribute\Provider as BaseAttribute;
 use App\Repositories\Modules\SellerModel\Provider as SellerModel;
 use App\Repositories\Modules\SellerGoods\Provider as SellerGoods;
+use App\Repositories\Modules\SellerBanner\Provider as SellerBanner;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -56,5 +57,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->register(BaseAttribute::class);
         $this->app->register(SellerModel::class);
         $this->app->register(SellerGoods::class);
+        $this->app->register(SellerBanner::class);
     }
 }

@@ -2,18 +2,18 @@
 /**
  * Created by PhpStorm.
  * User: luffyzhao
- * Date: 2018/10/23
- * Time: 20:52
+ * Date: 2018/12/8
+ * Time: 11:31
  */
 
-namespace App\Http\Services\Seller\Admin\Goods;
+namespace App\Http\Services\Seller\Admin\Banner;
 
 
 use App\Plugins\Ueditor\Uploader;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Request;
 
-class UpdateService implements Arrayable
+class StoreService implements Arrayable
 {
 
     protected $request;
@@ -27,46 +27,7 @@ class UpdateService implements Arrayable
 
     protected function initialize()
     {
-        // 图片
-        $this->setImage();
-
         $this->setImages();
-        // 规格
-        $this->setSpec();
-    }
-
-    /**
-     * 规格
-     */
-    protected function setSpec()
-    {
-        $spec = [];
-
-        foreach ($this->request->input('specs', []) as $key => $value) {
-            foreach ($value['specs'] as $index => $item) {
-                if (!isset($spec[$index]) || array_search($item, $spec[$index]) === false) {
-                    $spec[$index][] = $item;
-                }
-            }
-        }
-
-        $this->request->merge(
-            [
-                'spec' => $spec,
-            ]
-        );
-    }
-
-    /**
-     * image base64存储
-     */
-    protected function setImage()
-    {
-        $this->request->merge(
-            [
-                'image' => $this->UploaderBase64($this->request->input('image')),
-            ]
-        );
     }
 
     /**
@@ -74,18 +35,16 @@ class UpdateService implements Arrayable
      */
     protected function setImages()
     {
-        $images = [];
+        $images = $this->request->input('banners', []);
 
-        foreach ($this->request->input('images', []) as $key => $value) {
+        foreach ($images as $key => $value) {
             $image = $this->UploaderBase64($value['path']);
             $images[$key]['path'] = $image;
-            $images[$key]['ext'] = strtolower(strrchr($image, '.'));
-            $images[$key]['sort'] = $key;
         }
 
         $this->request->merge(
             [
-                'images' => $images,
+                'banners' => $images,
             ]
         );
     }
@@ -122,20 +81,10 @@ class UpdateService implements Arrayable
         return $this->request->only(
             [
                 'name',
-                'bar_code',
-                'price',
-                'stock',
-                'sale',
-                'is_sale',
-                'image',
-                'model_id',
-                'category_id',
-                'attribute',
-                'spec',
-                'seller_id',
-                'specs',
-                'images',
-                'details'
+                'position',
+                'status',
+                'banners',
+                'seller_id'
             ]
         );
     }

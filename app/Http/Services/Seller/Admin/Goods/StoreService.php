@@ -98,7 +98,7 @@ class StoreService implements Arrayable
         if (Uploader::isBase64($value)) {
             $config = array(
                 "pathFormat" => str_replace(
-                    "{domain}",
+                    "{seller_id}",
                     $this->request->input('seller_id'),
                     config('ueditor.scrawlPathFormat')
                 ),
