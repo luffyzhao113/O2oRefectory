@@ -1,16 +1,16 @@
 <template>
-    <component-modal title="查看通知">
+    <i-drawer title="查看通知">
         <h3>{{componentProps.data.title}}</h3>
         {{componentProps.data.content}}
-    </component-modal>
+    </i-drawer>
 </template>
 
 <script>
   import component from "../../../mixins/component";
-  import ComponentModal from "../../../components/modal/component-modal";
+  import IDrawer from "../../../components/modal/i-drawer";
 
   export default {
-    components: {ComponentModal},
+    components: {IDrawer},
     name: "update",
     mixins: [component],
     mounted(){

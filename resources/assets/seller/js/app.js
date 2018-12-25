@@ -9,8 +9,9 @@ import CachePlugin from '../js/plugins/cache'
 
 Vue.use(VueRouter);
 Vue.use(iView);
-Vue.use(AjaxPlugin)
 Vue.use(CachePlugin)
+Vue.use(AjaxPlugin)
+
 
 const app = new Vue({
     el: '#app',

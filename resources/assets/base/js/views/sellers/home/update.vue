@@ -1,5 +1,5 @@
 <template>
-    <component-modal title="修改店铺" :width="900">
+    <i-drawer title="修改店铺" :width="900">
         <Form ref="formUpdate" :model="formUpdate" :label-width="90" :rules="ruleUpdate">
             <Box title="基本信息">
                 <box-item :span="8">
@@ -46,11 +46,11 @@
         <div slot="footer">
             <Button @click="updateSubmit('formUpdate', `seller/${componentProps.id}`)">提交</Button>
         </div>
-    </component-modal>
+    </i-drawer>
 </template>
 
 <script>
-    import ComponentModal from "../../../components/modal/component-modal";
+    import IDrawer from "../../../components/modal/i-drawer";
     import component from "../../../mixins/component";
     import form from "../../../mixins/form";
     import {Validator} from "../../../async-validator/sellers/home/update";
@@ -61,7 +61,7 @@
 
     export default {
         name: "Update",
-        components: {TrueOrFalse, BoxItem, Box, ComponentModal},
+        components: {TrueOrFalse, BoxItem, Box, IDrawer},
         mixins: [component, form],
         data() {
             let $this = this;

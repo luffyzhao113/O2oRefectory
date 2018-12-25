@@ -100,7 +100,7 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-9fca2e18"
+var __vue_scopeId__ = "data-v-0fb828ce"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -111,7 +111,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\base\\js\\components\\modal\\component-modal.vue"
+Component.options.__file = "resources\\assets\\base\\js\\components\\modal\\i-drawer.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -120,9 +120,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-9fca2e18", Component.options)
+    hotAPI.createRecord("data-v-0fb828ce", Component.options)
   } else {
-    hotAPI.reload("data-v-9fca2e18", Component.options)
+    hotAPI.reload("data-v-0fb828ce", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -310,13 +310,13 @@ var content = __webpack_require__(121);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(3)("64136959", content, false, {});
+var update = __webpack_require__(3)("42aea2b8", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9fca2e18\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./component-modal.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9fca2e18\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./component-modal.vue");
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0fb828ce\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./i-drawer.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0fb828ce\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./i-drawer.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -335,7 +335,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.modal-body[data-v-9fca2e18] {\n    max-height: 500px;\n    overflow-y: auto;\n}\n", ""]);
+exports.push([module.i, "\n.modal-body[data-v-0fb828ce] {\n    height: calc(100% - 53px);\n    overflow-y: auto;\n    margin-right: -16px;\n    padding-right: 16px;\n}\n.compon-drawer-footer[data-v-0fb828ce]{\n    border-top: 1px solid #e8e8e8;\n    padding: 10px 16px;\n    text-align: right;\n    background: #fff;\n}\n.compon-drawer-footer *[data-v-0fb828ce]{\n    text-align: right;\n}\n", ""]);
 
 // exports
 
@@ -366,7 +366,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 
 exports.default = {
-    name: "component-modal",
+    name: "i-drawer",
     props: {
         title: {
             type: String,
@@ -398,7 +398,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "Modal",
+    "Drawer",
     {
       attrs: {
         title: _vm.title,
@@ -412,12 +412,7 @@ var render = function() {
     [
       _c("div", { staticClass: "modal-body" }, [_vm._t("default")], 2),
       _vm._v(" "),
-      _c(
-        "div",
-        { attrs: { slot: "footer" }, slot: "footer" },
-        [_vm._t("footer")],
-        2
-      ),
+      _c("div", { staticClass: "compon-drawer-footer" }, [_vm._t("footer")], 2),
       _vm._v(" "),
       _vm.loading ? _c("Spin", { attrs: { size: "large", fix: "" } }) : _vm._e()
     ],
@@ -430,7 +425,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-9fca2e18", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-0fb828ce", module.exports)
   }
 }
 
@@ -1128,7 +1123,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -1194,9 +1189,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
-//
-//
 
 exports.default = {
     components: {
@@ -1215,9 +1207,6 @@ exports.default = {
             columns: [{
                 title: '商店名称',
                 key: 'name'
-            }, {
-                title: '商店二级域名',
-                key: 'domain'
             }, {
                 title: '状态',
                 render: function render(h, _ref) {
@@ -1401,9 +1390,9 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _componentModal = __webpack_require__(116);
+var _iDrawer = __webpack_require__(116);
 
-var _componentModal2 = _interopRequireDefault(_componentModal);
+var _iDrawer2 = _interopRequireDefault(_iDrawer);
 
 var _component = __webpack_require__(115);
 
@@ -1428,7 +1417,7 @@ exports.default = {
     components: {
         Detail: _index4.default,
         Box: _index2.default,
-        ComponentModal: _componentModal2.default
+        IDrawer: _iDrawer2.default
     },
     mixins: [_component2.default, _http2.default],
     data: function data() {
@@ -1476,7 +1465,6 @@ exports.default = {
         });
     }
 }; //
-//
 //
 //
 //
@@ -1651,7 +1639,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "component-modal",
+    "i-drawer",
     { attrs: { title: "查看店铺", width: 900, loading: _vm.loading } },
     [
       _c(
@@ -1666,10 +1654,6 @@ var render = function() {
             _vm.seller.status === 0
               ? _c("span", [_vm._v("关闭")])
               : _c("span", [_vm._v("开启")])
-          ]),
-          _vm._v(" "),
-          _c("detail", { attrs: { title: "店铺二级域名" } }, [
-            _vm._v(_vm._s(_vm.seller.domain))
           ])
         ],
         1
@@ -1777,7 +1761,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -1794,9 +1778,9 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _componentModal = __webpack_require__(116);
+var _iDrawer = __webpack_require__(116);
 
-var _componentModal2 = _interopRequireDefault(_componentModal);
+var _iDrawer2 = _interopRequireDefault(_iDrawer);
 
 var _create = __webpack_require__(250);
 
@@ -1824,7 +1808,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = {
     name: "create",
-    components: { TrueOrFalse: _trueOrFalse2.default, BoxItem: _boxItem2.default, Box: _index2.default, ComponentModal: _componentModal2.default },
+    components: { TrueOrFalse: _trueOrFalse2.default, BoxItem: _boxItem2.default, Box: _index2.default, IDrawer: _iDrawer2.default },
     mixins: [_form2.default, _component2.default],
     data: function data() {
         var $this = this;
@@ -1841,11 +1825,6 @@ exports.default = {
         };
     }
 }; //
-//
-//
-//
-//
-//
 //
 //
 //
@@ -1915,23 +1894,6 @@ exports.Validator = undefined;
 var _index = __webpack_require__(6);
 
 var Validator = exports.Validator = function Validator(data) {
-    var domain = function domain(rule, value, callback) {
-        if (value === 'admin' || value === 'administration' || value === 'www') {
-            callback(new Error('二级域名不能是 admin | administration | www'));
-        }
-
-        _index.$http.get('validator/seller', { params: {
-                domain: value
-            } }).then(function (res) {
-            if (res.data.data === null) {
-                callback();
-            } else {
-                callback(new Error('二级域名被占用'));
-            }
-        }).catch(function () {
-            callback(new Error('系统错误'));
-        });
-    };
 
     var sellerEmail = function sellerEmail(rule, value, callback) {
         _index.$http.get('validator/seller-email', { params: {
@@ -1949,7 +1911,6 @@ var Validator = exports.Validator = function Validator(data) {
 
     return {
         name: [{ required: true, type: 'string', message: '店铺名称不能为空', trigger: 'blur' }, { type: 'string', min: 2, max: 20, message: '店铺名称必须在 2 到 20 个字符之间', trigger: 'blur' }],
-        domain: [{ required: true, type: 'string', message: '二级域名不能为空', trigger: 'blur' }, { type: 'string', min: 2, max: 10, message: '二级域名必须在 2 到 10 个字符之间', trigger: 'blur' }, { validator: domain, trigger: 'blur' }],
         status: [{ required: true, type: 'number', message: '店铺状态不能为空', trigger: 'change' }],
         "admin.email": [{ required: true, type: 'email', message: '登录账号不能为空', trigger: 'blur' }, { validator: sellerEmail }],
         "admin.name": [{ required: true, type: 'string', message: '管理员姓名不能为空', trigger: 'blur' }],
@@ -2065,7 +2026,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "component-modal",
+    "i-drawer",
     { attrs: { title: "添加店铺", loading: _vm.loading, width: 900 } },
     [
       _c(
@@ -2099,31 +2060,6 @@ var render = function() {
                             _vm.$set(_vm.formCreate, "name", $$v)
                           },
                           expression: "formCreate.name"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "box-item",
-                { attrs: { span: 8 } },
-                [
-                  _c(
-                    "FormItem",
-                    { attrs: { label: "二级域名", prop: "domain" } },
-                    [
-                      _c("Input", {
-                        attrs: { placeholder: "二级域名" },
-                        model: {
-                          value: _vm.formCreate.domain,
-                          callback: function($$v) {
-                            _vm.$set(_vm.formCreate, "domain", $$v)
-                          },
-                          expression: "formCreate.domain"
                         }
                       })
                     ],
@@ -2401,7 +2337,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -2418,9 +2354,9 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _componentModal = __webpack_require__(116);
+var _iDrawer = __webpack_require__(116);
 
-var _componentModal2 = _interopRequireDefault(_componentModal);
+var _iDrawer2 = _interopRequireDefault(_iDrawer);
 
 var _component = __webpack_require__(115);
 
@@ -2448,7 +2384,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = {
     name: "Update",
-    components: { TrueOrFalse: _trueOrFalse2.default, BoxItem: _boxItem2.default, Box: _index2.default, ComponentModal: _componentModal2.default },
+    components: { TrueOrFalse: _trueOrFalse2.default, BoxItem: _boxItem2.default, Box: _index2.default, IDrawer: _iDrawer2.default },
     mixins: [_component2.default, _form2.default],
     data: function data() {
         var $this = this;
@@ -2522,12 +2458,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /***/ }),
 
@@ -2545,24 +2475,6 @@ exports.Validator = undefined;
 var _index = __webpack_require__(6);
 
 var Validator = exports.Validator = function Validator(data) {
-    var domain = function domain(rule, value, callback) {
-        if (value === 'admin' || value === 'administration' || value === 'www') {
-            callback(new Error('二级域名不能是 admin | administration | www'));
-        }
-
-        _index.$http.get('validator/seller', { params: {
-                domain: value,
-                except: data.componentProps.id
-            } }).then(function (res) {
-            if (res.data.data === null) {
-                callback();
-            } else {
-                callback(new Error('二级域名被占用'));
-            }
-        }).catch(function () {
-            callback(new Error('系统错误'));
-        });
-    };
 
     var sellerEmail = function sellerEmail(rule, value, callback) {
         _index.$http.get('validator/seller-email', { params: {
@@ -2581,7 +2493,6 @@ var Validator = exports.Validator = function Validator(data) {
 
     return {
         name: [{ required: true, type: 'string', message: '店铺名称不能为空', trigger: 'blur' }, { type: 'string', min: 2, max: 20, message: '店铺名称必须在 2 到 20 个字符之间', trigger: 'blur' }],
-        domain: [{ required: true, type: 'string', message: '二级域名不能为空', trigger: 'blur' }, { type: 'string', min: 2, max: 10, message: '二级域名必须在 2 到 10 个字符之间', trigger: 'blur' }, { validator: domain, trigger: 'blur' }],
         status: [{ required: true, type: 'number', message: '店铺状态不能为空', trigger: 'change' }],
         "admin.email": [{ required: true, type: 'email', message: '登录账号不能为空', trigger: 'blur' }, { validator: sellerEmail }],
         "admin.name": [{ required: true, type: 'string', message: '管理员姓名不能为空', trigger: 'blur' }],
@@ -2609,7 +2520,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "component-modal",
+    "i-drawer",
     { attrs: { title: "修改店铺", width: 900 } },
     [
       _c(
@@ -2643,31 +2554,6 @@ var render = function() {
                             _vm.$set(_vm.formUpdate, "name", $$v)
                           },
                           expression: "formUpdate.name"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "box-item",
-                { attrs: { span: 8 } },
-                [
-                  _c(
-                    "FormItem",
-                    { attrs: { label: "二级域名", prop: "domain" } },
-                    [
-                      _c("Input", {
-                        attrs: { placeholder: "二级域名" },
-                        model: {
-                          value: _vm.formUpdate.domain,
-                          callback: function($$v) {
-                            _vm.$set(_vm.formUpdate, "domain", $$v)
-                          },
-                          expression: "formUpdate.domain"
                         }
                       })
                     ],
@@ -2908,24 +2794,6 @@ var render = function() {
                         _vm.$set(_vm.searchForm, "name", $$v)
                       },
                       expression: "searchForm.name"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "FormItem",
-                { attrs: { prop: "domain", label: "二级域名" } },
-                [
-                  _c("Input", {
-                    attrs: { type: "text" },
-                    model: {
-                      value: _vm.searchForm.domain,
-                      callback: function($$v) {
-                        _vm.$set(_vm.searchForm, "domain", $$v)
-                      },
-                      expression: "searchForm.domain"
                     }
                   })
                 ],

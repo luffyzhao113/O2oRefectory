@@ -16,19 +16,19 @@ export const IndexRouter = [
         }
     },
     {
-        path: 'sysconfig.role',
-        name: 'sysconfig.role.index',
+        path: 'role.role',
+        name: 'role.role.index',
         meta: {title: '角色管理'},
         component: resolve => {
-            require(['../../views/sysconfig/role/index.vue'], resolve)
+            require(['../../views/role/role/index.vue'], resolve)
         }
     },
     {
-        path: 'sysconfig.admin',
-        name: 'sysconfig.admin.index',
+        path: 'role.admin',
+        name: 'role.admin.index',
         meta: {title: '用户管理'},
         component: resolve => {
-            require(['../../views/sysconfig/admin/index.vue'], resolve)
+            require(['../../views/role/admin/index.vue'], resolve)
         }
     }, {
         path: 'goods.model',
@@ -50,6 +50,13 @@ export const IndexRouter = [
         meta: {title: '回收站'},
         component: resolve => {
             require(['../../views/goods/recycle/index.vue'], resolve)
+        }
+    }, {
+        path: 'sysconfig.banner',
+        name: 'sysconfig.banner',
+        meta: {title: '横幅设置'},
+        component: resolve => {
+            require(['../../views/sysconfig/banner/index.vue'], resolve)
         }
     }
 ]

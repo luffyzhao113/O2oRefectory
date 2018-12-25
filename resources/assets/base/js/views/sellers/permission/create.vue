@@ -1,5 +1,5 @@
 <template>
-    <component-modal title="创建权限" :loading="loading">
+    <i-drawer title="创建权限" :loading="loading">
         <Form ref="formCreate" :model="formCreate" :label-width="80">
             <FormItem label="权限标识" prop="name" :rules="{required: true, message: '权限标识不能为空，并且格式为 a-z.a-z ！', pattern:
              /[a-z]+(\.[a-z]+)?/}">
@@ -31,19 +31,19 @@
         <div slot="footer">
             <Button @click="createSubmit('formCreate', 'seller_perms')">创建</Button>
         </div>
-    </component-modal>
+    </i-drawer>
 </template>
 
 <script>
     import component from "../../../mixins/component";
     import form from "../../../mixins/form";
-    import ComponentModal from "../../../components/modal/component-modal";
+    import IDrawer from "../../../components/modal/i-drawer";
     import GroupCascader from "../../../components/cascader/index";
 
     export default {
         components: {
             GroupCascader,
-            ComponentModal
+            IDrawer
         },
         name: "create",
         mixins: [component, form],

@@ -1,5 +1,5 @@
 <template>
-    <component-modal title="添加类目属性" :loading="loading">
+    <i-drawer title="添加类目属性" :loading="loading">
         <Form ref="formCreate" :model="formCreate" :label-width="100">
             <FormItem label="属性名称" prop="name" :rules="{required: true, message: '属性名称必须填写'}">
                 <Row>
@@ -30,17 +30,17 @@
         <div slot="footer">
             <Button @click="createSubmit('formCreate', 'attribute')">创建</Button>
         </div>
-    </component-modal>
+    </i-drawer>
 </template>
 
 <script>
-    import ComponentModal from "../../../components/modal/component-modal";
+    import IDrawer from "../../../components/modal/i-drawer";
     import component from "../../../mixins/component";
     import form from "../../../mixins/form";
 
     export default {
         name: "create",
-        components: {ComponentModal},
+        components: {IDrawer},
         mixins: [component, form],
         data() {
             return {

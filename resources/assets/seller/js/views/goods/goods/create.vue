@@ -1,5 +1,5 @@
 <template>
-    <component-modal title="添加商品" :loading="loading" :width="1200">
+    <i-drawer title="添加商品" :loading="loading" :width="1200">
         <Form ref="formCreate" :model="formCreate" :label-width="80" :rules="ruleCreate">
             <Row>
                 <Col :span="19">
@@ -155,13 +155,14 @@
             </Row>
         </Form>
         <div slot="footer">
-            <Button @click="createSubmit('formCreate', 'goods')">创建</Button>
+            <Button style="margin-right: 8px" @click="change(false)">取消</Button>
+            <Button type="primary" @click="createSubmit('formCreate', 'goods')">创建</Button>
         </div>
-    </component-modal>
+    </i-drawer>
 </template>
 
 <script>
-    import ComponentModal from "../../../components/modal/component-modal";
+    import IDrawer from "../../../components/modal/i-drawer";
     import component from "../../../mixins/component";
     import form from "../../../mixins/form";
     import Box from "../../../components/box/index";
@@ -175,7 +176,7 @@
 
     export default {
         name: "create",
-        components: {GroupCascader, Ueditor, Images, Base64, TrueOrFalse, BoxItem, Box, ComponentModal},
+        components: {GroupCascader, Ueditor, Images, Base64, TrueOrFalse, BoxItem, Box, IDrawer},
         mixins: [component, form],
         data() {
             return {

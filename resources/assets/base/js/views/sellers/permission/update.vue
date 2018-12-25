@@ -1,5 +1,5 @@
 <template>
-    <component-modal title="修改权限" :loading="loading">
+    <i-drawer title="修改权限" :loading="loading">
         <Form ref="formUpdate" :model="formUpdate" :label-width="80">
             <FormItem label="权限标识" prop="name" :rules="{required: true, message: '权限标识不能为空，并且格式为 a-z.a-z ！', pattern:
              /[a-z]+(\.[a-z]+)?/}">
@@ -30,18 +30,18 @@
         <div slot="footer">
             <Button @click="updateSubmit('formUpdate', `seller_perms/${componentProps.id}`)">更新</Button>
         </div>
-    </component-modal>
+    </i-drawer>
 </template>
 
 <script>
   import component from "../../../mixins/component";
 
   import form from "../../../mixins/form";
-  import ComponentModal from "../../../components/modal/component-modal";
+  import IDrawer from "../../../components/modal/i-drawer";
   import GroupCascader from "../../../components/cascader/index";
 
   export default {
-    components: {GroupCascader, ComponentModal},
+    components: {GroupCascader, IDrawer},
     name: "update",
     mixins:[component, form],
     data(){

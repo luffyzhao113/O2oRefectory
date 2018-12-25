@@ -1,5 +1,5 @@
 <template>
-    <component-modal title="修改类目" :loading="loading">
+    <i-drawer title="修改类目" :loading="loading">
         <Form ref="formUpdate" :model="formUpdate" :label-width="80">
             <FormItem label="类目名称" prop="name" :rules="{required: true, message: '类目名称必须填写'}">
                 <Input v-model="formUpdate.name" placeholder="类目名称"></Input>
@@ -15,18 +15,18 @@
         <div slot="footer">
             <Button @click="updateSubmit('formUpdate', `category/${componentProps.id}`)">更新</Button>
         </div>
-    </component-modal>
+    </i-drawer>
 </template>
 
 <script>
-    import ComponentModal from "../../../components/modal/component-modal";
+    import IDrawer from "../../../components/modal/i-drawer";
     import component from "../../../mixins/component";
     import form from "../../../mixins/form";
     import GroupCascader from "../../../components/cascader/index";
 
     export default {
         name: "update",
-        components: {ComponentModal, GroupCascader},
+        components: {IDrawer, GroupCascader},
         mixins: [component, form],
         data() {
             return {

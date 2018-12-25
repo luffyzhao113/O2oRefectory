@@ -1,5 +1,5 @@
 <template>
-    <component-modal title="添加模型" :loading="loading" :width="900" class="seller-model">
+    <i-drawer title="添加模型" :loading="loading" :width="900" class="seller-model">
         <Form ref="formCreate" :model="formCreate" :label-width="100" :rules="ruleCreate">
             <Row>
                 <Col span="12">
@@ -48,11 +48,11 @@
         <div slot="footer">
             <Button @click="createSubmit('formCreate', 'model')">创建</Button>
         </div>
-    </component-modal>
+    </i-drawer>
 </template>
 
 <script>
-    import ComponentModal from "../../../components/modal/component-modal";
+    import IDrawer from "../../../components/modal/i-drawer";
     import component from "../../../mixins/component";
     import form from "../../../mixins/form";
     import {Validator} from "../../../async-validator/goods/model/create";

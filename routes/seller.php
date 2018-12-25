@@ -69,6 +69,12 @@ Route::prefix('admin')->namespace('Admin')->group(
                                         'edit' => 'goods.update',
                                     ]
                                 );
+
+                                Route::resource('banner', 'BannerController')->except(['show', 'create'])->names(
+                                    [
+                                        'edit' => 'banner.update',
+                                    ]
+                                );
                             }
                         );
                     }

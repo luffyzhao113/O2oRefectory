@@ -1,5 +1,5 @@
 <template>
-    <component-modal title="添加店铺" :loading="loading" :width="900">
+    <i-drawer title="添加店铺" :loading="loading" :width="900">
         <Form ref="formCreate" :model="formCreate" :label-width="90" :rules="ruleCreate">
             <Box title="基本信息">
                 <box-item :span="8">
@@ -48,11 +48,11 @@
         <div slot="footer">
             <Button @click="createSubmit('formCreate', 'seller')">创建</Button>
         </div>
-    </component-modal>
+    </i-drawer>
 </template>
 
 <script>
-    import ComponentModal from "../../../components/modal/component-modal";
+    import IDrawer from "../../../components/modal/i-drawer";
     import {Validator} from "../../../async-validator/sellers/home/create";
     import Box from "../../../components/box/index";
     import BoxItem from "../../../components/box/box-item";
@@ -62,7 +62,7 @@
 
     export default {
         name: "create",
-        components: {TrueOrFalse, BoxItem, Box, ComponentModal},
+        components: {TrueOrFalse, BoxItem, Box, IDrawer},
         mixins: [form, component],
         data() {
             let $this = this

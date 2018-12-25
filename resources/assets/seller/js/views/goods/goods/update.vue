@@ -1,5 +1,5 @@
 <template>
-    <component-modal title="添加商品" :loading="loading" :width="1200">
+    <i-drawer title="修改商品" :loading="loading" :width="1200">
         <Form ref="formUpdate" :model="formUpdate" :label-width="80" :rules="ruleCreate">
             <Row>
                 <Col :span="19">
@@ -157,11 +157,11 @@
         <div slot="footer">
             <Button @click="updateSubmit('formUpdate', `goods/${data.id}`)">更新</Button>
         </div>
-    </component-modal>
+    </i-drawer>
 </template>
 
 <script>
-    import ComponentModal from "../../../components/modal/component-modal";
+    import IDrawer from "../../../components/modal/i-drawer";
     import component from "../../../mixins/component";
     import form from "../../../mixins/form";
     import Box from "../../../components/box/index";
@@ -175,7 +175,7 @@
 
     export default {
         name: "update",
-        components: {GroupCascader, Ueditor, Images, Base64, TrueOrFalse, BoxItem, Box, ComponentModal},
+        components: {GroupCascader, Ueditor, Images, Base64, TrueOrFalse, BoxItem, Box, IDrawer},
         mixins: [component, form],
         data() {
             return {

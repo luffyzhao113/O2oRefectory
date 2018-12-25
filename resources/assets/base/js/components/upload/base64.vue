@@ -80,6 +80,7 @@
             vertical-align: middle;
             display: inline-block;
             position: relative;
+            cursor: pointer;
             img{
                 max-width: 100%;
                 max-height: 100%;

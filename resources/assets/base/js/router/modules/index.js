@@ -16,27 +16,27 @@ export const IndexRouter = [
         }
     },
     {
-        path: 'sysconfig.permission',
-        name: 'sysconfig.permission.index',
+        path: 'role.permission',
+        name: 'role.permission.index',
         meta: {title: '权限&菜单'},
         component: resolve => {
-            require(['../../views/sysconfig/permission/index.vue'], resolve)
+            require(['../../views/role/permission/index.vue'], resolve)
         }
     },
     {
-        path: 'sysconfig.role',
-        name: 'sysconfig.role.index',
+        path: 'role.role',
+        name: 'role.role.index',
         meta: {title: '角色管理'},
         component: resolve => {
-            require(['../../views/sysconfig/role/index.vue'], resolve)
+            require(['../../views/role/role/index.vue'], resolve)
         }
     },
     {
-        path: 'sysconfig.admin',
-        name: 'sysconfig.admin.index',
+        path: 'role.admin',
+        name: 'role.admin.index',
         meta: {title: '用户管理'},
         component: resolve => {
-            require(['../../views/sysconfig/admin/index.vue'], resolve)
+            require(['../../views/role/admin/index.vue'], resolve)
         }
     },
     {

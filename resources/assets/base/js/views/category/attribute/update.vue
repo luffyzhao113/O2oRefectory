@@ -1,5 +1,5 @@
 <template>
-    <component-modal title="修改类目属性" :loading="loading">
+    <i-drawer title="修改类目属性" :loading="loading">
         <Form ref="formUpdate" :model="formUpdate" :label-width="100">
             <FormItem label="属性名称" prop="name" :rules="{required: true, message: '属性名称必须填写'}">
                 <Row>
@@ -29,16 +29,16 @@
         <div slot="footer">
             <Button @click="updateSubmit('formUpdate', `attribute/${componentProps.id}`)">创建</Button>
         </div>
-    </component-modal>
+    </i-drawer>
 </template>
 
 <script>
-    import ComponentModal from "../../../components/modal/component-modal";
+    import IDrawer from "../../../components/modal/i-drawer";
     import component from "../../../mixins/component";
     import form from "../../../mixins/form";
     export default {
         name: "update",
-        components: {ComponentModal},
+        components: {IDrawer},
         mixins: [component, form],
         mounted() {
             this.$nextTick(() => {

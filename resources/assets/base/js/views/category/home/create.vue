@@ -1,5 +1,5 @@
 <template>
-    <component-modal title="添加类目" :loading="loading">
+    <i-drawer title="添加类目" :loading="loading">
         <Form ref="formCreate" :model="formCreate" :label-width="80">
             <FormItem label="类目名称" prop="name" :rules="{required: true, message: '类目名称必须填写'}">
                 <Input v-model="formCreate.name" placeholder="类目名称"></Input>
@@ -15,18 +15,18 @@
         <div slot="footer">
             <Button @click="createSubmit('formCreate', 'category')">创建</Button>
         </div>
-    </component-modal>
+    </i-drawer>
 </template>
 
 <script>
     import component from "../../../mixins/component";
-    import ComponentModal from "../../../components/modal/component-modal";
+    import IDrawer from "../../../components/modal/i-drawer";
     import form from "../../../mixins/form";
     import GroupCascader from "../../../components/cascader/index";
 
     export default {
         name: "create",
-        components: {GroupCascader, ComponentModal},
+        components: {GroupCascader, IDrawer},
         mixins: [component, form],
         data() {
             return {

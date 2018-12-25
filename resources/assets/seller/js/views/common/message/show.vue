@@ -7,7 +7,7 @@
 
 <script>
   import component from "../../../mixins/component";
-  import ComponentModal from "../../../components/modal/component-modal";
+  import ComponentModal from "../../../components/modal/i-drawer";
 
   export default {
     components: {ComponentModal},

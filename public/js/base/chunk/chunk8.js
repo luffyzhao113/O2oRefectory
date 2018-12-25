@@ -100,7 +100,7 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-9fca2e18"
+var __vue_scopeId__ = "data-v-0fb828ce"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -111,7 +111,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\base\\js\\components\\modal\\component-modal.vue"
+Component.options.__file = "resources\\assets\\base\\js\\components\\modal\\i-drawer.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -120,9 +120,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-9fca2e18", Component.options)
+    hotAPI.createRecord("data-v-0fb828ce", Component.options)
   } else {
-    hotAPI.reload("data-v-9fca2e18", Component.options)
+    hotAPI.reload("data-v-0fb828ce", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -250,13 +250,13 @@ var content = __webpack_require__(121);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(3)("64136959", content, false, {});
+var update = __webpack_require__(3)("42aea2b8", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9fca2e18\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./component-modal.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9fca2e18\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./component-modal.vue");
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0fb828ce\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./i-drawer.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0fb828ce\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./i-drawer.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -275,7 +275,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.modal-body[data-v-9fca2e18] {\n    max-height: 500px;\n    overflow-y: auto;\n}\n", ""]);
+exports.push([module.i, "\n.modal-body[data-v-0fb828ce] {\n    height: calc(100% - 53px);\n    overflow-y: auto;\n    margin-right: -16px;\n    padding-right: 16px;\n}\n.compon-drawer-footer[data-v-0fb828ce]{\n    border-top: 1px solid #e8e8e8;\n    padding: 10px 16px;\n    text-align: right;\n    background: #fff;\n}\n.compon-drawer-footer *[data-v-0fb828ce]{\n    text-align: right;\n}\n", ""]);
 
 // exports
 
@@ -306,7 +306,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 
 exports.default = {
-    name: "component-modal",
+    name: "i-drawer",
     props: {
         title: {
             type: String,
@@ -338,7 +338,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "Modal",
+    "Drawer",
     {
       attrs: {
         title: _vm.title,
@@ -352,12 +352,7 @@ var render = function() {
     [
       _c("div", { staticClass: "modal-body" }, [_vm._t("default")], 2),
       _vm._v(" "),
-      _c(
-        "div",
-        { attrs: { slot: "footer" }, slot: "footer" },
-        [_vm._t("footer")],
-        2
-      ),
+      _c("div", { staticClass: "compon-drawer-footer" }, [_vm._t("footer")], 2),
       _vm._v(" "),
       _vm.loading ? _c("Spin", { attrs: { size: "large", fix: "" } }) : _vm._e()
     ],
@@ -370,7 +365,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-9fca2e18", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-0fb828ce", module.exports)
   }
 }
 
@@ -1114,9 +1109,9 @@ var _component = __webpack_require__(115);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _componentModal = __webpack_require__(116);
+var _iDrawer = __webpack_require__(116);
 
-var _componentModal2 = _interopRequireDefault(_componentModal);
+var _iDrawer2 = _interopRequireDefault(_iDrawer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1129,7 +1124,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 
 exports.default = {
-  components: { ComponentModal: _componentModal2.default },
+  components: { IDrawer: _iDrawer2.default },
   name: "update",
   mixins: [_component2.default],
   mounted: function mounted() {
@@ -1152,7 +1147,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("component-modal", { attrs: { title: "查看通知" } }, [
+  return _c("i-drawer", { attrs: { title: "查看通知" } }, [
     _c("h3", [_vm._v(_vm._s(_vm.componentProps.data.title))]),
     _vm._v("\n    " + _vm._s(_vm.componentProps.data.content) + "\n")
   ])

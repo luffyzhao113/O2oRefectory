@@ -1,5 +1,5 @@
 <template>
-    <component-modal title="查看店铺" :width="900" :loading="loading">
+    <i-drawer title="查看店铺" :width="900" :loading="loading">
         <box title="店铺详情">
             <detail title="店铺名称">{{seller.name}}</detail>
             <detail title="店铺状态">
@@ -7,11 +7,11 @@
                 <span v-else>开启</span>
             </detail>
         </box>
-    </component-modal>
+    </i-drawer>
 </template>
 
 <script>
-    import ComponentModal from "../../../components/modal/component-modal";
+    import IDrawer from "../../../components/modal/i-drawer";
     import component from "../../../mixins/component";
     import http from "../../../mixins/http";
     import Box from "../../../components/box/index";
@@ -22,7 +22,7 @@
         components: {
             Detail,
             Box,
-            ComponentModal
+            IDrawer
         },
         mixins: [component, http],
         data() {

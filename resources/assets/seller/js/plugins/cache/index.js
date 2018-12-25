@@ -31,6 +31,9 @@ const cache = {
     },
     touch: function (key, exp) {
         return storageCahce.touch(_newKeyAsString(key, exp));
+    },
+    clear: function () {
+        return storageCahce.clear()
     }
 };
 
